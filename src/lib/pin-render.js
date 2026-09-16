@@ -68,7 +68,7 @@ const PROMPT =
   'subtle highlight. Right panel: brushed silver grey metal plate, recessed etched serif text ' +
   'quote: "[QUOTE_TEXT]", below quote: "[MODEL_NAME]", "[AUTHOR_INFO]", text is carved into ' +
   'silver metal, matte etched finish. Bottom long strip divided into three small metal panels: ' +
-  'left embossed brass text "PELICAN ZOO", middle etched text "[ART_TITLE]", right etched text ' +
+  'left embossed brass text "PelicanZoo.ai", middle etched text "[ART_TITLE]", right etched text ' +
   '"CRITIC: [CRITIC_NAME]". The whole badge has thick double-layer brass metal outer bezel, ' +
   'subtle metal grain, enamel has smooth glassy surface with soft specular highlight, slight ' +
   'tiny speckles in enamel, top-down flat front view, orthographic, no perspective, soft studio ' +

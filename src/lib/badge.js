@@ -76,6 +76,15 @@ const TASK = 'pelican riding a bicycle';
 // a spoon, a head over a shoulder reads as a hooded figure. The wordmark on its
 // own survives every size, and the site has no logo anywhere else, so a mark
 // that appears only here would promise a badge nobody sees on arrival.
+//
+// The wordmark is the domain and not the name, for a reason that applies to this
+// file and to nothing else on the site: this card is meant to be lifted. It is
+// wrapped in a link wherever we hand it out, but the link is the first thing to
+// go — screenshot it, drop it in a deck, save the PNG, and all that survives is
+// the picture. "PELICAN ZOO" in that picture is something a reader has to go and
+// search for. "PelicanZoo.ai" is somewhere they can go. Mixed case rather than
+// caps because a domain shouted back reads as a banner ad, and because the two
+// capitals are what keep the two words apart now that the space is gone.
 
 const esc = (t) =>
   String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
@@ -187,8 +196,8 @@ export function renderBadge(s) {
   const handle = String(s.by || '').trim();
   const credit = handle && !/^anon(ymous)?$/i.test(handle) ? `fed by ${handle}` : 'fed anonymously';
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(s.model)} scored ${score} out of 100 for a ${TASK} at Pelican Zoo">
-<title>${esc(s.model)} — ${score}/100 for a ${TASK}, at Pelican Zoo</title>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(s.model)} scored ${score} out of 100 for a ${TASK} at PelicanZoo.ai">
+<title>${esc(s.model)} — ${score}/100 for a ${TASK}, at PelicanZoo.ai</title>
 <desc>${esc(review)}</desc>
 <clipPath id="zooThumb"><rect x="${THUMB.x}" y="${THUMB.y}" width="${THUMB.w}" height="${THUMB.h}" rx="${THUMB.r}"/></clipPath>
   <rect width="${W}" height="${H}" ${lock({ fill: PAPER })}/>
@@ -211,7 +220,7 @@ ${quote.lines
   <text x="${TEXT_X}" y="151" ${lock({ fill: MUTED, 'font-family': MONO, 'font-size': '12.5px' })}>${esc(credit)}</text>
 
   <line x1="${IN_L}" y1="${RULE_Y}" x2="${IN_R}" y2="${RULE_Y}" ${lock({ stroke: RULE })}/>
-  <text x="${THUMB.x}" y="180" ${lock({ fill: PLAQUE, 'font-family': SERIF, 'font-size': '15px', 'font-weight': '700', 'letter-spacing': '1.6' })}>PELICAN ZOO</text>
+  <text x="${THUMB.x}" y="180" ${lock({ fill: PLAQUE, 'font-family': SERIF, 'font-size': '15px', 'font-weight': '700', 'letter-spacing': '.2' })}>PelicanZoo.ai</text>
   <text x="${SCORE_X}" y="180" ${lock({ fill: MUTED, 'font-family': MONO, 'font-size': '12px' })}>${TASK}</text>
   <text x="${TEXT_R}" y="180" ${lock({ fill: MUTED, 'font-family': MONO, 'font-size': '11px', 'letter-spacing': '1', 'text-anchor': 'end' })}>CRITIC: ${esc(criticName)}</text>
 

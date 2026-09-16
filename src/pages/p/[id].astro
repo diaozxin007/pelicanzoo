@@ -113,6 +113,16 @@ const pinHref = `/pin/${s.id}.png`;
 const canMint = fed && scored && !!Astro.locals.runtime?.env?.DASHSCOPE_API_KEY;
 const showPin = fed && scored;
 
+// Which pelican's badge public/badge-metal.jpg was struck from. The two are a
+// pair: replace the photograph and this has to move with it, or the page starts
+// citing the wrong bird. Naming it is the point — an unattributed product shot
+// is a render, and a render proves nothing about whether this actually works.
+//
+// On that pelican's own page the demo is not a demo of somebody else, it is the
+// badge six inches above it, which is a better sentence than any link.
+const DEMO_ID = 'claude-fable-5.1-2026-09-16';
+const isDemoPelican = s.id === DEMO_ID;
+
 // Hashed from this page's id rather than Math.random: the mix has to differ
 // between specimens but stay identical across builds, or every deploy is a
 // diff of 104 reshuffled lists with nothing actually changed in them.
@@ -299,47 +309,6 @@ const alsoHere = pool.slice(0, 6);
         politeness — the badge says what it says. Hang it on your own wall.
       </p>
       <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width={BADGE_W} height={BADGE_H} /></p>
-      {showPin && (canMint ? (
-        <p class="mint">
-          {/* nofollow and target=_blank for the same reason: this is not a
-              document, it is a minute of somebody else's compute, and neither a
-              crawler nor a reader should arrive at it by accident. */}
-          <a href={pinHref} rel="nofollow" target="_blank">strike it in enamel ↗</a>
-          <span>the real object, in brass and glass — the first one takes a minute to make</span>
-        </p>
-      ) : (
-        <figure class="pin-demo">
-          {/* A different pelican's badge, deliberately: this is a photograph of
-              what the process does, not a preview of what this page would get,
-              and dressing it up as the latter would be a promise the page has no
-              way to keep. */}
-          <img
-            src="/badge-metal.jpg"
-            alt="the same badge struck as a brass and hard-enamel pin"
-            width="1520"
-            height="415"
-            loading="lazy"
-          />
-          <figcaption>
-            <b>the same papers, struck in brass</b>
-            An image model was handed a badge exactly like the one above and
-            asked for the object — it reads the score and the review off the
-            picture and lays them into enamel. It also spends about two per cent
-            of a week's quota per pelican, which is why this is a photograph and
-            not a button.
-            {CONTACT_EMAIL && (
-              <>
-                {' '}Want yours in metal?{' '}
-                <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`a pin for ${s.model}`)}`}>
-                  write in
-                </a>{' '}
-                and I will make it by hand. Or sponsor the model, and it goes
-                back to being a button for everybody.
-              </>
-            )}
-          </figcaption>
-        </figure>
-      ))}
       <div class="snippets">
         {/* One line each, not a block of wrapped markup. Nobody reads an embed
             snippet; they copy it. Not a <label> either — it would wrap the copy
@@ -362,6 +331,68 @@ const alsoHere = pool.slice(0, 6);
         assessed again when it is — a 68 is not a life sentence in either
         direction.
       </p>
+      {/* Last on the page, after the terms, and deliberately not between the
+          badge and the snippets where it used to sit. What somebody came here to
+          do is take the badge and paste it somewhere; an aside about brass in
+          the middle of that is an interruption. Down here it is the thing you
+          find if you read to the end. */}
+      {showPin && (canMint ? (
+        <p class="mint">
+          {/* nofollow and target=_blank for the same reason: this is not a
+              document, it is a minute of somebody else's compute, and neither a
+              crawler nor a reader should arrive at it by accident. */}
+          <a href={pinHref} rel="nofollow" target="_blank">strike it in enamel ↗</a>
+          <span>the real object, in brass and glass — the first one takes a minute to make</span>
+        </p>
+      ) : (
+        <figure class="pin-demo">
+          <img
+            src="/badge-metal.jpg"
+            alt={`the badge for ${DEMO_ID.replace(/-\d{4}-\d{2}-\d{2}$/, '')} struck as a brass and hard-enamel pin`}
+            width="1520"
+            height="415"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>the same papers, struck in brass</b>
+            <p>
+              I wanted the final ceremony to be a real metal badge — your score,
+              your review, your model, turned into something you could hold.
+            </p>
+            <p>Then I priced it.</p>
+            <p>
+              The AI generation is simply too expensive to put behind a button
+              for everyone. So this one is handmade from{' '}
+              {/* "the design above" is only true on the page the photograph was
+                  actually struck from. Everywhere else the badge above belongs
+                  to a different bird, and pointing at it would be a claim about
+                  this pelican that the picture cannot back up. */}
+              {isDemoPelican ? (
+                <>the design above</>
+              ) : (
+                <>the design on <a href={`/p/${DEMO_ID}`}>claude-fable-5.1</a>'s page</>
+              )}.
+            </p>
+            {CONTACT_EMAIL && (
+              <>
+                <p>
+                  Want one?{' '}
+                  {/* The closing tag hugs the text on purpose: a newline inside
+                      the anchor survives into the markup as a trailing space,
+                      and the underline then runs on past "me" to the full stop. */}
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`a pin for ${s.model}`)}`}
+                  >Write to me</a>.
+                </p>
+                <p>
+                  And if you want to sponsor the tokens, even better — maybe we
+                  can bring the button back for everyone.
+                </p>
+              </>
+            )}
+          </figcaption>
+        </figure>
+      ))}
     </section>
   )}
 </main>
@@ -660,11 +691,10 @@ const alsoHere = pool.slice(0, 6);
     box-shadow: 0 2px 7px rgba(34, 32, 27, .13);
   }
 
-  /* Sits between the badge and the snippets, which is where it belongs in the
-     argument: here is your badge, here is the object, here is how to hang it. A
-     link and not a button — pressing it goes somewhere, and it takes a minute,
-     so it wants a tab of its own rather than a spinner in this one. */
-  .mint { max-width: 34rem; margin: -.6rem auto 1.5rem; display: grid; gap: .22rem; }
+  /* Last, under the fineprint. A link and not a button — pressing it goes
+     somewhere, and it takes a minute, so it wants a tab of its own rather than a
+     spinner in this one. */
+  .mint { max-width: 34rem; margin: 1.9rem auto 0; display: grid; gap: .22rem; }
   .mint a {
     font: 700 .74rem/1 ui-monospace, monospace; letter-spacing: .1em;
     text-transform: uppercase; color: #9a7b24; text-decoration: none;
@@ -676,8 +706,9 @@ const alsoHere = pool.slice(0, 6);
   /* The demo stands in the same slot and makes the same argument, but it has to
      carry it alone: nothing here is clickable, so the picture is the whole of
      the case for writing in. Hence a real photograph at full measure rather
-     than a thumbnail beside a paragraph. */
-  .pin-demo { max-width: 34rem; margin: -.4rem auto 1.6rem; }
+     than a thumbnail beside a paragraph. The fineprint above already draws a
+     rule, so this only needs the air under it, not a second line. */
+  .pin-demo { max-width: 34rem; margin: 1.9rem auto 0; }
   .pin-demo img {
     display: block; width: 100%; height: auto; border-radius: 3px;
     box-shadow: 0 3px 11px rgba(34, 32, 27, .18);
@@ -693,6 +724,10 @@ const alsoHere = pool.slice(0, 6);
     font: 700 .72rem/1 ui-monospace, monospace; letter-spacing: .1em;
     text-transform: uppercase; color: #9a7b24;
   }
+  /* Five short beats rather than one block: the middle one is three words long,
+     and "Then I priced it." only lands if it gets a line of its own. */
+  .pin-demo figcaption p { margin: 0 0 .55rem; }
+  .pin-demo figcaption p:last-child { margin-bottom: 0; }
   .pin-demo figcaption a { color: var(--plaque); text-decoration-color: var(--brass); }
 
   /* One row per format: caption, the snippet on a single scrolling line, and the
