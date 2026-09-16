@@ -585,8 +585,10 @@ const alsoHere = pool.slice(0, 6);
   /* Off the page a little, like something hung on a wall rather than printed
      into it — it is the one object here that is meant to leave. */
   .badge-preview { margin: 0 0 1.6rem; }
+  /* No radius: the card draws its own border, and rounding the element clips
+     the corners off it. */
   .badge-preview img {
-    display: inline-block; max-width: 100%; height: auto; border-radius: 5px;
+    display: inline-block; max-width: 100%; height: auto;
     box-shadow: 0 2px 7px rgba(34, 32, 27, .13);
   }
 
