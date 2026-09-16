@@ -24,4 +24,4 @@ export const GA4_ID = 'G-QW81EXNLQV';
 // Empty until the keeper fills it in, and empty is a working state: the demo
 // still shows, the invitation simply doesn't. Nothing else in this repository
 // prints an email, so this is the one place to change it.
-export const CONTACT_EMAIL = '';
+export const CONTACT_EMAIL = 'diaozxin@gmail.com';
