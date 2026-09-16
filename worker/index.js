@@ -105,14 +105,15 @@ async function roast(env, svg) {
       { role: 'system', content: SYSTEM },
       { role: 'user', content: svg.slice(0, MAX_SVG) },
     ],
-    // Three sentences, a SCORE line, and nothing else. Reasoning models spend
-    // tokens before they say anything, so this is not as tight as it looks.
-    max_tokens: 400,
+    // Three sentences and a SCORE line is perhaps 80 tokens. The rest of this
+    // is headroom for the reasoning the model does first and does not show:
+    // at 400 the whole budget went to thinking and the reply came back empty.
+    max_tokens: 2000,
     // High enough that two pelicans do not get the same joke, low enough that
     // the critic keeps citing real numbers instead of inventing them.
     temperature: 0.8,
   });
-  return parseRoast(textOf(result));
+  return { ...parseRoast(textOf(result)), shape: result };
 }
 
 export default {
@@ -173,7 +174,15 @@ export default {
       // Most often the daily neuron allowance, which resets at midnight UTC.
       return json({ error: 'the critic has gone home for the day.', detail: String(err).slice(0, 200) }, 503);
     }
-    if (!verdict.text) return json({ error: 'the critic said nothing.' }, 502);
+    // The shape only rides along when there is nothing to show. Workers AI does
+    // not document what this model returns, and an empty review is otherwise
+    // indistinguishable from a review that came back in a field we do not read.
+    if (!verdict.text) {
+      return json({
+        error: 'the critic said nothing.',
+        detail: JSON.stringify(verdict.shape).slice(0, 600),
+      }, 502);
+    }
 
     const res = json({ roast: verdict.text, score: verdict.score, critic: MODEL });
     // A roast about a fixed drawing never goes stale, and the cache is the whole
