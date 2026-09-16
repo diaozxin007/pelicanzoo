@@ -53,10 +53,12 @@ const years = [...new Set(all.map((s) => s.year))].sort();
 
 // Share card. The counts are read off the data rather than typed, so a rebuild
 // after new pelicans arrive can't leave the preview claiming an old number.
-const title = "Pelican Zoo — every LLM's attempt at a pelican on a bicycle";
+// The benchmark's own phrase leads, because that is what people type into a
+// search box; the zoo name follows so the card still reads as a place.
+const title = "Pelican Riding a Bicycle — Pelican Zoo: Every LLM's Attempt";
 const description =
-  `${all.length} pelicans drawn by ${zoo.models.length} language models, ` +
-  `all in one enclosure — plus a game: can you tell which model drew which?`;
+  `${all.length} pelicans riding bicycles, drawn by ${zoo.models.length} language ` +
+  `models since ${years[0]} — plus a game: can you tell which model drew which?`;
 // Absolute, because crawlers do not resolve relative og:image. `Astro.site` is
 // the value in astro.config, so this follows the domain instead of pinning it.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
