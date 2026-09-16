@@ -150,6 +150,13 @@ const ogAlt =
   ))}
 </main>
 
+<!-- Every specimen is in the HTML above; the fold is only ever `hidden` on
+     pens that are already there. Paginating for real would cost the crawlers
+     102 of the 103 pelicans. -->
+<div class="more">
+  <button class="show-all" type="button"></button>
+</div>
+
 {fed.length > 0 && (
   <section class="pen-block">
     <div class="pen-block-head">
@@ -197,20 +204,62 @@ const ogAlt =
 </footer>
 
 <script is:inline>
+  // A hundred and three pens is about forty screens of scrolling before the
+  // feed pen and the submission box, which nobody reached. The first twenty are
+  // one per model, newest first, so the fold opens on twenty different models
+  // rather than six qwen variants.
+  const LIMIT = 20;
   const pens = [...document.querySelectorAll('.pen')];
+  // Only the permanent collection folds. The feed pen is short and is the thing
+  // we want people to notice, so burying it under a fold defeats the point.
+  const wild = new Set(document.querySelectorAll('main.enclosure > .pen'));
+  const moreBtn = document.querySelector('.show-all');
+
+  let filter = 'all';
+  let expanded = false;
+
+  const passes = (p) =>
+    filter === 'all' ? true :
+    filter === 'live' ? p.dataset.alive === '1' :
+    p.dataset.vendor === filter.slice(7);
+
+  function apply() {
+    let shown = 0;
+    for (const p of pens) {
+      const pass = passes(p);
+      const folded = wild.has(p) && !expanded && shown >= LIMIT;
+      p.hidden = !pass || folded;
+      if (pass && !folded && wild.has(p)) shown++;
+    }
+
+    let total = 0;
+    for (const p of wild) if (passes(p)) total++;
+    // Nothing to unfold when the filter already shows everything it has.
+    moreBtn.hidden = total <= LIMIT;
+    moreBtn.textContent = expanded
+      ? 'show fewer'
+      : `show all ${total} specimens ↓`;
+  }
+
   document.querySelector('.filters').addEventListener('click', (e) => {
     const b = e.target.closest('.f');
     if (!b) return;
     document.querySelectorAll('.f').forEach((x) => x.classList.toggle('on', x === b));
-    const f = b.dataset.filter;
-    pens.forEach((p) => {
-      const show =
-        f === 'all' ? true :
-        f === 'live' ? p.dataset.alive === '1' :
-        p.dataset.vendor === f.slice(7);
-      p.hidden = !show;
-    });
+    filter = b.dataset.filter;
+    // Changing the filter re-folds: picking "Anthropic" to then be handed the
+    // full hundred again is not what the button looked like it would do.
+    expanded = false;
+    apply();
   });
+
+  moreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    apply();
+    if (!expanded) document.querySelector('main.enclosure').scrollIntoView({ block: 'start' });
+    window.zooTrack('unfold', { filter, expanded: expanded ? 'yes' : 'no' });
+  });
+
+  apply();
 
   // The critic. One listener for the whole page rather than one per pen: there
   // are a hundred of these buttons and most will never be pressed.
@@ -381,6 +430,18 @@ const ogAlt =
   .note cite { display: block; margin-top: .4rem; font-size: .7rem; color: var(--muted); font-style: normal; }
   .source { margin-top: auto; padding-top: .6rem; font-size: .74rem; color: var(--muted); text-decoration: none; }
   .source:hover { color: var(--plaque); text-decoration: underline; }
+
+  /* Pulled up into the enclosure's own bottom padding, so the button reads as
+     the end of the grid rather than as a separate section. */
+  .more { display: flex; justify-content: center; margin-top: -3.2rem; padding: 0 1.25rem 3.5rem; }
+  .show-all {
+    font: 600 .85rem/1 ui-monospace, "SF Mono", monospace; letter-spacing: .04em;
+    padding: .85rem 1.5rem; cursor: pointer;
+    background: var(--card); color: var(--plaque);
+    border: 1px solid var(--rule); border-radius: 100px; transition: .14s;
+  }
+  .show-all:hover { border-color: var(--plaque); background: #fff; }
+  .show-all[hidden] { display: none; }
 
   .pen-block-head { max-width: 88rem; margin: 0 auto; padding: 2.5rem 1.25rem 0; }
   .pen-block-head h2 { margin: 0; font: 700 1.6rem/1.2 Georgia, serif; }
