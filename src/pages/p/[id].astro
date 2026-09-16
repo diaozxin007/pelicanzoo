@@ -237,36 +237,6 @@ const alsoHere = pool.slice(0, 6);
       >share on X</a>
     </div>
 
-    {scored && (
-      <section class="papers">
-        <h2>papers</h2>
-        <p>
-          The zoo has examined this pelican and is prepared to say so in public.
-          The critic does not grade on a curve and does not revise upward out of
-          politeness — the badge says what it says. Hang it on your own wall.
-        </p>
-        <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width="280" height="60" /></p>
-        <div class="snippets">
-          <label>
-            <span>HTML</span>
-            <textarea readonly rows="5" data-copy>{badgeHtml}</textarea>
-            <button class="copy" type="button">copy</button>
-          </label>
-          <label>
-            <span>Markdown</span>
-            <textarea readonly rows="4" data-copy>{badgeMd}</textarea>
-            <button class="copy" type="button">copy</button>
-          </label>
-        </div>
-        <p class="fineprint">
-          The badge is drawn fresh on every build, so it follows the record
-          rather than freezing a good day. The critic is occasionally rewritten,
-          and when that happens every pelican is assessed again — a 68 is not a
-          life sentence in either direction.
-        </p>
-      </section>
-    )}
-
     {/* The share asks people to feed the zoo one of their own, and this is the
         door that ask points at. Without it the invitation lands on a page with
         no way to accept it. */}
@@ -275,6 +245,45 @@ const alsoHere = pool.slice(0, 6);
       <span>got a pelican out of a model? send it in</span>
     </a>
   </div>
+
+  {/* Its own band across both columns rather than a block inside the plaque.
+      The plaque is a narrow caption beside a picture; an embed snippet is a
+      hundred-odd characters of URL, and folding that into a third of the page
+      both wrapped it into an unreadable stack and left the picture's column
+      empty for the length of it. */}
+  {scored && (
+    <section class="papers">
+      <h2>papers</h2>
+      <p class="lede">
+        The zoo has examined this pelican and is prepared to say so in public.
+        The critic does not grade on a curve and does not revise upward out of
+        politeness — the badge says what it says. Hang it on your own wall.
+      </p>
+      <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width="280" height="60" /></p>
+      <div class="snippets">
+        {/* One line each, not a block of wrapped markup. Nobody reads an embed
+            snippet; they copy it. Not a <label> either — it would wrap the copy
+            button too, and pressing the button would also be a press on the
+            field beside it. */}
+        <div class="field">
+          <span id={`${s.id}-html`}>HTML</span>
+          <input readonly value={badgeHtml} data-copy aria-labelledby={`${s.id}-html`} />
+          <button class="copy" type="button">copy</button>
+        </div>
+        <div class="field">
+          <span id={`${s.id}-md`}>MD</span>
+          <input readonly value={badgeMd} data-copy aria-labelledby={`${s.id}-md`} />
+          <button class="copy" type="button">copy</button>
+        </div>
+      </div>
+      <p class="fineprint">
+        Drawn fresh on every build, so it follows the record rather than freezing
+        a good day. The critic is rewritten now and then, and every pelican is
+        assessed again when it is — a 68 is not a life sentence in either
+        direction.
+      </p>
+    </section>
+  )}
 </main>
 
 {alsoHere.length > 0 && (
@@ -520,43 +529,87 @@ const alsoHere = pool.slice(0, 6);
   .score[data-band='mid'] b { color: #9a7b24; }
   .score[data-band='high'] b { color: var(--plaque); }
 
-  /* The certificate. It sits between the share row and the feed pen door on
-     purpose: someone who has just read a number is the one person who wants a
-     badge of it, and someone who wants a badge of it needs a pelican first. */
+  /* The certificate. It comes after the plaque on purpose: someone who has just
+     read a number is the one person who wants a badge of it, and someone who
+     wants a badge of it needs a pelican first.
+
+     Laid out as a document rather than as a documentation block — ruled twice
+     round, centred, the badge hung in the middle of it. A stack of left-aligned
+     code boxes reads like a README, and the thing being handed over is an
+     award. It spans both columns but is narrower than either pair of them: a
+     certificate is a sheet of paper, and stretched to the full 68rem it was a
+     thin line of text with a quarter of the band empty on each side. */
   .papers {
-    margin-top: 1.1rem; padding: .95rem; border: 1px solid var(--rule);
-    border-radius: 4px; background: #fbf7ea;
+    grid-column: 1 / -1; position: relative;
+    max-width: 46rem; margin: 0 auto; width: 100%;
+    padding: 2.2rem 2rem 1.7rem; text-align: center;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
   }
+  .papers::before {
+    content: ''; position: absolute; inset: 6px; pointer-events: none;
+    border: 1px solid var(--rule); border-radius: 2px; opacity: .6;
+  }
+  /* Brass rules either side, the way the plaques in here are set. */
   .papers h2 {
-    margin: 0 0 .5rem;
-    font: 700 .74rem/1 ui-monospace, monospace; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; justify-content: center; gap: .75rem;
+    margin: 0 0 .8rem;
+    font: 700 .72rem/1 ui-monospace, monospace; letter-spacing: .3em;
+    text-transform: uppercase; color: #9a7b24; text-indent: .3em;
   }
-  .papers p { margin: 0 0 .7rem; font-size: .88rem; }
-  .badge-preview { text-align: center; }
-  .badge-preview img { max-width: 100%; height: auto; }
-  .snippets { display: grid; gap: .5rem; }
-  .snippets label { position: relative; display: block; }
-  .snippets span {
-    display: block; margin-bottom: .2rem;
-    font: 700 .64rem/1 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted);
+  .papers h2::before, .papers h2::after {
+    content: ''; width: 2.2rem; height: 1px; background: var(--brass); opacity: .7;
   }
-  .snippets textarea {
-    display: block; box-sizing: border-box;
-    width: 100%; padding: .5rem .55rem; resize: vertical;
-    border: 1px solid var(--rule); border-radius: 3px; background: var(--card);
-    color: var(--ink); font: .72rem/1.45 ui-monospace, monospace;
+  /* The prose, the snippets and the small print all sit on one 34rem measure, so
+     the block has a single invisible edge down either side instead of three. */
+  .papers .lede {
+    max-width: 34rem; margin: 0 auto 1.6rem;
+    font-size: .88rem; line-height: 1.6; color: #4a4437;
   }
-  /* On the label's own line rather than floating over the box: the snippet is
-     wrapped monospace, so anywhere inside the textarea covers something. */
+  /* Off the page a little, like something hung on a wall rather than printed
+     into it — it is the one object here that is meant to leave. */
+  .badge-preview { margin: 0 0 1.6rem; }
+  .badge-preview img {
+    display: inline-block; max-width: 100%; height: auto; border-radius: 5px;
+    box-shadow: 0 2px 7px rgba(34, 32, 27, .13);
+  }
+
+  /* One row per format: caption, the snippet on a single scrolling line, and the
+     button that is the only thing anybody actually does with either. */
+  .snippets { max-width: 34rem; margin: 0 auto; display: grid; gap: .45rem; text-align: left; }
+  .field {
+    display: flex; align-items: stretch; overflow: hidden;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--paper);
+  }
+  .field:focus-within { border-color: var(--brass); }
+  /* Fixed width, not shrink-to-fit: HTML is twice the word MD, and left to
+     themselves the two captions push their snippets to two different left
+     edges. Three ragged columns in a block four lines tall. */
+  .field span {
+    flex: none; width: 3.4rem; display: flex; align-items: center; justify-content: center;
+    background: #f1ecdd; border-right: 1px solid var(--rule);
+    font: 700 .62rem/1 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted);
+  }
+  .field input {
+    flex: 1; min-width: 0; padding: .55rem .6rem;
+    border: 0; background: none; outline: none; text-overflow: ellipsis;
+    color: var(--muted); font: .72rem/1 ui-monospace, monospace;
+  }
+  /* Wide enough for "copied" as well as "copy", so pressing it does not shove
+     the snippet sideways while it says so. */
   .copy {
-    position: absolute; right: 0; top: -.1rem; padding: .18rem .5rem;
-    border: 1px solid var(--rule); border-radius: 3px;
-    background: var(--paper); color: var(--muted); cursor: pointer;
-    font: 700 .64rem/1 ui-monospace, monospace; letter-spacing: .06em;
+    flex: none; width: 4.4rem; cursor: pointer;
+    border: 0; border-left: 1px solid var(--rule);
+    background: #f1ecdd; color: var(--muted); transition: .12s;
+    font: 700 .64rem/1 ui-monospace, monospace; letter-spacing: .08em;
   }
-  .copy:hover { color: var(--ink); border-color: var(--brass); }
-  .fineprint { margin: .7rem 0 0 !important; font-size: .76rem; color: var(--muted); }
+  .copy:hover { background: var(--plaque); color: var(--brass); }
+  /* Ruled off the offer above it: everything before this line is the award,
+     everything after is the terms it comes with. */
+  .fineprint {
+    max-width: 34rem; margin: 1.5rem auto 0; padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-size: .74rem; line-height: 1.55; color: var(--muted);
+  }
 
   .feed-cta {
     margin-top: .9rem; padding: .85rem .95rem; display: block;
