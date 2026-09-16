@@ -102,9 +102,10 @@ const ogImage = new URL('/og.png', Astro.site).href;
   <div class="gate-inner">
     <h1>PELICAN&nbsp;ZOO</h1>
     <p class="tagline">
-      Every large language model, asked the same thing:<br />
-      <em>“Generate an SVG of a pelican riding a bicycle.”</em>
+      Every <strong>pelican riding a bicycle</strong> a language model has ever
+      drawn, kept in one enclosure.
     </p>
+    <p class="prompt">the prompt, every time: <em>“Generate an SVG of a pelican riding a bicycle.”</em></p>
     <dl class="counts">
       <div><dt>specimens</dt><dd>{all.length}</dd></div>
       <div><dt>species (models)</dt><dd>{zoo.models.length}</dd></div>
@@ -254,8 +255,17 @@ const ogImage = new URL('/og.png', Astro.site).href;
     letter-spacing: .12em;
     color: var(--brass);
   }
-  .tagline { margin: 1.2rem auto 2rem; max-width: 34rem; font-size: 1.05rem; opacity: .9; }
-  .tagline em { color: #fff; }
+  .tagline { margin: 1.2rem auto .8rem; max-width: 34rem; font-size: 1.15rem; opacity: .95; }
+  /* The phrase is what people search for, so it carries weight in the sentence
+     rather than only living inside the quoted prompt below. */
+  .tagline strong { color: #fff; font-weight: 700; }
+  /* Visibly a quotation of the input, not a second headline — otherwise saying
+     "pelican riding a bicycle" twice in four lines reads as a stutter. */
+  .prompt {
+    margin: 0 auto 2rem; max-width: 44rem; opacity: .6;
+    font: .82rem/1.5 ui-monospace, "SF Mono", monospace;
+  }
+  .prompt em { color: #fff; opacity: .85; font-style: normal; }
   .counts {
     display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
     margin: 0 0 1.8rem; padding: 1.4rem 0; border-block: 1px solid rgba(255,255,255,.15);
