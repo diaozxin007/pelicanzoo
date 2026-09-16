@@ -14,6 +14,7 @@
 //   node scripts/make-og-specimens.mjs [--only <id>] [--force]
 import fs from 'node:fs';
 import path from 'node:path';
+import { loadFeed } from '../src/lib/feed.js';
 
 const PORT = 9446;
 const OUT_DIR = 'public/og';
@@ -24,8 +25,11 @@ const args = process.argv.slice(2);
 const only = args.includes('--only') ? args[args.indexOf('--only') + 1] : null;
 const force = args.includes('--force');
 
-const specimens = JSON.parse(fs.readFileSync('data/specimens.json', 'utf8'))
-  .filter((s) => s.model)
+const wild = JSON.parse(fs.readFileSync('data/specimens.json', 'utf8')).filter((s) => s.model);
+// Fed pelicans get a page, so they get a card. The person who sent one in is
+// the single most likely person to share it.
+const taken = new Set(wild.map((s) => s.id));
+const specimens = [...wild, ...loadFeed().filter((f) => !taken.has(f.id))]
   .filter((s) => !only || s.id === only);
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -86,6 +90,7 @@ function cardHtml(s, art) {
     font: 700 15px/1 ui-monospace, monospace; letter-spacing: .1em;
     background: #1e3a2b; color: #c8a64b;
   }
+  .tag.fed { background: #8a6a12; color: #fff; }
   .foot {
     margin-top: auto; border-top: 2px solid #c8a64b; padding-top: 16px;
     display: flex; justify-content: space-between; align-items: baseline;
@@ -98,10 +103,14 @@ function cardHtml(s, art) {
   <div class="body">
     <div class="eyebrow">a pelican riding a bicycle</div>
     <h1>${esc(s.model)}</h1>
-    <div class="sub">${esc(s.observed)}</div>
-    ${s.alive ? '<div class="tag">ALIVE · VECTOR</div>' : ''}
+    <div class="sub">${esc(s.observed || '')}</div>
+    ${s.origin === 'feed'
+      ? '<div class="tag fed">FED · SELF-REPORTED</div>'
+      : s.alive ? '<div class="tag">ALIVE · VECTOR</div>' : ''}
   </div>
-  <div class="foot"><span>drawn by a language model</span><b>pelicanzoo.ai</b></div>
+  <div class="foot"><span>${s.origin === 'feed'
+    ? `fed by ${esc(s.by || 'a visitor')}`
+    : 'drawn by a language model'}</span><b>pelicanzoo.ai</b></div>
 </div>`;
 }
 
@@ -143,7 +152,11 @@ for (const s of specimens) {
 
   let art;
   try {
-    if (s.alive && fs.existsSync(path.join('public/live', `${s.id}.svg`))) {
+    if (s.origin === 'feed') {
+      // Already sanitised by loadFeed, and it only ever exists in the repo —
+      // there is nothing to fetch.
+      art = s.svg;
+    } else if (s.alive && fs.existsSync(path.join('public/live', `${s.id}.svg`))) {
       art = fs.readFileSync(path.join('public/live', `${s.id}.svg`), 'utf8');
     } else {
       const file = await localCopy(s);
