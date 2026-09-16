@@ -382,6 +382,7 @@ const ogAlt =
   }
   .pen[hidden] { display: none; }
   .pen {
+    position: relative;
     background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
     overflow: hidden; display: flex; flex-direction: column;
     box-shadow: 0 1px 2px rgba(0,0,0,.04);
@@ -413,10 +414,19 @@ const ogAlt =
   /* ---- plaque ---- */
   .plaque { padding: 1rem 1.05rem 1.15rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
   .plaque h2 { margin: 0; font: 600 1.02rem/1.25 ui-monospace, "SF Mono", monospace; word-break: break-word; }
-  /* The model name is the specimen's own page. Underlined only on hover: a
-     hundred and three underlined headings reads as a link farm. */
-  .plaque h2 a { color: inherit; text-decoration: none; }
-  .plaque h2 a:hover { color: var(--plaque); text-decoration: underline; text-underline-offset: 3px; }
+  /* The model name is the specimen's own page, and the whole pen is that link:
+     a card that looks clickable and answers only on the twelve characters of
+     the model name is a card people quietly stop clicking. The dotted rule is
+     there so the affordance is visible before the pointer arrives — a hundred
+     and three solid underlines would read as a link farm. */
+  .plaque h2 a {
+    color: inherit; text-decoration: underline dotted;
+    text-decoration-color: var(--rule); text-underline-offset: 3px;
+  }
+  .plaque h2 a::after { content: ''; position: absolute; inset: 0; }
+  .pen:hover .plaque h2 a { color: var(--plaque); text-decoration: underline solid; }
+  /* Anything with its own behaviour has to sit above that sheet. */
+  .pen .source, .pen .critic { position: relative; z-index: 1; }
   .latin { margin: 0; font-size: .78rem; color: var(--muted); }
   .effort { color: #9a7b24; }
   .plaque dl { margin: .2rem 0 0; display: grid; gap: .28rem; font-size: .76rem; }
