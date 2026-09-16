@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Bicycle -->
+  <g id="bicycle">
+    <!-- Frame -->
+    <rect x="50" y="150" width="40" height="60" fill="#333"/>
+    <!-- Seat -->
+    <path d="M 160,200 L 220,200 Q 240,210 260,200 L 340,200 Q 360,190 320,190 L 140,190" 
+          stroke="#666" fill="none" stroke-width="10"/>
+    <!-- Handlebars -->
+    <rect x="170" y="100" width="20" height="60" fill="#333"/>
+    <rect x="270" y="100" width="20" height="60" fill="#333"/>
+    <!-- Pedals -->
+    <circle cx="190" cy="150" r="10" fill="#666"/>
+    <circle cx="290" cy="150" r="10" fill="#666"/>
+    <!-- Wheel -->
+    <circle cx="200" cy="110" r="15" fill="#333"/>
+  </g>
+
+  <!-- Pelican -->
+  <g transform="translate(150,100)" id="pelican">
+    <!-- Body -->
+    <ellipse cx="0" cy="50" rx="20" ry="30" fill="#F4A460"/>
+    <!-- Neck -->
+    <line x1="40" y1="60" x2="70" y2="60" stroke="#333" stroke-width="8"/>
+    <!-- Beak -->
+    <polygon points="80,50 85,45 90,50" fill="#FDD700"/>
+    <!-- Eye -->
+    <circle cx="75" cy="55" r="3" fill="white"/>
+    <!-- Wing -->
+    <path d="M 0,60 Q -20,70 0,80 L 10,80 C 15,85 30,90 40,85 Z" fill="#F4A460"/>
+    
+    <!-- Left Wing -->
+    <path d="M 140,60 Q 120,55 110,60 L 100,60 C 95,65 90,70 110,80 Z" fill="#F4A460"/>
+    
+    <!-- Legs -->
+    <circle cx="150" cy="180" r="10" fill="#666"/>
+    <circle cx="240" cy="180" r="10" fill="#666"/>
+  </g>
+
+  <!-- Background Elements -->
+  <!-- Sky -->
+  <rect x="0" y="0" width="400" height="100" fill="#87CEEB"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="270" width="400" height="30" fill="#8B4513" transform="translate(0,250)"/>
+</svg>

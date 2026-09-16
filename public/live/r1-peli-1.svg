@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Bicycle -->
+  <g id="bicycle">
+    <!-- Frame -->
+    <path d="M 20,30 L 100,30 Q 260,30 290,70 L 290,150 Q 250,190 210,190 L 140,190 Q 50,190 10,230 L 10,30 Z" fill="white" stroke="black" stroke-width="2"/>
+    
+    <!-- Front Wheel -->
+    <circle cx="60" cy="40" r="15" fill="white"/>
+    
+    <!-- Back Wheels -->
+    <ellipse cx="180" cy="40" rx="8" ry="8" fill="white"/>
+    <ellipse cx="280" cy="40" rx="8" ry="8" fill="white"/>
+    
+    <!-- Seat -->
+    <path d="M 120,150 L 140,150 Q 160,170 180,170 L 200,170 Q 220,190 210,190 L 180,190 Q 160,210 140,210 L 120,210 Z" fill="white"/>
+    
+    <!-- Handlebars -->
+    <path d="M 130,30 C 110,20 90,10 70,10 S 50,0 40,0 L 40,5 Z" fill="white"/>
+    <line x1="140" y1="15" x2="180" y2="15" stroke="black" stroke-width="3"/>
+    
+    <!-- Pedals -->
+    <circle cx="150" cy="20" r="10" fill="white"/>
+    <circle cx="190" cy="20" r="10" fill="white"/>
+  </g>
+
+  <!-- Pelican -->
+  <g id="pelican">
+    <!-- Body -->
+    <ellipse cx="180" cy="100" rx="40" ry="30" fill="white"/>
+    
+    <!-- Neck -->
+    <path d="M 160,110 L 190,130 Z"/>
+    
+    <!-- Head -->
+    <circle cx="185" cy="120" r="15" fill="yellow"/>
+    <polygon points="185,123 188,127 185,125" fill="black"/>
+    
+    <!-- Beak -->
+    <polygon points="185,122 190,118 195,122" fill="orange"/>
+    
+    <!-- Wings -->
+    <path d="M 140,90 Q 130,100 120,95 L 120,85 L 115,85 Q 125,80 135,80 Z
+          M 200,95 Q 210,100 215,95 L 215,85 L 220,85 Q 225,80 215,80 Z" fill="white"/>
+    
+    <!-- Feet -->
+    <circle cx="175" cy="150" r="8" fill="orange"/>
+    <circle cx="185" cy="150" r="8" fill="orange"/>
+  </g>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="skyblue"/>
+  
+  <!-- Ground -->
+  <path d="M 0,270 L 400,270" fill="#888"/>
+  
+  <!-- Clouds -->
+  <g id="clouds">
+    <path d="M 50,200 L 100,220 Q 125,235 150,230 L 250,230 Q 280,235 310,220 L 360,220 Z"
+          fill="white"/>
+    <path d="M 180,210 L 240,190 Q 270,175 300,190 L 380,190 Q 350,205 320,210 Z"
+          fill="white"/>
+  </g>
+</svg>

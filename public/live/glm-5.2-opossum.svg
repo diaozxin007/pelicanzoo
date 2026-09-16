@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#2A2A40"/>
+      <stop offset="100%" stop-color="#0B0B16"/>
+    </radialGradient>
+
+    <!-- Scooter Deck Gradient -->
+    <linearGradient id="deckGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39FF14"/>
+      <stop offset="50%" stop-color="#32CD32"/>
+      <stop offset="100%" stop-color="#228B22"/>
+    </linearGradient>
+
+    <!-- Opossum Fur Gradient -->
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D3D3D3"/>
+      <stop offset="100%" stop-color="#808080"/>
+    </linearGradient>
+
+    <!-- Head Gradient -->
+    <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#C0C0C0"/>
+    </linearGradient>
+
+    <!-- Tail Gradient -->
+    <linearGradient id="tailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D8BFD8"/>
+      <stop offset="100%" stop-color="#A9A9A9"/>
+    </linearGradient>
+
+    <!-- Motion Blur Filter -->
+    <filter id="motionBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+    </filter>
+
+    <!-- Drop Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Synthwave Grid Floor -->
+  <g opacity="0.3" stroke="#39FF14" stroke-width="2" fill="none">
+    <path d="M -200 750 L 400 450 L 1000 750" />
+    <path d="M -200 850 L 400 550 L 1000 850" />
+    <path d="M -200 650 L 400 350 L 1000 650" />
+    <line x1="50" y1="800" x2="50" y2="400" />
+    <line x1="150" y1="800" x2="150" y2="400" />
+    <line x1="250" y1="800" x2="250" y2="400" />
+    <line x1="350" y1="800" x2="350" y2="400" />
+    <line x1="450" y1="800" x2="450" y2="400" />
+    <line x1="550" y1="800" x2="550" y2="400" />
+    <line x1="650" y1="800" x2="650" y2="400" />
+    <line x1="750" y1="800" x2="750" y2="400" />
+  </g>
+
+  <!-- Motion Lines -->
+  <g stroke="#00FFFF" stroke-width="4" stroke-linecap="round" opacity="0.6" filter="url(#motionBlur)">
+    <line x1="50" y1="250" x2="180" y2="250" />
+    <line x1="600" y1="200" x2="780" y2="200" />
+    <line x1="100" y1="500" x2="220" y2="500" />
+    <line x1="650" y1="450" x2="750" y2="450" />
+    <line x1="40" y1="650" x2="160" y2="650" />
+    <line x1="680" y1="600" x2="780" y2="600" />
+  </g>
+
+  <!-- Sun in background -->
+  <circle cx="400" cy="350" r="120" fill="#FF4500" opacity="0.2" filter="url(#motionBlur)"/>
+  <circle cx="400" cy="350" r="80" fill="#FF8C00" opacity="0.4" filter="url(#motionBlur)"/>
+
+  <!-- E-Scooter Group -->
+  <g id="escooter" filter="url(#shadow)">
+    <!-- Back Wheel -->
+    <circle cx="620" cy="680" r="55" fill="#111111" />
+    <circle cx="620" cy="680" r="35" fill="#222222" />
+    <circle cx="620" cy="680" r="15" fill="#39FF14" />
+    <!-- Front Wheel -->
+    <circle cx="260" cy="680" r="55" fill="#111111" />
+    <circle cx="260" cy="680" r="35" fill="#222222" />
+    <circle cx="260" cy="680" r="15" fill="#39FF14" />
+
+    <!-- Deck -->
+    <path d="M 260 620 Q 260 600 280 600 L 620 600 Q 640 600 640 620 L 640 640 Q 640 660 620 660 L 280 660 Q 260 660 260 640 Z" fill="url(#deckGrad)" />
+    <!-- Deck Treads -->
+    <line x1="300" y1="600" x2="300" y2="660" stroke="#006400" stroke-width="4" />
+    <line x1="350" y1="600" x2="350" y2="660" stroke="#006400" stroke-width="4" />
+    <line x1="400" y1="600" x2="400" y2="660" stroke="#006400" stroke-width="4" />
+    <line x1="450" y1="600" x2="450" y2="660" stroke="#006400" stroke-width="4" />
+    <line x1="500" y1="600" x2="500" y2="660" stroke="#006400" stroke-width="4" />
+    <line x1="550" y1="600" x2="550" y2="660" stroke="#006400" stroke-width="4" />
+
+    <!-- Stem and Handlebars -->
+    <path d="M 260 630 L 140 350 L 70 360" stroke="#111111" stroke-width="16" stroke-linecap="round" fill="none" />
+
+    <!-- Handlebar Grips -->
+    <rect x="60" y="350" width="40" height="20" rx="10" fill="#39FF14" />
+
+    <!-- Throttle -->
+    <rect x="100" y="352" width="15" height="16" rx="4" fill="#FF4500" />
+
+    <!-- Front Shock/Suspension -->
+    <path d="M 260 630 L 230 580 M 260 580 L 230 530" stroke="#444" stroke-width="6" />
+  </g>
+
+  <!-- Opossum Group -->
+  <g id="opossum" filter="url(#shadow)">
+    <!-- Tail (Trailing in the Wind) -->
+    <path d="M 530 610 C 650 650, 700 550, 680 400 C 670 300, 720 200, 750 150"
+          stroke="url(#tailGrad)" stroke-width="20" stroke-linecap="round" fill="none" />
+    <!-- Tail Ridges -->
+    <path d="M 580 625 L 600 630 M 630 610 L 655 610 M 660 560 L 685 550 M 675 500 L 700 480 M 680 440 L 705 410 M 690 380 L 715 340 M 710 310 L 735 270 M 730 250 L 755 200"
+          stroke="#8B8386" stroke-width="3" fill="none" />
+
+    <!-- Hind Legs -->
+    <path d="M 450 550 Q 480 600 460 620" stroke="url(#furGrad)" stroke-width="30" stroke-linecap="round" fill="none" />
+    <path d="M 500 530 Q 530 590 510 610" stroke="url(#furGrad)" stroke-width="30" stroke-linecap="round" fill="none" />
+    <!-- Hind Paws -->
+    <ellipse cx="455" cy="620" rx="15" ry="10" fill="#FFB6C1" />
+    <ellipse cx="505" cy="610" rx="15" ry="10" fill="#FFB6C1" />
+
+    <!-- Body -->
+    <ellipse cx="450" cy="460" rx="80" ry="110" transform="rotate(-25 450 460)" fill="url(#furGrad)" />
+    <!-- Belly -->
+    <ellipse cx="430" cy="490" rx="50" ry="80" transform="rotate(-25 430 490)" fill="#E8E8E8" />
+
+    <!-- Front Legs -->
+    <path d="M 390 410 Q 280 360 150 370" stroke="url(#furGrad)" stroke-width="24" stroke-linecap="round" fill="none" />
+    <!-- Front Paws -->
+    <circle cx="140" cy="370" r="12" fill="#FFB6C1" />
+
+    <!-- Head -->
+    <g transform="rotate(-15 320 330)">
+      <!-- Helmet -->
+      <path d="M 280 270 A 45 45 0 0 1 370 270 L 370 280 L 280 280 Z" fill="#FF4500" />
+      <path d="M 270 280 A 50 50 0 0 1 380 280" stroke="#FF4500" stroke-width="8" fill="none" />
+      <!-- Helmet Vents -->
+      <line x1="300" y1="250" x2="310" y2="270" stroke="#8B0000" stroke-width="3" />
+      <line x1="320" y1="240" x2="330" y2="270" stroke="#8B0000" stroke-width="3" />
+      <line x1="340" y1="250" x2="350" y2="270" stroke="#8B0000" stroke-width="3" />
+
+      <!-- Head Base -->
+      <ellipse cx="325" cy="330" rx="55" ry="50" fill="url(#headGrad)" />
+      <!-- Snout -->
+      <path d="M 320 320 Q 220 310 200 340 Q 220 370 320 360 Z" fill="url(#headGrad)" />
+      <!-- Nose -->
+      <ellipse cx="205" cy="340" rx="12" ry="9" fill="#FF748C" />
+      <ellipse cx="202" cy="337" rx="3" ry="2" fill="#FFC0CB" />
+
+      <!-- Eyes -->
+      <circle cx="300" cy="310" r="8" fill="#111111" />
+      <circle cx="302" cy="308" r="2" fill="#FFFFFF" />
+
+      <!-- Ears -->
+      <path d="M 280 290 L 270 250 L 300 280 Z" fill="url(#furGrad)" />
+      <path d="M 285 285 L 275 260 L 295 280 Z" fill="#FFB6C1" />
+
+      <path d="M 360 290 L 375 255 L 350 280 Z" fill="url(#furGrad)" />
+      <path d="M 355 285 L 370 265 L 345 280 Z" fill="#FFB6C1" />
+
+      <!-- Whiskers -->
+      <line x1="220" y1="345" x2="160" y2="330" stroke="#FFFFFF" stroke-width="2" opacity="0.8"/>
+      <line x1="220" y1="355" x2="160" y2="370" stroke="#FFFFFF" stroke-width="2" opacity="0.8"/>
+      <line x1="240" y1="350" x2="180" y2="350" stroke="#FFFFFF" stroke-width="2" opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- Dust Clouds / Speed Particles -->
+  <g fill="#FFFFFF" opacity="0.3" filter="url(#motionBlur)">
+    <circle cx="700" cy="680" r="15" />
+    <circle cx="730" cy="660" r="10" />
+    <circle cx="750" cy="690" r="20" />
+    <circle cx="780" cy="670" r="12" />
+  </g>
+
+  <g fill="#39FF14" opacity="0.5" filter="url(#motionBlur)">
+    <circle cx="240" cy="680" r="8" />
+    <circle cx="210" cy="700" r="12" />
+    <circle cx="180" cy="680" r="6" />
+  </g>
+
+</svg>

@@ -1,0 +1,15 @@
+{
+  "name": "pelicanzoo",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --port 4330",
+    "build": "astro build",
+    "preview": "astro preview --port 4330",
+    "data": "python3 scripts/fetch_source.py && python3 scripts/extract_specimens.py"
+  },
+  "dependencies": {
+    "astro": "^5.14.1"
+  }
+}

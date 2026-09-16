@@ -1,0 +1,148 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Pelican Riding a Bicycle</title>
+
+  <!-- Background (Optional - Sky and Ground) -->
+  <rect x="0" y="0" width="400" height="200" fill="#87CEEB" />
+  <rect x="0" y="200" width="400" height="100" fill="#90EE90" />
+
+  <!-- Bicycle -->
+  <g id="bicycle">
+    <!-- Frame -->
+    <line x1="150" y1="250" x2="250" y2="250" stroke="black" stroke-width="3" />
+    <line x1="180" y1="220" x2="220" y2="220" stroke="black" stroke-width="3" />
+    <line x1="150" y1="250" x2="180" y2="220" stroke="black" stroke-width="3" />
+    <line x1="250" y1="250" x2="220" y2="220" stroke="black" stroke-width="3" />
+    <line x1="180" y1="220" x2="195" y2="180" stroke="black" stroke-width="3" />
+
+    <!-- Wheels -->
+    <circle id="front-wheel" cx="150" cy="250" r="30" fill="none" stroke="black" stroke-width="5" />
+    <circle id="back-wheel" cx="250" cy="250" r="30" fill="none" stroke="black" stroke-width="5" />
+    <!-- Spokes (simplified) -->
+    <line x1="150" y1="250" x2="150" y2="220" stroke="black" stroke-width="1" />
+    <line x1="150" y1="250" x2="150" y2="280" stroke="black" stroke-width="1" />
+    <line x1="150" y1="250" x2="171" y2="229" stroke="black" stroke-width="1" />
+    <line x1="150" y1="250" x2="129" y2="271" stroke="black" stroke-width="1" />
+    <line x1="250" y1="250" x2="250" y2="220" stroke="black" stroke-width="1" />
+    <line x1="250" y1="250" x2="250" y2="280" stroke="black" stroke-width="1" />
+    <line x1="250" y1="250" x2="271" y2="229" stroke="black" stroke-width="1" />
+    <line x1="250" y1="250" x2="229" y2="271" stroke="black" stroke-width="1" />
+
+    <!-- Handlebars -->
+    <line x1="195" y1="180" x2="185" y2="170" stroke="black" stroke-width="3" />
+    <line x1="195" y1="180" x2="205" y2="170" stroke="black" stroke-width="3" />
+
+    <!-- Seat -->
+    <rect x="215" y="210" width="10" height="5" fill="brown" stroke="black" stroke-width="1" />
+
+    <!-- Pedals -->
+    <g id="pedals">
+      <circle cx="200" cy="250" r="5" fill="black" />
+      <rect id="pedal1" x="195" y="245" width="10" height="2" fill="black" />
+      <rect id="pedal2" x="195" y="253" width="10" height="2" fill="black" />
+    </g>
+  </g>
+
+  <!-- Pelican -->
+  <g id="pelican" transform="translate(50, 30)">
+    <!-- Body -->
+    <ellipse cx="150" cy="170" rx="35" ry="25" fill="white" stroke="black" stroke-width="2" />
+
+    <!-- Head -->
+    <circle cx="185" cy="145" r="20" fill="white" stroke="black" stroke-width="2" />
+
+    <!-- Beak -->
+    <polygon points="195,145 245,135 245,155 205,150" fill="orange" stroke="black" stroke-width="2" />
+    <line x1="195" y1="145" x2="245" y2="145" stroke="black" stroke-width="2" />
+
+    <!-- Eye -->
+    <circle cx="195" cy="140" r="3" fill="black" />
+
+    <!-- Neck -->
+    <path d="M 185 160 Q 195 175 150 170" fill="none" stroke="black" stroke-width="2" />
+
+    <!-- Wing -->
+    <path id="wing" d="M 150 170 Q 100 150 120 190 Z" fill="white" stroke="black" stroke-width="2" />
+
+    <!-- Legs (simplified) -->
+    <line id="leg1" x1="140" y1="195" x2="140" y2="220" stroke="orange" stroke-width="3" />
+    <line id="leg2" x1="160" y1="195" x2="150" y2="220" stroke="orange" stroke-width="3" />
+
+    <!-- Feet -->
+    <g id="feet" transform="translate(10, 28)">
+      <path id="foot1" d="M 140 220 L 135 225 L 145 225 Z" fill="orange" />
+      <path id="foot2" d="M 150 220 L 145 225 L 155 225 Z" fill="orange" />
+    </g>
+  </g>
+
+  <!-- Animations -->
+  <animateTransform
+    xlink:href="#front-wheel"
+    attributeName="transform"
+    type="rotate"
+    from="0 150 250"
+    to="360 150 250"
+    dur="2s"
+    repeatCount="indefinite"
+  />
+  <animateTransform
+    xlink:href="#back-wheel"
+    attributeName="transform"
+    type="rotate"
+    from="0 250 250"
+    to="360 250 250"
+    dur="2s"
+    repeatCount="indefinite"
+  />
+  <animateTransform
+    xlink:href="#pedals"
+    attributeName="transform"
+    type="rotate"
+    from="0 200 250"
+    to="360 200 250"
+    dur="2s"
+    repeatCount="indefinite"
+  />
+
+  <!-- Animate leg and foot movement -->
+  <animate
+    xlink:href="#leg1"
+    attributeName="x2"
+    values="140; 150; 140"
+    keyTimes="0; 0.5; 1"
+    dur="1s"
+    repeatCount="indefinite"
+  />
+  <animate
+    xlink:href="#leg2"
+    attributeName="x2"
+    values="150; 140; 150"
+    keyTimes="0; 0.5; 1"
+    dur="1s"
+    repeatCount="indefinite"
+  />
+  <animate
+    xlink:href="#foot1"
+    attributeName="d"
+    values="M 140 220 L 135 225 L 145 225 Z; M 150 220 L 145 225 L 155 225 Z; M 140 220 L 135 225 L 145 225 Z"
+    keyTimes="0; 0.5; 1"
+    dur="1s"
+    repeatCount="indefinite"
+  />
+  <animate
+    xlink:href="#foot2"
+    attributeName="d"
+    values="M 150 220 L 145 225 L 155 225 Z; M 140 220 L 135 225 L 145 225 Z; M 150 220 L 145 225 L 155 225 Z"
+    keyTimes="0; 0.5; 1"
+    dur="1s"
+    repeatCount="indefinite"
+  />
+    <animate
+    xlink:href="#wing"
+    attributeName="d"
+    values="M 150 170 Q 100 150 120 190 Z; M 150 170 Q 110 140 120 190 Z; M 150 170 Q 100 150 120 190 Z"
+    keyTimes="0; 0.5; 1"
+    dur="1s"
+    repeatCount="indefinite"
+  />
+
+</svg>

@@ -1,0 +1,29 @@
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bicycle Frame -->
+  <rect x="70" y="80" width="60" height="30" fill="#8B4513"/>
+  <circle cx="90" cy="110" r="15" fill="#8B4513"/>
+  <circle cx="130" cy="110" r="15" fill="#8B4513"/>
+  <line x1="70" y1="80" x2="90" y2="110" stroke="#8B4513" stroke-width="3"/>
+  <line x1="130" y1="110" x2="160" y2="80" stroke="#8B4513" stroke-width="3"/>
+
+  <!-- Bicycle Seat -->
+  <rect x="95" y="70" width="10" height="10" fill="#8B4513"/>
+
+  <!-- Pelican Head -->
+  <circle cx="60" cy="20" r="15" fill="black"/>
+  <path d="M 50,20 Q 55,10 60,20 T 70,20" stroke="black" stroke-width="3" fill="none"/>
+
+  <!-- Pelican Body -->
+  <ellipse cx="40" cy="50" rx="15" ry="20" fill="#FFD700"/>
+
+  <!-- Pelican Wings -->
+  <path d="M 60,20 Q 80,-10 100,20 T 120,20" stroke="black" stroke-width="3" fill="none"/>
+  
+  <!-- Pelican Legs -->
+  <line x1="45" y1="70" x2="50" y2="90" stroke="black" stroke-width="3"/>
+  <line x1="35" y1="70" x2="30" y2="90" stroke="black" stroke-width="3"/>
+
+  <!-- Pelican Feet -->
+  <circle cx="48" cy="92" r="3" fill="black"/>
+  <circle cx="32" cy="92" r="3" fill="black"/>
+</svg>

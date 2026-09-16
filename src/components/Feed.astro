@@ -1,0 +1,241 @@
+---
+import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
+---
+
+<section class="feed" id="feed">
+  <div class="feed-inner">
+    <h2>Feed the pelicans</h2>
+    <p class="lede">
+      Asked a model yourself? Paste the SVG it gave you. It goes up on the wall
+      straight away — nothing to sign up for, nothing to wait for.
+    </p>
+
+    <div class="feed-board">
+      <div class="feed-form">
+        <label>
+          <span>SVG source</span>
+          <textarea id="f-svg" rows="9" spellcheck="false"
+                    placeholder="&lt;svg viewBox=&quot;0 0 400 300&quot;&gt; ... &lt;/svg&gt;"></textarea>
+        </label>
+        <div class="row">
+          <label class="grow">
+            <span>Model</span>
+            <input id="f-model" placeholder="claude-opus-4.5" autocomplete="off" />
+          </label>
+          <label class="grow">
+            <span>You <small>(optional)</small></span>
+            <input id="f-by" placeholder="@yourhandle" autocomplete="off" />
+          </label>
+        </div>
+        <label>
+          <span>How did it go? <small>(optional)</small></span>
+          <input id="f-note" placeholder="Good beak. The bicycle has three wheels." autocomplete="off" />
+        </label>
+        <p id="f-msg" class="msg" role="status"></p>
+        <div class="acts">
+          <button id="f-keep" class="btn" disabled>Put it in my zoo</button>
+          <a id="f-pr" class="btn ghost" hidden rel="noopener">Submit to the collection ↗</a>
+          <button id="f-dl" class="btn ghost" hidden>Download the file</button>
+        </div>
+      </div>
+
+      <div class="feed-preview">
+        <div class="stage" id="f-stage"><p class="hint">Your pelican appears here.</p></div>
+        <p class="fineprint">
+          Scripts, event handlers and remote references are stripped before
+          anything renders or gets submitted. Model names are taken on trust, so
+          fed pelicans stay out of the guessing game.
+        </p>
+      </div>
+    </div>
+
+    <div id="f-mine" hidden>
+      <h3>Your zoo <button id="f-clear" class="linkish">clear</button></h3>
+      <div class="mine-grid" id="f-mine-grid"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { sanitizeSvg } from '../lib/sanitize-svg.js';
+  import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
+
+  const el = (id) => document.getElementById(id);
+  const src = el('f-svg'), model = el('f-model'), by = el('f-by'), note = el('f-note');
+  const msg = el('f-msg'), stage = el('f-stage');
+  const keep = el('f-keep'), pr = el('f-pr'), dl = el('f-dl');
+  const KEY = 'pelicanzoo.mine';
+
+  let current = null;
+
+  // A comment can't contain "--", so anything a person types has to be defanged
+  // before it goes near the header or it breaks the file it is describing.
+  const safeField = (v) => String(v || '').replace(/[\r\n]+/g, ' ').replace(/-{2,}/g, '-').trim().slice(0, 200);
+
+  function build() {
+    const raw = src.value.trim();
+    if (!raw) return fail('');
+    if (raw.length > SIZE_LIMIT) return fail(`That is ${(raw.length / 1024).toFixed(0)}KB. The cap is ${SIZE_LIMIT / 1024}KB.`);
+
+    const clean = sanitizeSvg(raw);
+    if (!clean.ok) return fail(`Can't read that as an SVG — ${clean.error}.`);
+
+    stage.innerHTML = '';
+    const box = document.createElement('div');
+    box.className = 'live';
+    box.innerHTML = clean.svg;
+    stage.appendChild(box);
+
+    const name = safeField(model.value);
+    current = { svg: clean.svg, model: name, by: safeField(by.value), note: safeField(note.value) };
+
+    keep.disabled = !name;
+    const stamp = new Date().toISOString().slice(0, 10);
+    const slug = (name || 'pelican').toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-|-$/g, '');
+    const filename = `submissions/${slug}-${stamp}.svg`;
+    const header = `<!-- pelicanzoo\nmodel: ${name}\nby: ${current.by || 'anonymous'}\ndate: ${stamp}\nnote: ${current.note}\n-->\n`;
+    current.file = header + clean.svg;
+    current.filename = filename;
+
+    if (name && current.file.length <= INLINE_LIMIT) {
+      pr.hidden = false; dl.hidden = true;
+      pr.href = `https://github.com/${REPO}/new/${BRANCH}` +
+        `?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(current.file)}`;
+    } else if (name) {
+      // Too big to ride in a URL: hand over the file and the empty new-file page.
+      pr.hidden = true; dl.hidden = false;
+    } else {
+      pr.hidden = true; dl.hidden = true;
+    }
+
+    const stripped = clean.removed.length ? ` Stripped: ${clean.removed.join(', ')}.` : '';
+    say(name ? `Looks like a pelican.${stripped}` : `Add the model name and it can go in.${stripped}`, clean.removed.length ? 'warn' : 'ok');
+  }
+
+  function fail(text) {
+    current = null; keep.disabled = true; pr.hidden = true; dl.hidden = true;
+    stage.innerHTML = '<p class="hint">Your pelican appears here.</p>';
+    say(text, 'bad');
+  }
+  function say(text, kind) { msg.textContent = text; msg.dataset.kind = kind || ''; }
+
+  let t;
+  for (const n of [src, model, by, note]) n.addEventListener('input', () => { clearTimeout(t); t = setTimeout(build, 180); });
+
+  keep.addEventListener('click', () => {
+    if (!current) return;
+    const mine = load();
+    mine.unshift({ svg: current.svg, model: current.model, note: current.note, at: new Date().toISOString().slice(0, 10) });
+    localStorage.setItem(KEY, JSON.stringify(mine.slice(0, 24)));
+    render();
+    say('Added. It lives in this browser until you submit it.', 'ok');
+  });
+
+  el('f-clear').addEventListener('click', () => { localStorage.removeItem(KEY); render(); });
+
+  dl.addEventListener('click', () => {
+    if (!current) return;
+    const url = URL.createObjectURL(new Blob([current.file], { type: 'image/svg+xml' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = current.filename.split('/').pop();
+    a.click();
+    URL.revokeObjectURL(url);
+    window.open(`https://github.com/${REPO}/upload/${BRANCH}/submissions`, '_blank', 'noopener');
+  });
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } }
+
+  function render() {
+    const mine = load();
+    const wrap = el('f-mine'), grid = el('f-mine-grid');
+    wrap.hidden = mine.length === 0;
+    grid.innerHTML = '';
+    for (const m of mine) {
+      const card = document.createElement('article');
+      card.className = 'pen fed';
+      const vp = document.createElement('div');
+      vp.className = 'viewport';
+      const live = document.createElement('div');
+      live.className = 'live';
+      // Came out of this browser's own localStorage, but it was untrusted when
+      // it went in and nothing has cleaned it since.
+      const again = sanitizeSvg(m.svg);
+      if (!again.ok) continue;
+      live.innerHTML = again.svg;
+      vp.appendChild(live);
+      const badge = document.createElement('span');
+      badge.className = 'badge fed-badge';
+      badge.textContent = 'YOURS';
+      vp.appendChild(badge);
+      const plaque = document.createElement('div');
+      plaque.className = 'plaque';
+      const h = document.createElement('h2');
+      h.textContent = m.model;
+      plaque.append(h);
+      const latin = document.createElement('p');
+      latin.className = 'latin';
+      latin.textContent = 'Pelecanus velocipedus · self-reported';
+      plaque.append(latin);
+      if (m.note) {
+        const q = document.createElement('blockquote');
+        q.className = 'note';
+        q.textContent = m.note;
+        plaque.append(q);
+      }
+      card.append(vp, plaque);
+      grid.append(card);
+    }
+  }
+
+  render();
+</script>
+
+<style is:global>
+  .feed { border-top: 1px solid var(--rule); background: #efe9db; }
+  .feed-inner { max-width: 88rem; margin: 0 auto; padding: 3rem 1.25rem 3.5rem; }
+  .feed h2 { margin: 0; font: 700 1.6rem/1.2 Georgia, serif; }
+  .feed .lede { margin: .5rem 0 1.8rem; color: var(--muted); max-width: 40rem; }
+  .feed-board { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  @media (max-width: 860px) { .feed-board { grid-template-columns: 1fr; } }
+
+  .feed-form { display: grid; gap: .8rem; }
+  .feed-form label { display: grid; gap: .35rem; }
+  .feed-form label > span { font-size: .78rem; color: var(--muted); }
+  .feed-form small { opacity: .7; }
+  .feed-form .row { display: flex; gap: .8rem; }
+  .feed-form .grow { flex: 1; min-width: 0; }
+  .feed-form textarea, .feed-form input {
+    width: 100%; font: .82rem/1.5 ui-monospace, "SF Mono", monospace;
+    padding: .6rem .7rem; color: var(--ink); background: var(--card);
+    border: 1px solid var(--rule); border-radius: 4px; resize: vertical;
+  }
+  .feed-form textarea:focus, .feed-form input:focus { outline: 2px solid var(--plaque); outline-offset: -1px; }
+
+  .msg { margin: 0; min-height: 1.2em; font-size: .78rem; color: var(--muted); }
+  .msg[data-kind="ok"] { color: #2c6444; }
+  .msg[data-kind="warn"] { color: #8a6a12; }
+  .msg[data-kind="bad"] { color: #8a3b2a; }
+
+  .acts { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .btn {
+    font: 600 .82rem/1 inherit; padding: .65rem 1rem; border-radius: 4px; cursor: pointer;
+    background: var(--plaque); color: #fff; border: 1px solid var(--plaque); text-decoration: none;
+  }
+  .btn:disabled { opacity: .35; cursor: not-allowed; }
+  .btn.ghost { background: transparent; color: var(--plaque); }
+  .btn.ghost:hover { background: rgba(30,58,43,.07); }
+  .linkish { background: none; border: 0; color: var(--muted); font: inherit; font-size: .75rem; cursor: pointer; text-decoration: underline; }
+
+  .feed-preview .stage {
+    aspect-ratio: 4/3; background: #fff; border: 1px solid var(--rule); border-radius: 4px;
+    display: grid; place-items: center; overflow: hidden; position: relative;
+  }
+  .feed-preview .stage > .live { position: absolute; inset: 0; display: grid; place-items: center; }
+  .feed-preview .stage > .live svg { max-width: 100%; max-height: 100%; display: block; }
+  .feed-preview .hint { color: var(--muted); font-size: .82rem; }
+  .fineprint { margin: .7rem 0 0; font-size: .72rem; color: var(--muted); line-height: 1.5; }
+
+  #f-mine h3 { margin: 2.5rem 0 1rem; font: 600 .78rem/1 inherit; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; gap: .8rem; align-items: center; }
+  .mine-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+  .fed-badge { right: .55rem; background: #8a6a12; color: #fff; }
+</style>

@@ -1,0 +1,307 @@
+---
+import { loadZoo } from '../lib/zoo.js';
+import Guess from '../components/Guess.astro';
+import Feed from '../components/Feed.astro';
+import { loadFeed } from '../lib/feed.js';
+
+const zoo = loadZoo();
+// Merged submissions. Kept in their own pen and out of the game: the model
+// name on one of these is whatever the person who sent it typed.
+const fed = loadFeed();
+// Newest first: the opening screen should show pelicans that actually look like
+// pelicans. Scrolling down replays the evolution backwards, which is the joke.
+// Then round-robin by model, so six qwen pelicans in a row don't read as a bug.
+const byModel = new Map();
+for (const s of [...zoo.all].sort((a, b) => b.observed.localeCompare(a.observed))) {
+  const k = s.model || s.id;
+  if (!byModel.has(k)) byModel.set(k, []);
+  byModel.get(k).push(s);
+}
+const lanes = [...byModel.values()];
+const all = [];
+for (let i = 0; lanes.some((l) => l[i]); i++) {
+  for (const lane of lanes) if (lane[i]) all.push(lane[i]);
+}
+
+// Client payload for the game — URLs only, never the inlined SVG source.
+const rounds = {
+  models: 0, // filled in below from the rounds that actually made it in
+  items: zoo.all
+    // Slide photos are out: the slide has the model name printed on it.
+    // So is anything whose model came from the post title rather than the
+    // filename — that attribution is an inference, and marking someone wrong
+    // on an inference is worse than one fewer round.
+    .filter(
+      (s) => s.species === 'pelican' && s.model && !s.slide_photo && s.model_source === 'filename'
+    )
+    .map((s) => ({
+      model: s.model,
+      vendor: s.vendor,
+      src: s.asset,
+      svg: s.svg ? `/live/${s.id}.svg` : null,
+      note: s.verdict,
+      url: s.post_url,
+      title: s.post_title,
+      year: s.year,
+    })),
+};
+rounds.models = new Set(rounds.items.map((i) => i.model)).size;
+const live = zoo.live.length;
+const vendors = [...new Set(all.map((s) => s.vendor))].sort();
+const years = [...new Set(all.map((s) => s.year))].sort();
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pelican Zoo — every LLM's attempt at a pelican on a bicycle</title>
+<meta name="description" content={`${all.length} pelicans drawn by ${zoo.models.length} language models, all in one enclosure.`} />
+</head>
+<body>
+
+<header class="gate">
+  <div class="gate-inner">
+    <h1>PELICAN&nbsp;ZOO</h1>
+    <p class="tagline">
+      Every large language model, asked the same thing:<br />
+      <em>“Generate an SVG of a pelican riding a bicycle.”</em>
+    </p>
+    <dl class="counts">
+      <div><dt>specimens</dt><dd>{all.length}</dd></div>
+      <div><dt>species (models)</dt><dd>{zoo.models.length}</dd></div>
+      <div><dt>alive &amp; scalable</dt><dd>{live}</dd></div>
+      <div><dt>years on record</dt><dd>{years[0]}–{years.at(-1)}</dd></div>
+    </dl>
+    <p class="credit">
+      The benchmark is <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" rel="noopener">Simon Willison's</a>.
+      We just built the enclosure. Every specimen links back to his original post.
+    </p>
+  </div>
+</header>
+
+<Guess rounds={rounds} />
+
+<nav class="filters" aria-label="Filter specimens">
+  <button class="f on" data-filter="all">All {all.length}</button>
+  <button class="f" data-filter="live">Alive {live}</button>
+  {vendors.map((v) => <button class="f" data-filter={`vendor:${v}`}>{v}</button>)}
+</nav>
+
+<main class="enclosure">
+  {all.map((s) => (
+    <article class="pen" data-vendor={s.vendor} data-alive={s.svg ? '1' : '0'}>
+      <div class="viewport">
+        {s.svg ? (
+          <div class="live" set:html={s.svg} />
+        ) : (
+          <img src={s.asset} alt={s.keeper_note || s.model} loading="lazy" />
+        )}
+        {s.svg && <span class="badge live-badge" title="vector original survives">ALIVE</span>}
+        {s.animated && <span class="badge anim-badge">ANIMATED</span>}
+        {s.species !== 'pelican' && <span class="badge odd-badge">{s.species.toUpperCase()}</span>}
+      </div>
+
+      <div class="plaque">
+        <h2>{s.model}</h2>
+        <p class="latin">
+          <em>Pelecanus velocipedus</em>
+          {s.effort && <span class="effort"> · effort: {s.effort}</span>}
+        </p>
+        <dl>
+          <div><dt>Genus</dt><dd>{s.vendor}</dd></div>
+          <div><dt>First observed</dt><dd>{s.observed}</dd></div>
+          <div><dt>Preservation</dt><dd>{s.svg ? 'live vector' : `${s.format} print`}</dd></div>
+        </dl>
+        {s.verdict && (
+          <blockquote class="note">
+            {s.verdict}
+            <cite>— keeper's log</cite>
+          </blockquote>
+        )}
+        <a class="source" href={s.post_url} rel="noopener">source ↗</a>
+      </div>
+    </article>
+  ))}
+</main>
+
+{fed.length > 0 && (
+  <section class="pen-block">
+    <div class="pen-block-head">
+      <h2>Feed pen</h2>
+      <p>
+        Sent in by visitors and merged by hand. The model on each plaque is
+        self-reported — nobody can check who drew a pelican — so these are here
+        to look at, not to be quizzed on.
+      </p>
+    </div>
+    <div class="enclosure">
+      {fed.map((s) => (
+        <article class="pen">
+          <div class="viewport">
+            <div class="live" set:html={s.svg} />
+            <span class="badge fed-badge">FED</span>
+          </div>
+          <div class="plaque">
+            <h2>{s.model}</h2>
+            <p class="latin"><em>Pelecanus velocipedus</em> · self-reported</p>
+            <dl>
+              <div><dt>Genus</dt><dd>{s.vendor}</dd></div>
+              {s.observed && <div><dt>Fed</dt><dd>{s.observed}</dd></div>}
+              {s.by && <div><dt>By</dt><dd>{s.by}</dd></div>}
+            </dl>
+            {s.verdict && <blockquote class="note">{s.verdict}<cite>— fed by {s.by || 'a visitor'}</cite></blockquote>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
+
+<Feed />
+
+<footer>
+  <p>
+    All images and keeper's notes are Simon Willison's, linked to source.
+    Built by people who just wanted to see them side by side.
+  </p>
+</footer>
+
+<script is:inline>
+  const pens = [...document.querySelectorAll('.pen')];
+  document.querySelector('.filters').addEventListener('click', (e) => {
+    const b = e.target.closest('.f');
+    if (!b) return;
+    document.querySelectorAll('.f').forEach((x) => x.classList.toggle('on', x === b));
+    const f = b.dataset.filter;
+    pens.forEach((p) => {
+      const show =
+        f === 'all' ? true :
+        f === 'live' ? p.dataset.alive === '1' :
+        p.dataset.vendor === f.slice(7);
+      p.hidden = !show;
+    });
+  });
+</script>
+
+<style is:global>
+  :root {
+    --paper: #f2ede1;
+    --card: #fffdf8;
+    --ink: #22201b;
+    --muted: #7a7265;
+    --plaque: #1e3a2b;
+    --brass: #c8a64b;
+    --rule: #ddd4c0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  /* ---- entrance ---- */
+  .gate {
+    background: var(--plaque);
+    color: #f6f2e6;
+    padding: 4.5rem 1.5rem 3.5rem;
+    border-bottom: 6px solid var(--brass);
+  }
+  .gate-inner { max-width: 62rem; margin: 0 auto; text-align: center; }
+  .gate h1 {
+    margin: 0;
+    font: 700 clamp(2.6rem, 8vw, 5.5rem)/1 Georgia, "Iowan Old Style", serif;
+    letter-spacing: .12em;
+    color: var(--brass);
+  }
+  .tagline { margin: 1.2rem auto 2rem; max-width: 34rem; font-size: 1.05rem; opacity: .9; }
+  .tagline em { color: #fff; }
+  .counts {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
+    margin: 0 0 1.8rem; padding: 1.4rem 0; border-block: 1px solid rgba(255,255,255,.15);
+  }
+  .counts dt { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+  .counts dd { margin: .25rem 0 0; font: 700 1.9rem/1 Georgia, serif; color: var(--brass); }
+  .credit { font-size: .85rem; opacity: .65; max-width: 38rem; margin: 0 auto; }
+  .credit a { color: var(--brass); }
+
+  /* ---- filters ---- */
+  .filters {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center;
+    padding: .9rem 1rem; background: rgba(242,237,225,.94);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule);
+  }
+  .f {
+    font: 500 .82rem/1 inherit; padding: .5rem .85rem; cursor: pointer;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--rule); border-radius: 100px;
+  }
+  .f:hover { color: var(--ink); border-color: #bdb29a; }
+  .f.on { background: var(--plaque); color: #fff; border-color: var(--plaque); }
+
+  /* ---- enclosure ---- */
+  .enclosure {
+    max-width: 88rem; margin: 0 auto; padding: 2rem 1.25rem 5rem;
+    display: grid; gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+  .pen[hidden] { display: none; }
+  .pen {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .pen:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.10); }
+
+  .viewport {
+    position: relative; aspect-ratio: 4 / 3; background: #fff;
+    display: grid; place-items: center; overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+  /* Same trap as the game stage: the viewport's height comes from aspect-ratio,
+     which leaves percentage heights on the children indefinite, and a square
+     pelican ends up taller than its pen with the bicycle cropped off. */
+  .viewport > img, .viewport > .live { position: absolute; inset: 0; }
+  .viewport > img { margin: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; display: block; }
+  .viewport > .live { display: grid; place-items: center; }
+  .viewport > .live svg { max-width: 100%; max-height: 100%; display: block; }
+
+  .badge {
+    position: absolute; top: .55rem; font: 700 .6rem/1 ui-monospace, monospace;
+    letter-spacing: .1em; padding: .3rem .45rem; border-radius: 2px;
+  }
+  .live-badge { left: .55rem; background: var(--plaque); color: var(--brass); }
+  .anim-badge { right: .55rem; background: var(--brass); color: #1e1a10; }
+  .odd-badge  { bottom: .55rem; top: auto; left: .55rem; background: #8a3b2a; color: #fff; }
+
+  /* ---- plaque ---- */
+  .plaque { padding: 1rem 1.05rem 1.15rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+  .plaque h2 { margin: 0; font: 600 1.02rem/1.25 ui-monospace, "SF Mono", monospace; word-break: break-word; }
+  .latin { margin: 0; font-size: .78rem; color: var(--muted); }
+  .effort { color: #9a7b24; }
+  .plaque dl { margin: .2rem 0 0; display: grid; gap: .28rem; font-size: .76rem; }
+  .plaque dl div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted var(--rule); padding-bottom: .28rem; }
+  .plaque dt { color: var(--muted); }
+  .plaque dd { margin: 0; text-align: right; }
+  .note {
+    margin: .35rem 0 0; padding: .7rem .8rem; background: #f7f3e6;
+    border-left: 3px solid var(--brass); font-size: .82rem; line-height: 1.5;
+  }
+  .note cite { display: block; margin-top: .4rem; font-size: .7rem; color: var(--muted); font-style: normal; }
+  .source { margin-top: auto; padding-top: .6rem; font-size: .74rem; color: var(--muted); text-decoration: none; }
+  .source:hover { color: var(--plaque); text-decoration: underline; }
+
+  .pen-block-head { max-width: 88rem; margin: 0 auto; padding: 2.5rem 1.25rem 0; }
+  .pen-block-head h2 { margin: 0; font: 700 1.6rem/1.2 Georgia, serif; }
+  .pen-block-head p { margin: .5rem 0 0; color: var(--muted); max-width: 40rem; font-size: .9rem; }
+  .fed-badge { right: .55rem; background: #8a6a12; color: #fff; }
+
+  footer { padding: 2.5rem 1.5rem 4rem; text-align: center; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--rule); }
+</style>
+</body>
+</html>

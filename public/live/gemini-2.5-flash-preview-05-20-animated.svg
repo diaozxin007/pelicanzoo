@@ -1,0 +1,151 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradient for bike frame -->
+    <linearGradient id="bikeFrameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a4a4a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a2a;stop-opacity:1" />
+    </linearGradient>
+    <!-- Gradient for pelican beak -->
+    <linearGradient id="pelicanBeakGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    <!-- Drop shadow for elements -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Bicycle Group -->
+  <g id="bicycle" filter="url(#shadow)">
+    <!-- Rear Wheel Group -->
+    <g id="rear_wheel_group">
+      <circle cx="280" cy="420" r="80" fill="#333" stroke="#111" stroke-width="5"/>
+      <circle cx="280" cy="420" r="70" fill="#666"/> <!-- Rim -->
+      <circle cx="280" cy="420" r="10" fill="#000"/> <!-- Hub -->
+      <g stroke="#888" stroke-width="2">
+        <!-- Spokes -->
+        <line x1="280" y1="340" x2="280" y2="500"/>
+        <line x1="210" y1="365" x2="350" y2="475"/>
+        <line x1="350" y1="365" x2="210" y2="475"/>
+        <line x1="210" y1="420" x2="350" y2="420"/>
+        <line x1="280" y1="340" x2="340" y2="420"/>
+        <line x1="280" y1="340" x2="220" y2="420"/>
+        <line x1="280" y1="500" x2="340" y2="420"/>
+        <line x1="280" y1="500" x2="220" y2="420"/>
+      </g>
+      <animateTransform attributeName="transform" type="rotate" from="0 280 420" to="360 280 420" dur="2s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- Front Wheel Group -->
+    <g id="front_wheel_group">
+      <circle cx="580" cy="420" r="80" fill="#333" stroke="#111" stroke-width="5"/>
+      <circle cx="580" cy="420" r="70" fill="#666"/> <!-- Rim -->
+      <circle cx="580" cy="420" r="10" fill="#000"/> <!-- Hub -->
+      <g stroke="#888" stroke-width="2">
+        <!-- Spokes -->
+        <line x1="580" y1="340" x2="580" y2="500"/>
+        <line x1="510" y1="365" x2="650" y2="475"/>
+        <line x1="650" y1="365" x2="510" y2="475"/>
+        <line x1="510" y1="420" x2="650" y2="420"/>
+        <line x1="580" y1="340" x2="640" y2="420"/>
+        <line x1="580" y1="340" x2="520" y2="420"/>
+        <line x1="580" y1="500" x2="640" y2="420"/>
+        <line x1="580" y1="500" x2="520" y2="420"/>
+      </g>
+      <animateTransform attributeName="transform" type="rotate" from="0 580 420" to="360 580 420" dur="2s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- Bike Frame -->
+    <path d="M280 420 L380 300 L500 300 L580 420 L480 420 L380 300 Z" fill="url(#bikeFrameGradient)" stroke="#1a1a1a" stroke-width="8" stroke-linejoin="round"/>
+    <!-- Seat post -->
+    <line x1="380" y1="300" x2="360" y2="240" stroke="url(#bikeFrameGradient)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Seat -->
+    <path d="M320 240 Q350 220 380 240 L370 230 Q340 210 310 230 Z" fill="#444" stroke="#222" stroke-width="3"/>
+
+    <!-- Handlebars and Stem -->
+    <line x1="500" y1="300" x2="520" y2="220" stroke="url(#bikeFrameGradient)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M490 220 Q500 190 530 190 Q560 190 570 220" fill="none" stroke="#2a2a2a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Crank center -->
+    <circle cx="380" cy="420" r="15" fill="#555" stroke="#333" stroke-width="3"/>
+
+    <!-- Pedal System Left (includes arm and pedal) -->
+    <g id="pedal_system_left">
+      <!-- Left pedal arm path -->
+      <path d="M380 420 L340 395 L330 395 L370 420 Z" fill="#333"/>
+      <!-- Left pedal circle -->
+      <circle cx="340" cy="395" r="8" fill="#555"/>
+      <animateTransform attributeName="transform" type="rotate" from="-148 380 420" to="212 380 420" dur="2s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- Pedal System Right (includes arm and pedal) -->
+    <g id="pedal_system_right">
+      <!-- Right pedal arm path -->
+      <path d="M380 420 L420 445 L430 445 L390 420 Z" fill="#333"/>
+      <!-- Right pedal circle -->
+      <circle cx="420" cy="445" r="8" fill="#555"/>
+      <animateTransform attributeName="transform" type="rotate" from="32 380 420" to="392 380 420" dur="2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Pelican Group -->
+  <g id="pelican" filter="url(#shadow)">
+    <!-- Body -->
+    <path d="M440 290 C340 240, 300 340, 370 390 S480 370, 480 290 Z" fill="white" stroke="#666" stroke-width="4"/>
+
+    <!-- Neck and Head Group -->
+    <g id="pelican_head_neck">
+        <path d="M400 280 Q400 190 460 170 Q480 160 490 220 L480 225 Q430 210 420 290 Z" fill="white" stroke="#666" stroke-width="4"/>
+        <!-- Eye -->
+        <circle cx="485" cy="200" r="5" fill="#000"/>
+        <circle cx="486" cy="199" r="1.5" fill="#FFF"/> <!-- Glint -->
+        <!-- Beak -->
+        <path d="M490 220 Q540 210 570 230 Q580 270 540 290 Q500 270 490 220 Z" fill="url(#pelicanBeakGradient)" stroke="#CC6600" stroke-width="3"/>
+        <!-- Pouch detail -->
+        <path d="M500 250 Q520 270 540 250 Q530 260 510 260 Z" fill="#FFC080" stroke="#CC6600" stroke-width="1.5"/>
+        <!-- Animation for head/neck bobbing (translate) -->
+        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0; 0 3; 0 0" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+        <!-- Animation for head/neck tilting (rotate) -->
+        <animateTransform attributeName="transform" type="rotate" values="0 480 220; 1 480 220; 0 480 220; -1 480 220; 0 480 220" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite" additive="sum"/>
+    </g>
+
+    <!-- Legs - Simplified to lines connecting body to pedal positions -->
+    <!-- Hip point on pelican body: (400, 370) -->
+    <!-- Left Leg -->
+    <line id="pelican_left_leg" x1="400" y1="370" stroke="#FFA500" stroke-width="8" stroke-linecap="round">
+      <animate attributeName="x2" values="340;404.99;420;355.01;340" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="y2" values="395;380.01;445;459.99;395" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- Right Leg -->
+    <line id="pelican_right_leg" x1="400" y1="370" stroke="#FFA500" stroke-width="8" stroke-linecap="round">
+      <animate attributeName="x2" values="420;355.01;340;404.99;420" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="y2" values="445;459.99;395;380.01;445" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- Feet (separate from legs, animated to follow pedal's center) -->
+    <!-- Foot shape defined relative to its own pivot (0,0) for easy translation -->
+    <path id="pelican_left_foot" d="M-10 -5 L10 -5 L0 10 Z" fill="#FFA500" stroke="#CC6600" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate"
+        values="340 395;404.99 380.01;420 445;355.01 459.99;340 395"
+        keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="pelican_right_foot" d="M-10 -5 L10 -5 L0 10 Z" fill="#FFA500" stroke="#CC6600" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate"
+        values="420 445;355.01 459.99;340 395;404.99 380.01;420 445"
+        keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Wings (folded) -->
+    <path d="M360 290 Q330 320 360 360 Q380 340 360 290 Z" fill="white" stroke="#666" stroke-width="2"/>
+    <path d="M430 290 Q460 320 430 360 Q410 340 430 290 Z" fill="white" stroke="#666" stroke-width="2"/>
+
+    <!-- Overall pelican body bobbing (vertical translate) -->
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 5; 0 0" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+    <!-- Overall pelican body tilting (rotate) -->
+    <animateTransform attributeName="transform" type="rotate" values="0 400 340; 1 400 340; 0 400 340; -1 400 340; 0 400 340" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite" additive="sum"/>
+  </g>
+
+  <!-- Ground Line for context -->
+  <line x1="0" y1="500" x2="800" y2="500" stroke="#aaa" stroke-width="2"/>
+</svg>

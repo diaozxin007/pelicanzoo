@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+scripts/tmp/
+
+# The raw scrape is 900KB of Simon's post bodies. It is a build input, not
+# something to republish — `npm run data` regenerates it from his Datasette.
+data/source-posts.json

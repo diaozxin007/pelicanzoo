@@ -1,0 +1,26 @@
+<svg viewBox="0 0 300 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bicycle -->
+  <path d="M50 200H250M80 200V150C80 130 100 110 120 110H220C240 110 260 130 260 150V200M120 110L100 80M220 110L240 80M160 160C180 160 180 180 160 180C140 180 140 160 160 160Z" stroke="black" stroke-width="3"/>
+  <circle cx="100" cy="210" r="20" fill="black"/>
+  <circle cx="240" cy="210" r="20" fill="black"/>
+
+  <!-- Pelican Body -->
+  <path d="M150 100C150 80 170 60 200 60C230 60 250 80 250 100C250 120 230 140 200 140C170 140 150 120 150 100Z" fill="#FFD700" stroke="black" stroke-width="2"/>
+
+  <!-- Pelican Head -->
+  <path d="M130 100C110 100 90 120 90 140C90 160 110 180 130 180C150 180 170 160 170 140C170 120 150 100 130 100Z" fill="#FFD700" stroke="black" stroke-width="2"/>
+
+  <!-- Pelican Beak -->
+  <path d="M80 140C70 140 60 150 60 160C60 170 70 180 80 180L100 140L80 140Z" fill="#FFA07A" stroke="black" stroke-width="2"/>
+
+  <!-- Pelican Eye -->
+  <circle cx="120" cy="130" r="5" fill="black"/>
+
+  <!-- Wings -->
+  <path d="M170 90L140 60L170 40" stroke="black" stroke-width="2"/>
+  <path d="M230 90L260 60L230 40" stroke="black" stroke-width="2"/>
+
+  <!-- Feet -->
+  <path d="M180 140L180 160M220 140L220 160" stroke="black" stroke-width="2" stroke-linecap="round"/>
+
+</svg>

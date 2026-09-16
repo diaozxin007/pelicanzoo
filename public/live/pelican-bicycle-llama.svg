@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Sky -->
+  <rect x="0" y="0" width="400" height="300" fill="#87CEEB" rx="0" />
+  
+  <!-- Ground -->
+  <rect x="0" y="250" width="400" height="50" fill="#964B00" rx="0" />
+  
+  <!-- Pelican -->
+  <g transform="translate(150, 150)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="30" ry="40" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+    
+    <!-- Beak -->
+    <path d="M 0 -40 L 20 -60 L 40 -40 Z" fill="#FFFF00" stroke="#000000" stroke-width="2" />
+    
+    <!-- Legs -->
+    <line x1="0" y1="40" x2="-20" y2="80" stroke="#000000" stroke-width="5" />
+    <line x1="0" y1="40" x2="20" y2="80" stroke="#000000" stroke-width="5" />
+    
+    <!-- Eyes -->
+    <circle cx="-15" cy="-20" r="5" fill="#000000" />
+    <circle cx="15" cy="-20" r="5" fill="#000000" />
+  </g>
+  
+  <!-- Bicycle -->
+  <g transform="translate(200, 220) scale(0.7, 0.7)">
+    <!-- Frame -->
+    <rect x="-50" y="-20" width="100" height="40" fill="#808080" rx="10" />
+    
+    <!-- Wheels -->
+    <circle cx="-35" cy="20" r="30" fill="#808080" />
+    <circle cx="35" cy="20" r="30" fill="#808080" />
+    
+    <!-- Pedals -->
+    <rect x="-45" y="40" width="10" height="20" fill="#808080" rx="5" />
+    <rect x="35" y="40" width="10" height="20" fill="#808080" rx="5" />
+    
+    <!-- Seat -->
+    <rect x="-20" y="-40" width="40" height="20" fill="#808080" rx="5" />
+  </g>
+  
+  <!-- Pelican on Bicycle -->
+  <g transform="translate(200, 150)">
+    <!-- Pelican's hands on handlebars -->
+    <line x1="-20" y1="0" x2="-40" y2="-20" stroke="#000000" stroke-width="5" />
+    <line x1="20" y1="0" x2="40" y2="-20" stroke="#000000" stroke-width="5" />
+    
+    <!-- Pelican's feet on pedals -->
+    <line x1="0" y1="40" x2="-20" y2="60" stroke="#000000" stroke-width="5" />
+    <line x1="0" y1="40" x2="20" y2="60" stroke="#000000" stroke-width="5" />
+  </g>
+</svg>
