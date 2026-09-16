@@ -3,6 +3,7 @@ import { loadZoo } from '../lib/zoo.js';
 import Guess from '../components/Guess.astro';
 import Feed from '../components/Feed.astro';
 import { loadFeed } from '../lib/feed.js';
+import { bandOf } from '../lib/scores.js';
 import Head from '../components/Head.astro';
 
 const zoo = loadZoo();
@@ -184,8 +185,25 @@ const ogAlt =
             </dl>
             {s.verdict && <blockquote class="note">{s.verdict}<cite>— fed by {s.by || 'a visitor'}</cite></blockquote>}
             <div class="critic">
-              <button class="roast">summon the critic ↯</button>
-              <blockquote class="roast-out" hidden></blockquote>
+              {typeof s.assessment?.score === 'number' ? (
+                // On file already. Both places have to read the same number off
+                // the same record — a pen saying 61 and the specimen's own page
+                // saying 68 is not two opinions, it is a bug.
+                <>
+                  <div class="score" data-band={bandOf(s.assessment.score)}>
+                    <b>{s.assessment.score}</b><span>/100</span>
+                  </div>
+                  <blockquote class="roast-out">
+                    {s.assessment.review}
+                    <cite>— the zoo's critic, {s.assessment.critic}</cite>
+                  </blockquote>
+                </>
+              ) : (
+                <>
+                  <button class="roast">summon the critic ↯</button>
+                  <blockquote class="roast-out" hidden></blockquote>
+                </>
+              )}
             </div>
           </div>
         </article>

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sanitizeSvg } from './sanitize-svg.js';
 import { vendorOf } from './zoo.js';
+import { loadScores } from './scores.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const HEADER = /<!--\s*pelicanzoo\s*([\s\S]*?)-->/i;
@@ -24,6 +25,7 @@ export function loadFeed() {
   const dir = path.join(ROOT, 'submissions');
   if (!fs.existsSync(dir)) return [];
 
+  const scores = loadScores();
   const out = [];
   for (const file of fs.readdirSync(dir).sort()) {
     if (!file.endsWith('.svg')) continue;
@@ -41,8 +43,13 @@ export function loadFeed() {
       console.warn(`[feed] skipping ${file}: no model in the header`);
       continue;
     }
+    const id = file.replace(/\.svg$/, '');
+    // `verdict` is what the person who sent it in said about it; `assessment`
+    // is what the critic said. Two different opinions of the same bird, and
+    // only one of them is the zoo's.
+    const assessment = scores[id] || null;
     out.push({
-      id: file.replace(/\.svg$/, ''),
+      id,
       model: meta.model,
       vendor: vendorOf(meta.model),
       svg: clean.svg,
@@ -51,6 +58,7 @@ export function loadFeed() {
       observed: meta.date || '',
       year: (meta.date || '').slice(0, 4),
       origin: 'feed',
+      assessment,
     });
   }
   return out;

@@ -9,6 +9,14 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
       Asked a model yourself? Paste the SVG it gave you. It goes up on the wall
       straight away — nothing to sign up for, nothing to wait for.
     </p>
+    {/* The loop only closes if people know there is something at the other end
+        of it. Nobody guesses that a merged pelican comes back with papers. */}
+    <p class="lede reward">
+      Anything merged goes in front of the zoo's critic, who assigns it a number
+      out of 100 and will not be argued with. You get the number, and a badge
+      with it — the model, your handle, the score — to put on your own site.
+      Most of them are bad numbers. That has not stopped anybody yet.
+    </p>
 
     <div class="feed-board">
       <div class="feed-form">
@@ -206,6 +214,12 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
   .feed-inner { max-width: 88rem; margin: 0 auto; padding: 3rem 1.25rem 3.5rem; }
   .feed h2 { margin: 0; font: 700 1.6rem/1.2 Georgia, serif; }
   .feed .lede { margin: .5rem 0 1.8rem; color: var(--muted); max-width: 40rem; }
+  /* The reward is the reason to bother, so it is not allowed to read as another
+     paragraph of the same colour. */
+  .feed .lede.reward {
+    margin-top: -1.2rem; padding-left: .8rem;
+    border-left: 3px solid var(--brass); color: var(--ink);
+  }
   .feed-board { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
   @media (max-width: 860px) { .feed-board { grid-template-columns: 1fr; } }
 

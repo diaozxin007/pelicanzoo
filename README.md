@@ -34,6 +34,31 @@ for him. `asset` in `data/specimens.json` still records where each came from.
 Models in the feed pen are self-reported — nobody can check who drew a pelican
 — so fed pelicans are shown as such and kept out of the guessing game.
 
+## Papers
+
+A merged submission goes in front of the zoo's critic once, by hand:
+
+```sh
+npm run score            # or: node scripts/score-submissions.mjs [--only <id>] [--force]
+```
+
+That calls the live `/api/roast` — same prompt, same model, same cache as the
+button on the site, so the page and the badge cannot disagree — and files the
+verdict in `data/scores.json`. The score is the zoo's, not the submitter's:
+nothing in `submissions/` can set it, and there is no re-rolling it until it
+comes out flattering. A review that arrives without a number is left unfiled
+rather than rounded into one.
+
+Anything on file gets `/badge/<id>.svg`, built by `src/pages/badge/[id].svg.js`
+on every build rather than committed, so a re-scored pelican's badge updates
+wherever it has already been pasted. The specimen page hands over the `<a>`-
+wrapped snippet to put it on your own site — which is the trade: a badge for a
+link back.
+
+`CRITIC_VERSION` in `worker/index.js` rides along in the response and is stored
+with each record. Bump it and `npm run score --force` re-assesses everything
+against the new critic.
+
 ## Submitting a pelican
 
 Use the feed box on the site: it sanitises your SVG, fills in the file, and

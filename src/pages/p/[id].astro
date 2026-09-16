@@ -7,6 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadZoo } from '../../lib/zoo.js';
 import { loadFeed } from '../../lib/feed.js';
+import { bandOf } from '../../lib/scores.js';
 import { REPO, BRANCH } from '../../lib/config.js';
 import Head from '../../components/Head.astro';
 import '../../styles/tokens.css';
@@ -59,6 +60,30 @@ const card = `/og/${s.id}.png`;
 const hasCard = fs.existsSync(path.join(ROOT, 'public', card));
 
 const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
+
+// A pelican the critic has already been round has its verdict on file in
+// data/scores.json. That is a different object from the one the button
+// produces: it is the same number for every visitor, it is in git, and it is
+// what the badge is minted from. Where there is one, show it — asking someone
+// to summon a critic who has already reported is theatre.
+const assessment = s.assessment || null;
+const scored = typeof assessment?.score === 'number';
+
+// Trendshift's shape, which is the shape every directory badge uses: an <img>
+// cannot carry a link, so the <a> wrapped round it is the entire point of the
+// exercise. No rel="nofollow" — the link back is what the badge is exchanged
+// for. The utm_* triple is how GA4 tells which pelican is doing the work.
+const badgeSrc = new URL(`/badge/${s.id}.svg`, Astro.site).href;
+// The snippet has to be absolute — it is going to be pasted somewhere else —
+// but the preview on this page must not be, or every local build and preview
+// deploy shows a broken image while pointing at production.
+const badgePreview = `/badge/${s.id}.svg`;
+const badgeHref = `${pageUrl}?utm_source=badge&utm_medium=badge&utm_campaign=${s.id}`;
+const badgeAlt = scored ? `${s.model} — ${assessment.score}/100 at Pelican Zoo` : '';
+const badgeHtml =
+  `<a href="${badgeHref}" target="_blank" rel="noopener">` +
+  `<img src="${badgeSrc}" alt="${badgeAlt}" width="280" height="60"></a>`;
+const badgeMd = `[![${badgeAlt}](${badgeSrc})](${badgeHref})`;
 
 // Hashed from this page's id rather than Math.random: the mix has to differ
 // between specimens but stay identical across builds, or every deploy is a
@@ -167,13 +192,29 @@ const alsoHere = pool.slice(0, 6);
     )}
 
     <div class="critic">
-      {s.svg ? (
-        // A specimen is named and the worker reads the file itself. A fed
-        // pelican exists only in this page, so it travels with the request —
-        // hence no id on the button.
-        <button class="roast" data-id={fed ? undefined : s.id} data-model={s.model}>
-          summon the critic ↯
-        </button>
+      {scored ? (
+        // Rendered at build time from the file, not fetched: no click, no call
+        // to the worker, no rate limit, and every visitor reads the same
+        // sentence about the same number.
+        <>
+          <div class="score" data-band={bandOf(assessment.score)}>
+            <b>{assessment.score}</b><span>/100</span>
+          </div>
+          <blockquote class="roast-out">
+            {assessment.review}
+            <cite>— the zoo's critic, {assessment.critic}</cite>
+          </blockquote>
+        </>
+      ) : s.svg ? (
+        <>
+          {/* A specimen is named and the worker reads the file itself. A fed
+              pelican exists only in this page, so it travels with the request —
+              hence no id on the button. */}
+          <button class="roast" data-id={fed ? undefined : s.id} data-model={s.model}>
+            summon the critic ↯
+          </button>
+          <blockquote class="roast-out" hidden></blockquote>
+        </>
       ) : (
         // The critic reads source, and there is none: this one survives only as
         // a picture. Saying so is better than a button that cannot work.
@@ -182,13 +223,49 @@ const alsoHere = pool.slice(0, 6);
           only a photograph of it survives.
         </p>
       )}
-      <blockquote class="roast-out" hidden></blockquote>
     </div>
 
     <div class="actions">
       <a class="source" href={sourceUrl} rel="noopener">{sourceLabel}</a>
-      <a class="share" href="#" rel="noopener" data-url={pageUrl} data-model={s.model}>share on X</a>
+      <a
+        class="share"
+        href="#"
+        rel="noopener"
+        data-url={pageUrl}
+        data-model={s.model}
+        data-score={scored ? String(assessment.score) : undefined}
+      >share on X</a>
     </div>
+
+    {scored && (
+      <section class="papers">
+        <h2>papers</h2>
+        <p>
+          The zoo has examined this pelican and is prepared to say so in public.
+          The critic does not grade on a curve and does not revise upward out of
+          politeness — the badge says what it says. Hang it on your own wall.
+        </p>
+        <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width="280" height="60" /></p>
+        <div class="snippets">
+          <label>
+            <span>HTML</span>
+            <textarea readonly rows="5" data-copy>{badgeHtml}</textarea>
+            <button class="copy" type="button">copy</button>
+          </label>
+          <label>
+            <span>Markdown</span>
+            <textarea readonly rows="4" data-copy>{badgeMd}</textarea>
+            <button class="copy" type="button">copy</button>
+          </label>
+        </div>
+        <p class="fineprint">
+          The badge is drawn fresh on every build, so it follows the record
+          rather than freezing a good day. The critic is occasionally rewritten,
+          and when that happens every pelican is assessed again — a 68 is not a
+          life sentence in either direction.
+        </p>
+      </section>
+    )}
 
     {/* The share asks people to feed the zoo one of their own, and this is the
         door that ask points at. Without it the invitation lands on a page with
@@ -253,8 +330,28 @@ const alsoHere = pool.slice(0, 6);
     return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) +
       '&url=' + encodeURIComponent(share.dataset.url);
   }
-  share.href = shareHref(null);
+  // Already on file for an assessed pelican, so the number is in the tweet from
+  // the first paint instead of waiting for a click that will never come.
+  share.href = shareHref(share.dataset.score ? Number(share.dataset.score) : null);
   share.addEventListener('click', () => window.zooTrack('share', { model: share.dataset.model }));
+
+  // The badge is only worth minting if it ends up somewhere, and it only ends up
+  // somewhere if the snippet is one button away from the clipboard.
+  for (const copy of document.querySelectorAll('.copy')) {
+    copy.addEventListener('click', async () => {
+      const field = copy.parentElement.querySelector('[data-copy]');
+      try {
+        await navigator.clipboard.writeText(field.value);
+      } catch {
+        // No clipboard permission, or an insecure origin. Selecting it still
+        // leaves the reader one keystroke away rather than stranded.
+        field.select();
+      }
+      copy.textContent = 'copied';
+      setTimeout(() => (copy.textContent = 'copy'), 1400);
+      window.zooTrack('badge_copy', { model: share.dataset.model });
+    });
+  }
 
   if (btn) btn.addEventListener('click', async () => {
     btn.disabled = true;
@@ -422,6 +519,44 @@ const alsoHere = pool.slice(0, 6);
   .score[data-band='low'] b { color: #8a3b2a; }
   .score[data-band='mid'] b { color: #9a7b24; }
   .score[data-band='high'] b { color: var(--plaque); }
+
+  /* The certificate. It sits between the share row and the feed pen door on
+     purpose: someone who has just read a number is the one person who wants a
+     badge of it, and someone who wants a badge of it needs a pelican first. */
+  .papers {
+    margin-top: 1.1rem; padding: .95rem; border: 1px solid var(--rule);
+    border-radius: 4px; background: #fbf7ea;
+  }
+  .papers h2 {
+    margin: 0 0 .5rem;
+    font: 700 .74rem/1 ui-monospace, monospace; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .papers p { margin: 0 0 .7rem; font-size: .88rem; }
+  .badge-preview { text-align: center; }
+  .badge-preview img { max-width: 100%; height: auto; }
+  .snippets { display: grid; gap: .5rem; }
+  .snippets label { position: relative; display: block; }
+  .snippets span {
+    display: block; margin-bottom: .2rem;
+    font: 700 .64rem/1 ui-monospace, monospace; letter-spacing: .12em; color: var(--muted);
+  }
+  .snippets textarea {
+    display: block; box-sizing: border-box;
+    width: 100%; padding: .5rem .55rem; resize: vertical;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card);
+    color: var(--ink); font: .72rem/1.45 ui-monospace, monospace;
+  }
+  /* On the label's own line rather than floating over the box: the snippet is
+     wrapped monospace, so anywhere inside the textarea covers something. */
+  .copy {
+    position: absolute; right: 0; top: -.1rem; padding: .18rem .5rem;
+    border: 1px solid var(--rule); border-radius: 3px;
+    background: var(--paper); color: var(--muted); cursor: pointer;
+    font: 700 .64rem/1 ui-monospace, monospace; letter-spacing: .06em;
+  }
+  .copy:hover { color: var(--ink); border-color: var(--brass); }
+  .fineprint { margin: .7rem 0 0 !important; font-size: .76rem; color: var(--muted); }
 
   .feed-cta {
     margin-top: .9rem; padding: .85rem .95rem; display: block;

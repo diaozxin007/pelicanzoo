@@ -11,7 +11,8 @@
     "deploy": "wrangler deploy",
     "og": "node scripts/make-og.mjs",
     "og:specimens": "node scripts/make-og-specimens.mjs",
-    "mirror": "node scripts/mirror-specimens.mjs"
+    "mirror": "node scripts/mirror-specimens.mjs",
+    "score": "node scripts/score-submissions.mjs"
   },
   "dependencies": {
     "astro": "^5.14.1"

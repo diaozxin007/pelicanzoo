@@ -189,7 +189,10 @@ export default {
       }, 502);
     }
 
-    const res = json({ roast: verdict.text, score: verdict.score, critic: MODEL });
+    // `version` rides along because scores are filed in data/scores.json now,
+    // and a filed score is only as good as the critic that gave it. Without it
+    // there is no way to tell which records a prompt change has invalidated.
+    const res = json({ roast: verdict.text, score: verdict.score, critic: MODEL, version: CRITIC_VERSION });
     // A roast about a fixed drawing never goes stale, and the cache is the whole
     // reason the free allowance is enough.
     res.headers.set('cache-control', 'public, max-age=31536000');
