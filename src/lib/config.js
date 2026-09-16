@@ -16,3 +16,12 @@ export const SIZE_LIMIT = 200_000;
 // Public by design: it ships in the page source. Analytics.astro decides at
 // runtime whether to load it, so localhost stays out of the reports.
 export const GA4_ID = 'G-QW81EXNLQV';
+
+// Where someone writes to ask for their badge in metal. The pin is struck by an
+// image model that costs about two per cent of a week's quota per pelican, so
+// the offer is a person rather than a button — and a person needs an address.
+//
+// Empty until the keeper fills it in, and empty is a working state: the demo
+// still shows, the invitation simply doesn't. Nothing else in this repository
+// prints an email, so this is the one place to change it.
+export const CONTACT_EMAIL = '';

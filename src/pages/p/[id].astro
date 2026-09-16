@@ -6,6 +6,7 @@ import { loadZoo } from '../../lib/zoo.js';
 import { findFed } from '../../lib/feed.js';
 import { bandOf } from '../../lib/bands.js';
 import { BADGE_W, BADGE_H } from '../../lib/badge.js';
+import { CONTACT_EMAIL } from '../../lib/config.js';
 import Head from '../../components/Head.astro';
 import ogCards from '../../../data/og-cards.json';
 import '../../styles/tokens.css';
@@ -91,6 +92,26 @@ const badgeHtml =
   `<a href="${badgeHref}" target="_blank" rel="noopener">` +
   `<img src="${badgeSrc}" alt="${badgeAlt}" width="${BADGE_W}" height="${BADGE_H}"></a>`;
 const badgeMd = `[![${badgeAlt}](${badgeSrc})](${badgeHref})`;
+
+// The pin is the badge as an object: the same papers, photographed as struck
+// brass and enamel by an image model that is handed the SVG's own pixels.
+//
+// A pin costs about two per cent of a week's image quota, which works out at
+// roughly forty-eight of them before the week runs dry. That is not a budget you
+// put behind a public button, so the offer on the page is a picture of one and
+// an invitation to write in — the model is real, the button is a person.
+//
+// The live route still exists at /pin/<id>.png and is inert without a key. If a
+// key is ever set the page offers that instead, because at that point the thing
+// the demo is a demo of is available and showing a sample of it would be a
+// worse answer than showing it.
+//
+// Both forms are for fed pelicans only. The archival hundred are Simon's, not
+// the reader's, and neither "strike yours" nor "write in for yours" means
+// anything on a page about somebody else's bird.
+const pinHref = `/pin/${s.id}.png`;
+const canMint = fed && scored && !!Astro.locals.runtime?.env?.DASHSCOPE_API_KEY;
+const showPin = fed && scored;
 
 // Hashed from this page's id rather than Math.random: the mix has to differ
 // between specimens but stay identical across builds, or every deploy is a
@@ -278,6 +299,47 @@ const alsoHere = pool.slice(0, 6);
         politeness — the badge says what it says. Hang it on your own wall.
       </p>
       <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width={BADGE_W} height={BADGE_H} /></p>
+      {showPin && (canMint ? (
+        <p class="mint">
+          {/* nofollow and target=_blank for the same reason: this is not a
+              document, it is a minute of somebody else's compute, and neither a
+              crawler nor a reader should arrive at it by accident. */}
+          <a href={pinHref} rel="nofollow" target="_blank">strike it in enamel ↗</a>
+          <span>the real object, in brass and glass — the first one takes a minute to make</span>
+        </p>
+      ) : (
+        <figure class="pin-demo">
+          {/* A different pelican's badge, deliberately: this is a photograph of
+              what the process does, not a preview of what this page would get,
+              and dressing it up as the latter would be a promise the page has no
+              way to keep. */}
+          <img
+            src="/badge-metal.jpg"
+            alt="the same badge struck as a brass and hard-enamel pin"
+            width="1520"
+            height="415"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>the same papers, struck in brass</b>
+            An image model was handed a badge exactly like the one above and
+            asked for the object — it reads the score and the review off the
+            picture and lays them into enamel. It also spends about two per cent
+            of a week's quota per pelican, which is why this is a photograph and
+            not a button.
+            {CONTACT_EMAIL && (
+              <>
+                {' '}Want yours in metal?{' '}
+                <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`a pin for ${s.model}`)}`}>
+                  write in
+                </a>{' '}
+                and I will make it by hand. Or sponsor the model, and it goes
+                back to being a button for everybody.
+              </>
+            )}
+          </figcaption>
+        </figure>
+      ))}
       <div class="snippets">
         {/* One line each, not a block of wrapped markup. Nobody reads an embed
             snippet; they copy it. Not a <label> either — it would wrap the copy
@@ -597,6 +659,41 @@ const alsoHere = pool.slice(0, 6);
     display: inline-block; max-width: 100%; height: auto;
     box-shadow: 0 2px 7px rgba(34, 32, 27, .13);
   }
+
+  /* Sits between the badge and the snippets, which is where it belongs in the
+     argument: here is your badge, here is the object, here is how to hang it. A
+     link and not a button — pressing it goes somewhere, and it takes a minute,
+     so it wants a tab of its own rather than a spinner in this one. */
+  .mint { max-width: 34rem; margin: -.6rem auto 1.5rem; display: grid; gap: .22rem; }
+  .mint a {
+    font: 700 .74rem/1 ui-monospace, monospace; letter-spacing: .1em;
+    text-transform: uppercase; color: #9a7b24; text-decoration: none;
+    border-bottom: 1px solid var(--brass); justify-self: center; padding-bottom: .2rem;
+  }
+  .mint a:hover { color: var(--plaque); }
+  .mint span { font-size: .72rem; line-height: 1.5; color: var(--muted); }
+
+  /* The demo stands in the same slot and makes the same argument, but it has to
+     carry it alone: nothing here is clickable, so the picture is the whole of
+     the case for writing in. Hence a real photograph at full measure rather
+     than a thumbnail beside a paragraph. */
+  .pin-demo { max-width: 34rem; margin: -.4rem auto 1.6rem; }
+  .pin-demo img {
+    display: block; width: 100%; height: auto; border-radius: 3px;
+    box-shadow: 0 3px 11px rgba(34, 32, 27, .18);
+  }
+  .pin-demo figcaption {
+    margin-top: .7rem;
+    font-size: .74rem; line-height: 1.65; color: var(--muted); text-align: left;
+  }
+  /* The heading is inside the caption rather than above the picture: it reads as
+     a label on the object, and an <h3> here would compete with "papers". */
+  .pin-demo figcaption b {
+    display: block; margin-bottom: .25rem;
+    font: 700 .72rem/1 ui-monospace, monospace; letter-spacing: .1em;
+    text-transform: uppercase; color: #9a7b24;
+  }
+  .pin-demo figcaption a { color: var(--plaque); text-decoration-color: var(--brass); }
 
   /* One row per format: caption, the snippet on a single scrolling line, and the
      button that is the only thing anybody actually does with either. */

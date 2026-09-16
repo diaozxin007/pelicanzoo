@@ -5,4 +5,9 @@ Allow: /
 # that belongs in an index.
 Disallow: /receipt
 
+# A pin is struck on request by an image model, metered by the week and taking
+# the better part of a minute. Nothing links here except the specimen page it
+# belongs to, and a crawler walking the route would spend the budget on nobody.
+Disallow: /pin/
+
 Sitemap: https://pelicanzoo.ai/sitemap.xml
