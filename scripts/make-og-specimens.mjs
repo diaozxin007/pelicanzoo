@@ -69,7 +69,7 @@ function cardHtml(s, art) {
   .frame > * { position: absolute; inset: 26px; margin: auto; max-width: calc(100% - 52px); max-height: calc(100% - 52px); }
   .meta { padding: 46px 48px 40px; display: flex; flex-direction: column; }
   /* Centred against the picture rather than stacked at the top: these names
-     are one line for `o1-mini` and three for the qwen variants, and a block
+     are one line for o1-mini and three for the qwen variants, and a block
      pinned to the top leaves a hole under the short ones. */
   .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
   .eyebrow {
