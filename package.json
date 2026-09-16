@@ -7,9 +7,13 @@
     "dev": "astro dev --port 4330",
     "build": "astro build",
     "preview": "astro preview --port 4330",
-    "data": "python3 scripts/fetch_source.py && python3 scripts/extract_specimens.py"
+    "data": "python3 scripts/fetch_source.py && python3 scripts/extract_specimens.py",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "astro": "^5.14.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.132.0"
   }
 }

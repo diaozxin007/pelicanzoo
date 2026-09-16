@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "pelicanzoo",
+  "compatibility_date": "2026-09-16",
+  // A static site with no server code. Without this file wrangler tries to work
+  // that out for itself on deploy, which it cannot do in a non-interactive
+  // build — that is what was failing.
+  // Run the site build ourselves so the deploy does not depend on the build
+  // command configured in the dashboard being right.
+  "build": { "command": "npm run build" },
+  "assets": { "directory": "./dist" }
+}
