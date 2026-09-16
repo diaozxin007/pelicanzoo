@@ -11,7 +11,20 @@
   // Run the site build ourselves so the deploy does not depend on the build
   // command configured in the dashboard being right.
   "build": { "command": "npm run build" },
-  "assets": { "directory": "./dist" },
+  // binding: the worker below reads pelicans back out of our own assets rather
+  // than trusting an id from the browser to be a real file.
+  "assets": { "directory": "./dist", "binding": "ASSETS" },
+
+  // The one piece of server code on the site: the zoo's art critic.
+  // /api/roast matches no static file, so the assets router falls through to it
+  // and every other path is still served straight off disk.
+  "main": "./worker/index.js",
+  "ai": { "binding": "AI" },
+  // Workers AI gives 10,000 neurons a day for free and a roast costs about 50.
+  // Cached roasts are free, so this only ever throttles genuinely new pelicans.
+  "ratelimits": [
+    { "name": "ROAST_LIMIT", "namespace_id": "1001", "simple": { "limit": 6, "period": 60 } }
+  ],
 
   // custom_domain makes the deploy create the DNS records itself, so the zone
   // never drifts from what is in this file. The workers.dev address above stays

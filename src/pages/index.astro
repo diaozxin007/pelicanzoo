@@ -159,6 +159,12 @@ const ogImage = new URL('/og.png', Astro.site).href;
           </blockquote>
         )}
         <a class="source" href={s.post_url} rel="noopener">source ↗</a>
+        {s.svg && (
+          <div class="critic">
+            <button class="roast" data-id={s.id}>summon the critic ↯</button>
+            <blockquote class="roast-out" hidden></blockquote>
+          </div>
+        )}
       </div>
     </article>
   ))}
@@ -190,6 +196,10 @@ const ogImage = new URL('/og.png', Astro.site).href;
               {s.by && <div><dt>By</dt><dd>{s.by}</dd></div>}
             </dl>
             {s.verdict && <blockquote class="note">{s.verdict}<cite>— fed by {s.by || 'a visitor'}</cite></blockquote>}
+            <div class="critic">
+              <button class="roast">summon the critic ↯</button>
+              <blockquote class="roast-out" hidden></blockquote>
+            </div>
           </div>
         </article>
       ))}
@@ -220,6 +230,53 @@ const ogImage = new URL('/og.png', Astro.site).href;
         p.dataset.vendor === f.slice(7);
       p.hidden = !show;
     });
+  });
+
+  // The critic. One listener for the whole page rather than one per pen: there
+  // are a hundred of these buttons and most will never be pressed.
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.roast');
+    if (!btn || btn.disabled) return;
+    const pen = btn.closest('.pen');
+    const out = pen.querySelector('.roast-out');
+    const model = pen.querySelector('.plaque h2').textContent;
+
+    btn.disabled = true;
+    btn.textContent = 'the critic is looking…';
+    // Pelicans in the permanent collection are named, so the worker reads the
+    // file itself. Fed ones only exist in this page, so they travel with the
+    // request.
+    const body = btn.dataset.id
+      ? { id: btn.dataset.id }
+      : { svg: pen.querySelector('.live').innerHTML };
+
+    let data;
+    try {
+      const r = await fetch('/api/roast', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      data = await r.json();
+    } catch {
+      data = { error: 'could not reach the critic.' };
+    }
+
+    out.hidden = false;
+    out.textContent = '';
+    // textContent, never innerHTML: this string came out of a language model.
+    out.appendChild(document.createTextNode(data.roast || data.error || 'the critic is unavailable.'));
+    if (data.roast) {
+      const cite = document.createElement('cite');
+      cite.textContent = `— the zoo's critic, ${data.critic}`;
+      out.appendChild(cite);
+      btn.remove();
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'summon the critic ↯';
+    }
+
+    window.zooTrack('roast', { model, ok: data.roast ? 'yes' : 'no' });
   });
 </script>
 
@@ -349,6 +406,30 @@ const ogImage = new URL('/og.png', Astro.site).href;
   .fed-badge { right: .55rem; background: #8a6a12; color: #fff; }
 
   footer { padding: 2.5rem 1.5rem 4rem; text-align: center; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--rule); }
+
+  /* ---- the critic ---- */
+  .critic { margin-top: .9rem; }
+  .roast {
+    font: 600 .75rem/1 ui-monospace, "SF Mono", monospace;
+    letter-spacing: .04em;
+    padding: .55rem .8rem; cursor: pointer;
+    background: none; color: var(--plaque);
+    border: 1px dashed var(--rule); border-radius: 3px;
+    transition: .12s;
+  }
+  .roast:hover:not(:disabled) { border-style: solid; border-color: var(--plaque); background: #f7f5ee; }
+  .roast:disabled { cursor: wait; opacity: .5; }
+  /* Deliberately not the same slab as the keeper's log: one of these is Simon
+     writing about a model, the other is a model writing about a model. */
+  .roast-out {
+    margin: 0; padding: .75rem .85rem;
+    background: #fbf7ea; border-left: 3px solid var(--plaque);
+    font-size: .85rem; line-height: 1.5; font-style: italic;
+  }
+  .roast-out cite {
+    display: block; margin-top: .45rem;
+    font: 500 .7rem/1 ui-monospace, monospace; color: var(--muted); font-style: normal;
+  }
 </style>
 </body>
 </html>
