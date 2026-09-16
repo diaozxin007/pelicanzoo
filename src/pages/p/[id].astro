@@ -79,7 +79,14 @@ const badgeSrc = new URL(`/badge/${s.id}.svg`, Astro.site).href;
 // deploy shows a broken image while pointing at production.
 const badgePreview = `/badge/${s.id}.svg`;
 const badgeHref = `${pageUrl}?utm_source=badge&utm_medium=badge&utm_campaign=${s.id}`;
-const badgeAlt = scored ? `${s.model} — ${assessment.score}/100 at Pelican Zoo` : '';
+// Says what was scored, not just the number. This string is doing two jobs
+// besides accessibility: it is what shows when the image does not load, which
+// on GitHub is often, and it is the anchor text of the link the badge exists to
+// earn — "68/100 at Pelican Zoo" tells a reader and a crawler nothing about
+// what this place does.
+const badgeAlt = scored
+  ? `${s.model} — ${assessment.score}/100 for a pelican riding a bicycle, at Pelican Zoo`
+  : '';
 const badgeHtml =
   `<a href="${badgeHref}" target="_blank" rel="noopener">` +
   `<img src="${badgeSrc}" alt="${badgeAlt}" width="280" height="60"></a>`;

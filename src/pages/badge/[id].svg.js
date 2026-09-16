@@ -28,6 +28,12 @@ const BANDS = {
 
 const MONO = 'ui-monospace,SFMono-Regular,Menlo,Consolas,&quot;DejaVu Sans Mono&quot;,monospace';
 
+// The one thing every pelican in here was asked for, and the only line on the
+// badge that makes the other two mean anything. Kept as Simon's wording rather
+// than shortened: anyone who has seen the benchmark recognises the phrase, and
+// anyone who has not now knows what the number is out of.
+const TASK = 'pelican riding a bicycle';
+
 const esc = (t) =>
   String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
 
@@ -59,24 +65,30 @@ export function GET({ props }) {
   const { score } = s.assessment;
   const band = BANDS[bandOf(score)];
 
-  // Every y here is an explicit baseline rather than a dominant-baseline, which
-  // is unevenly supported by exactly the renderers a badge ends up in front of
-  // — feed readers, image proxies, anything that is not a browser. 27px caps run
-  // about 19px, so baselines of 33 and 46 sit the two lines of ink either side
-  // of the block's middle.
-  const name = fit(s.model, [13, 12, 11, 10, 9], TEXT_W);
-  const credit = fit(s.by ? `PELICAN ZOO · fed by ${s.by}` : 'PELICAN ZOO', [9, 8.5, 8], TEXT_W, 0.5);
+  // Three lines rather than two. This thing is read on somebody else's site by
+  // people who have never heard of us: a number beside a model name is 68 out
+  // of 100 at something unstated, and PELICAN ZOO alone reads as a brand rather
+  // than as a test. The middle line says what was actually asked of the model,
+  // which is both the joke and the context the other two lines need.
+  //
+  // Every y is an explicit baseline rather than a dominant-baseline, which is
+  // unevenly supported by exactly the renderers a badge ends up in front of —
+  // feed readers, image proxies, anything that is not a browser.
+  const name = fit(s.model, [12, 11, 10, 9], TEXT_W);
+  const task = fit(TASK, [9.5, 9, 8.5], TEXT_W);
+  const credit = fit(s.by ? `PELICAN ZOO · fed by ${s.by}` : 'PELICAN ZOO', [8, 7.5], TEXT_W, 0.5);
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(s.model)} scored ${score} out of 100 at Pelican Zoo">
-<title>${esc(s.model)} — ${score}/100 at Pelican Zoo</title>
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(s.model)} scored ${score} out of 100 for a ${TASK} at Pelican Zoo">
+<title>${esc(s.model)} — ${score}/100 for a ${TASK}, at Pelican Zoo</title>
 <clipPath id="r"><rect width="${W}" height="${H}" rx="5"/></clipPath>
 <g clip-path="url(#r)">
   <rect width="${W}" height="${H}" fill="#fffdf8"/>
   <rect width="${SCORE_W}" height="${H}" fill="${band.block}"/>
   <text x="${SCORE_W / 2}" y="33" fill="${band.figure}" text-anchor="middle" font-family="${MONO}" font-size="27" font-weight="700">${score}</text>
   <text x="${SCORE_W / 2}" y="46" fill="${band.figure}" text-anchor="middle" font-family="${MONO}" font-size="10" opacity=".7">/100</text>
-  <text x="${TEXT_X}" y="27" fill="#22201b" font-family="${MONO}" font-size="${name.size}" font-weight="700">${esc(name.text)}</text>
-  <text x="${TEXT_X}" y="43" fill="#7a7265" font-family="${MONO}" font-size="${credit.size}" letter-spacing=".5">${esc(credit.text)}</text>
+  <text x="${TEXT_X}" y="20" fill="#22201b" font-family="${MONO}" font-size="${name.size}" font-weight="700">${esc(name.text)}</text>
+  <text x="${TEXT_X}" y="33" fill="#4a4437" font-family="${MONO}" font-size="${task.size}">${esc(task.text)}</text>
+  <text x="${TEXT_X}" y="46" fill="#7a7265" font-family="${MONO}" font-size="${credit.size}" letter-spacing=".5">${esc(credit.text)}</text>
 </g>
 <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="4.5" fill="none" stroke="#ddd4c0"/>
 </svg>
