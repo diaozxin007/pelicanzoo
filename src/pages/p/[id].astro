@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { loadZoo } from '../../lib/zoo.js';
 import { loadFeed } from '../../lib/feed.js';
 import { bandOf } from '../../lib/scores.js';
+import { BADGE_W, BADGE_H } from '../badge/[id].svg.js';
 import { REPO, BRANCH } from '../../lib/config.js';
 import Head from '../../components/Head.astro';
 import '../../styles/tokens.css';
@@ -87,9 +88,13 @@ const badgeHref = `${pageUrl}?utm_source=badge&utm_medium=badge&utm_campaign=${s
 const badgeAlt = scored
   ? `${s.model} — ${assessment.score}/100 for a pelican riding a bicycle, at Pelican Zoo`
   : '';
+// Taken from the endpoint rather than written out again here. The snippet is
+// pasted somewhere we will never see, so width and height on the <img> are what
+// stops the host page reflowing when the card finally loads — two numbers that
+// have to be the card's, not a memory of the card's.
 const badgeHtml =
   `<a href="${badgeHref}" target="_blank" rel="noopener">` +
-  `<img src="${badgeSrc}" alt="${badgeAlt}" width="280" height="60"></a>`;
+  `<img src="${badgeSrc}" alt="${badgeAlt}" width="${BADGE_W}" height="${BADGE_H}"></a>`;
 const badgeMd = `[![${badgeAlt}](${badgeSrc})](${badgeHref})`;
 
 // Hashed from this page's id rather than Math.random: the mix has to differ
@@ -266,7 +271,7 @@ const alsoHere = pool.slice(0, 6);
         The critic does not grade on a curve and does not revise upward out of
         politeness — the badge says what it says. Hang it on your own wall.
       </p>
-      <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width="280" height="60" /></p>
+      <p class="badge-preview"><img src={badgePreview} alt={badgeAlt} width={BADGE_W} height={BADGE_H} /></p>
       <div class="snippets">
         {/* One line each, not a block of wrapped markup. Nobody reads an embed
             snippet; they copy it. Not a <label> either — it would wrap the copy
@@ -545,10 +550,15 @@ const alsoHere = pool.slice(0, 6);
      code boxes reads like a README, and the thing being handed over is an
      award. It spans both columns but is narrower than either pair of them: a
      certificate is a sheet of paper, and stretched to the full 68rem it was a
-     thin line of text with a quarter of the band empty on each side. */
+     thin line of text with a quarter of the band empty on each side.
+
+     52rem is the card plus its padding. The preview is the actual file at its
+     actual size, because the one question anybody has about an embed is how
+     big the thing is going to be on their page, and a preview scaled down to
+     fit answers it wrongly. */
   .papers {
     grid-column: 1 / -1; position: relative;
-    max-width: 46rem; margin: 0 auto; width: 100%;
+    max-width: 52rem; margin: 0 auto; width: 100%;
     padding: 2.2rem 2rem 1.7rem; text-align: center;
     background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
   }
