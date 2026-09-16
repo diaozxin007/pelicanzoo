@@ -1,0 +1,27 @@
+---
+// Set PUBLIC_GA4_ID in the Cloudflare Pages build environment. Unset — which is
+// what a local `npm run dev` gets — and none of this renders, so poking at the
+// site on localhost never shows up in the reports.
+const raw = import.meta.env.PUBLIC_GA4_ID || '';
+const ID = /^G-[A-Z0-9]+$/i.test(raw) ? raw : '';
+---
+
+{ID && (
+  <Fragment>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ID}`}></script>
+    <script is:inline set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', '${ID}');
+    `} />
+  </Fragment>
+)}
+
+<script is:inline>
+  // Always defined, so call sites never have to know whether analytics loaded.
+  window.zooTrack = (name, params) => {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  };
+</script>

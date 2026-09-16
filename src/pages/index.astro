@@ -3,6 +3,7 @@ import { loadZoo } from '../lib/zoo.js';
 import Guess from '../components/Guess.astro';
 import Feed from '../components/Feed.astro';
 import { loadFeed } from '../lib/feed.js';
+import Analytics from '../components/Analytics.astro';
 
 const zoo = loadZoo();
 // Merged submissions. Kept in their own pen and out of the game: the model
@@ -57,6 +58,7 @@ const years = [...new Set(all.map((s) => s.year))].sort();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pelican Zoo — every LLM's attempt at a pelican on a bicycle</title>
+<Analytics />
 <meta name="description" content={`${all.length} pelicans drawn by ${zoo.models.length} language models, all in one enclosure.`} />
 </head>
 <body>

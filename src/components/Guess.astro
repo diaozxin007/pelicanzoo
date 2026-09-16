@@ -116,6 +116,13 @@ const { rounds } = Astro.props;
     el('g-result').hidden = false;
     el('g-score').textContent = `${right} / ${total}`;
     el('g-reset').hidden = total < 3;
+
+    // The interesting question is which pelicans fool people, so the model and
+    // the guess both go along; round number shows how far anyone gets.
+    window.zooTrack('guess_answer', {
+      model: cur.model, vendor: cur.vendor, guess: model,
+      correct: ok ? 'yes' : 'no', round: total,
+    });
   }
 
   el('g-next').addEventListener('click', round);

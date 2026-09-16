@@ -67,6 +67,7 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
   const KEY = 'pelicanzoo.mine';
 
   let current = null;
+  let tracked = null;
 
   // A comment can't contain "--", so anything a person types has to be defanged
   // before it goes near the header or it breaks the file it is describing.
@@ -109,6 +110,11 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
     }
 
     const stripped = clean.removed.length ? ` Stripped: ${clean.removed.join(', ')}.` : '';
+    // Once per paste, not once per keystroke.
+    if (name && name !== tracked) {
+      tracked = name;
+      window.zooTrack('feed_paste', { model: name, stripped: clean.removed.join(',') || 'nothing' });
+    }
     say(name ? `Looks like a pelican.${stripped}` : `Add the model name and it can go in.${stripped}`, clean.removed.length ? 'warn' : 'ok');
   }
 
@@ -129,7 +135,11 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
     localStorage.setItem(KEY, JSON.stringify(mine.slice(0, 24)));
     render();
     say('Added. It lives in this browser until you submit it.', 'ok');
+    window.zooTrack('feed_keep', { model: current.model });
   });
+
+  // The link leaves for GitHub, so the event has to go out on the click itself.
+  pr.addEventListener('click', () => { if (current) window.zooTrack('feed_submit', { model: current.model, how: 'prefilled' }); });
 
   el('f-clear').addEventListener('click', () => { localStorage.removeItem(KEY); render(); });
 
@@ -140,6 +150,7 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
     a.href = url; a.download = current.filename.split('/').pop();
     a.click();
     URL.revokeObjectURL(url);
+    window.zooTrack('feed_submit', { model: current.model, how: 'download' });
     window.open(`https://github.com/${REPO}/upload/${BRANCH}/submissions`, '_blank', 'noopener');
   });
 
