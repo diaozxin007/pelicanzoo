@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview --port 4330",
     "data": "python3 scripts/fetch_source.py && python3 scripts/extract_specimens.py",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "og": "node scripts/make-og.mjs"
   },
   "dependencies": {
     "astro": "^5.14.1"
