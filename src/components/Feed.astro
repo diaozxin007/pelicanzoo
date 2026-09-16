@@ -1,5 +1,6 @@
 ---
-import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
+// Nothing here needs the config: this component is markup plus the inline
+// script below, and the script does its own import.
 ---
 
 <section class="feed" id="feed">
@@ -66,7 +67,7 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
 
 <script>
   import { sanitizeSvg } from '../lib/sanitize-svg.js';
-  import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
+  import { REPO, BRANCH, URL_LIMIT, SIZE_LIMIT } from '../lib/config.js';
 
   const el = (id) => document.getElementById(id);
   const src = el('f-svg'), model = el('f-model'), by = el('f-by'), note = el('f-note');
@@ -106,10 +107,15 @@ import { REPO, BRANCH, INLINE_LIMIT, SIZE_LIMIT } from '../lib/config.js';
     current.file = header + clean.svg;
     current.filename = filename;
 
-    if (name && current.file.length <= INLINE_LIMIT) {
+    // Build it first, then measure it. The thing that can be too long is the
+    // URL, and the file is no guide to the URL's length — see URL_LIMIT.
+    // Everything encodeURIComponent emits is ASCII, so .length is bytes.
+    const href = `https://github.com/${REPO}/new/${BRANCH}` +
+      `?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(current.file)}`;
+
+    if (name && href.length <= URL_LIMIT) {
       pr.hidden = false; dl.hidden = true;
-      pr.href = `https://github.com/${REPO}/new/${BRANCH}` +
-        `?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(current.file)}`;
+      pr.href = href;
     } else if (name) {
       // Too big to ride in a URL: hand over the file and the empty new-file page.
       pr.hidden = true; dl.hidden = false;

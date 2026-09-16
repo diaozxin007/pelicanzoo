@@ -6,7 +6,14 @@ export const BRANCH = 'main';
 // GitHub puts the whole file into the query string. Chrome and GitHub both
 // cope well past this, but somewhere north of ~8KB the request starts getting
 // refused, so anything bigger is handed over as a download instead.
-export const INLINE_LIMIT = 6000;
+//
+// Measured against the built URL, not against the file. An SVG is mostly
+// characters encodeURIComponent has to escape — every <, >, ", #, space and
+// newline becomes three bytes — and on the one real submission in the
+// collection 4162 characters of file came out as a 7409-byte URL, 1.78x. A
+// budget applied to the raw length is therefore a budget for something like
+// half of what actually gets sent.
+export const URL_LIMIT = 8000;
 export const SIZE_LIMIT = 200_000;
 
 // Public by design: it ships in the page source. Analytics.astro decides at
