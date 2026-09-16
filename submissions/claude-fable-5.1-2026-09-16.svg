@@ -1,0 +1,118 @@
+<!-- pelicanzoo
+model: claude-fable-5.1
+by: anonymous
+date: 2026-09-16
+note: 生成一个鹈鹕
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <title>A pelican riding a bicycle</title>
+  <!-- sky, sun, clouds -->
+  <rect width="800" height="520" fill="#cfe9f7"/>
+  <circle cx="700" cy="80" r="42" fill="#ffd54a"/>
+  <g fill="#fff" opacity="0.9">
+    <g>
+      <ellipse cx="140" cy="90" rx="52" ry="20"/><ellipse cx="170" cy="78" rx="34" ry="22"/><ellipse cx="110" cy="82" rx="30" ry="18"/>
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-260 0" dur="28s" repeatCount="indefinite"/>
+    </g>
+    <g>
+      <ellipse cx="440" cy="130" rx="44" ry="16"/><ellipse cx="465" cy="120" rx="28" ry="18"/>
+      <animateTransform attributeName="transform" type="translate" from="500 0" to="-560 0" dur="20s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <!-- ground -->
+  <rect y="470" width="800" height="50" fill="#8fcf6a"/>
+  <line x1="0" y1="470" x2="800" y2="470" stroke="#5a9a3c" stroke-width="3"/>
+  <line x1="0" y1="490" x2="800" y2="490" stroke="#6fb54c" stroke-width="3" stroke-dasharray="30 26">
+    <animate attributeName="stroke-dashoffset" from="0" to="-56" dur="0.4s" repeatCount="indefinite"/>
+  </line>
+  <!-- speed lines -->
+  <g stroke="#7fa9c4" stroke-width="4" stroke-linecap="round" stroke-dasharray="26 34">
+    <line x1="40" y1="250" x2="190" y2="250"/><line x1="20" y1="300" x2="200" y2="300"/><line x1="60" y1="350" x2="180" y2="350"/>
+    <animate attributeName="stroke-dashoffset" from="0" to="-60" dur="0.5s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- far leg, behind the frame -->
+  <path fill="none" stroke="#d98a2b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+    <animate attributeName="d" dur="1.4s" repeatCount="indefinite" values="M310.0,244.0 L331.8,341.6 L340.0,444.0 M331.0,447.0 L354.0,447.0;M310.0,244.0 L327.9,342.4 L331.7,442.9 M322.7,445.9 L345.7,445.9;M310.0,244.0 L336.3,340.5 L324.0,439.7 M315.0,442.7 L338.0,442.7;M310.0,244.0 L343.7,338.2 L317.4,434.6 M308.4,437.6 L331.4,437.6;M310.0,244.0 L350.3,335.5 L312.3,428.0 M303.3,431.0 L326.3,431.0;M310.0,244.0 L356.8,332.4 L309.1,420.3 M300.1,423.3 L323.1,423.3;M310.0,244.0 L363.2,328.6 L308.0,412.0 M299.0,415.0 L322.0,415.0;M310.0,244.0 L369.7,324.2 L309.1,403.7 M300.1,406.7 L323.1,406.7;M310.0,244.0 L376.1,319.0 L312.3,396.0 M303.3,399.0 L326.3,399.0;M310.0,244.0 L382.2,313.2 L317.4,389.4 M308.4,392.4 L331.4,392.4;M310.0,244.0 L387.6,307.1 L324.0,384.3 M315.0,387.3 L338.0,387.3;M310.0,244.0 L392.0,301.3 L331.7,381.1 M322.7,384.1 L345.7,384.1;M310.0,244.0 L395.1,296.5 L340.0,380.0 M331.0,383.0 L354.0,383.0;M310.0,244.0 L396.8,293.7 L348.3,381.1 M339.3,384.1 L362.3,384.1;M310.0,244.0 L397.1,293.1 L356.0,384.3 M347.0,387.3 L370.0,387.3;M310.0,244.0 L396.0,295.1 L362.6,389.4 M353.6,392.4 L376.6,392.4;M310.0,244.0 L393.3,299.3 L367.7,396.0 M358.7,399.0 L381.7,399.0;M310.0,244.0 L389.0,305.4 L370.9,403.7 M361.9,406.7 L384.9,406.7;M310.0,244.0 L382.8,312.6 L372.0,412.0 M363.0,415.0 L386.0,415.0;M310.0,244.0 L374.6,320.3 L370.9,420.3 M361.9,423.3 L384.9,423.3;M310.0,244.0 L364.2,328.1 L367.7,428.0 M358.7,431.0 L381.7,431.0;M310.0,244.0 L350.7,335.3 L362.6,434.6 M353.6,437.6 L376.6,437.6;M310.0,244.0 L339.7,339.5 L356.0,439.7 M347.0,442.7 L370.0,442.7;M310.0,244.0 L335.8,340.6 L348.3,442.9 M339.3,445.9 L362.3,445.9;M310.0,244.0 L331.8,341.6 L340.0,444.0 M331.0,447.0 L354.0,447.0"/>
+  </path>
+
+  <!-- bicycle -->
+  <g stroke="#222" stroke-width="3" fill="none">
+  <circle cx="250" cy="400" r="70" stroke-width="7"/>
+  <circle cx="250" cy="400" r="65" stroke="#777" stroke-width="2"/>
+  <g stroke="#555" stroke-width="1.6">
+    <line x1="250" y1="400" x2="314.0" y2="400.0"/><line x1="250" y1="400" x2="307.7" y2="427.8"/><line x1="250" y1="400" x2="289.9" y2="450.0"/><line x1="250" y1="400" x2="264.2" y2="462.4"/><line x1="250" y1="400" x2="235.8" y2="462.4"/><line x1="250" y1="400" x2="210.1" y2="450.0"/><line x1="250" y1="400" x2="192.3" y2="427.8"/><line x1="250" y1="400" x2="186.0" y2="400.0"/><line x1="250" y1="400" x2="192.3" y2="372.2"/><line x1="250" y1="400" x2="210.1" y2="350.0"/><line x1="250" y1="400" x2="235.8" y2="337.6"/><line x1="250" y1="400" x2="264.2" y2="337.6"/><line x1="250" y1="400" x2="289.9" y2="350.0"/><line x1="250" y1="400" x2="307.7" y2="372.2"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 250 400" to="360 250 400" dur="0.7s" repeatCount="indefinite"/>
+  </g>
+  <circle cx="250" cy="400" r="7" fill="#333"/>
+</g>
+  <g stroke="#222" stroke-width="3" fill="none">
+  <circle cx="510" cy="400" r="70" stroke-width="7"/>
+  <circle cx="510" cy="400" r="65" stroke="#777" stroke-width="2"/>
+  <g stroke="#555" stroke-width="1.6">
+    <line x1="510" y1="400" x2="574.0" y2="400.0"/><line x1="510" y1="400" x2="567.7" y2="427.8"/><line x1="510" y1="400" x2="549.9" y2="450.0"/><line x1="510" y1="400" x2="524.2" y2="462.4"/><line x1="510" y1="400" x2="495.8" y2="462.4"/><line x1="510" y1="400" x2="470.1" y2="450.0"/><line x1="510" y1="400" x2="452.3" y2="427.8"/><line x1="510" y1="400" x2="446.0" y2="400.0"/><line x1="510" y1="400" x2="452.3" y2="372.2"/><line x1="510" y1="400" x2="470.1" y2="350.0"/><line x1="510" y1="400" x2="495.8" y2="337.6"/><line x1="510" y1="400" x2="524.2" y2="337.6"/><line x1="510" y1="400" x2="549.9" y2="350.0"/><line x1="510" y1="400" x2="567.7" y2="372.2"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 510 400" to="360 510 400" dur="0.7s" repeatCount="indefinite"/>
+  </g>
+  <circle cx="510" cy="400" r="7" fill="#333"/>
+</g>
+  <g stroke="#c8102e" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M340,412 L315,290 L445,275 L455,300 Z"/>   <!-- seat tube, top tube, head tube, down tube -->
+    <path d="M340,412 L250,400 L315,290"/>              <!-- chainstay, seatstay -->
+    <path d="M455,300 L510,400"/>                        <!-- fork -->
+  </g>
+  <g stroke="#333" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M315,290 L309,262"/>                        <!-- seatpost -->
+    <path d="M445,275 L440,250 L432,246 M440,250 L452,244"/> <!-- stem, handlebar -->
+  </g>
+  <path d="M286,262 Q308,250 334,258 L330,266 L292,268 Z" fill="#222"/>   <!-- saddle -->
+  <!-- drivetrain -->
+  <circle cx="340" cy="412" r="24" fill="none" stroke="#333" stroke-width="4"/>
+  <circle cx="250" cy="400" r="9" fill="none" stroke="#333" stroke-width="3"/>
+  <path d="M340,388 L250,391 M340,436 L250,409" stroke="#444" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <g stroke="#222" stroke-width="5" stroke-linecap="round">
+    <line x1="340" y1="380" x2="340" y2="444"/>
+    <rect x="330" y="374" width="20" height="7" rx="2" fill="#222"/>
+    <rect x="330" y="439" width="20" height="7" rx="2" fill="#222"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 340 412" to="360 340 412" dur="1.4s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- pelican body (bobs) -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0;0,-3;0,0" dur="1.4s" repeatCount="indefinite"/>
+    <!-- tail -->
+    <path d="M250,222 L212,206 L232,226 L206,232 L240,238 Z" fill="#e8e8e8" stroke="#bdbdbd" stroke-width="2"/>
+    <!-- body -->
+    <ellipse cx="300" cy="222" rx="72" ry="46" fill="#fff" stroke="#c9c9c9" stroke-width="3" transform="rotate(-12 300 222)"/>
+    <!-- neck -->
+    <path d="M345,190 C372,178 372,140 402,130" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round"/>
+    <path d="M345,190 C372,178 372,140 402,130" fill="none" stroke="#c9c9c9" stroke-width="34" stroke-linecap="round" opacity="0.35"/>
+    <path d="M345,190 C372,178 372,140 402,130" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round"/>
+    <!-- wing reaching the handlebar -->
+    <path d="M300,215 C350,205 400,220 438,248 L428,256 C392,240 350,236 300,238 Z" fill="#f4f4f4" stroke="#bdbdbd" stroke-width="2.5">
+      <animateTransform attributeName="transform" type="rotate" values="0 300 226;-1.5 300 226;0 300 226;1.5 300 226;0 300 226" dur="1.4s" repeatCount="indefinite"/>
+    </path>
+    <path d="M300,230 L330,236 M310,242 L330,246" stroke="#cfcfcf" stroke-width="2"/>
+    <!-- head -->
+    <circle cx="412" cy="130" r="24" fill="#fff" stroke="#c9c9c9" stroke-width="3"/>
+    <!-- beak: upper mandible and pouch -->
+    <path d="M428,122 L548,152 L430,136 Z" fill="#f4a020" stroke="#c77d10" stroke-width="2"/>
+    <path d="M430,136 L548,152 C520,178 470,190 432,150 Z" fill="#f7b544" stroke="#c77d10" stroke-width="2"/>
+    <line x1="428" y1="122" x2="548" y2="152" stroke="#c77d10" stroke-width="2"/>
+    <!-- eye -->
+    <circle cx="420" cy="122" r="4.5" fill="#222"/>
+    <circle cx="421.5" cy="120.5" r="1.4" fill="#fff"/>
+    <!-- a small cap, in the spirit of the benchmark -->
+    <path d="M390,112 Q412,92 436,112 Z" fill="#2c6fd6"/>
+    <path d="M388,113 L452,110 L452,116 L388,118 Z" fill="#1f56ad"/>
+    <!-- scarf -->
+    <path d="M382,148 L352,150 L332,156" fill="none" stroke="#c8102e" stroke-width="8" stroke-linecap="round">
+      <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+        values="M382,148 L352,150 L332,156;M382,148 L352,146 L330,150;M382,148 L352,150 L332,156;M382,148 L352,154 L332,160;M382,148 L352,150 L332,156"/>
+    </path>
+  </g>
+
+  <!-- near leg, in front -->
+  <path fill="none" stroke="#f4a020" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d" dur="1.4s" repeatCount="indefinite" values="M318.0,246.0 L401.4,301.1 L340.0,380.0 M331.0,383.0 L354.0,383.0;M318.0,246.0 L403.6,297.8 L348.3,381.1 M339.3,384.1 L362.3,384.1;M318.0,246.0 L404.2,296.7 L356.0,384.3 M347.0,387.3 L370.0,387.3;M318.0,246.0 L403.4,298.1 L362.6,389.4 M353.6,392.4 L376.6,392.4;M318.0,246.0 L401.0,301.7 L367.7,396.0 M358.7,399.0 L381.7,399.0;M318.0,246.0 L397.1,307.2 L370.9,403.7 M361.9,406.7 L384.9,406.7;M318.0,246.0 L391.4,313.9 L372.0,412.0 M363.0,415.0 L386.0,415.0;M318.0,246.0 L384.0,321.1 L370.9,420.3 M361.9,423.3 L384.9,423.3;M318.0,246.0 L374.9,328.3 L367.7,428.0 M358.7,431.0 L381.7,431.0;M318.0,246.0 L364.3,334.6 L362.6,434.6 M353.6,437.6 L376.6,437.6;M318.0,246.0 L352.8,339.8 L356.0,439.7 M347.0,442.7 L370.0,442.7;M318.0,246.0 L341.8,343.1 L348.3,442.9 M339.3,445.9 L362.3,445.9;M318.0,246.0 L337.8,344.0 L340.0,444.0 M331.0,447.0 L354.0,447.0;M318.0,246.0 L340.9,343.3 L331.7,442.9 M322.7,445.9 L345.7,445.9;M318.0,246.0 L345.7,342.1 L324.0,439.7 M315.0,442.7 L338.0,442.7;M318.0,246.0 L350.9,340.4 L317.4,434.6 M308.4,437.6 L331.4,437.6;M318.0,246.0 L356.5,338.3 L312.3,428.0 M303.3,431.0 L326.3,431.0;M318.0,246.0 L362.3,335.6 L309.1,420.3 M300.1,423.3 L323.1,423.3;M318.0,246.0 L368.5,332.3 L308.0,412.0 M299.0,415.0 L322.0,415.0;M318.0,246.0 L374.8,328.3 L309.1,403.7 M300.1,406.7 L323.1,406.7;M318.0,246.0 L381.2,323.5 L312.3,396.0 M303.3,399.0 L326.3,399.0;M318.0,246.0 L387.4,318.0 L317.4,389.4 M308.4,392.4 L331.4,392.4;M318.0,246.0 L393.1,312.0 L324.0,384.3 M315.0,387.3 L338.0,387.3;M318.0,246.0 L397.9,306.1 L331.7,381.1 M322.7,384.1 L345.7,384.1;M318.0,246.0 L401.4,301.1 L340.0,380.0 M331.0,383.0 L354.0,383.0"/>
+  </path>
+</svg>
