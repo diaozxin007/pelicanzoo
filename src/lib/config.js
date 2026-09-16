@@ -8,3 +8,7 @@ export const BRANCH = 'main';
 // refused, so anything bigger is handed over as a download instead.
 export const INLINE_LIMIT = 6000;
 export const SIZE_LIMIT = 200_000;
+
+// Public by design: it ships in the page source. Analytics.astro decides at
+// runtime whether to load it, so localhost stays out of the reports.
+export const GA4_ID = 'G-QW81EXNLQV';
