@@ -19,7 +19,15 @@ const {
 
 // Absolute, because crawlers do not resolve relative og:image. `Astro.site` is
 // the value in astro.config, so this follows the domain instead of pinning it.
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+//
+// The .html comes off because build.format is 'file': the file on disk is
+// p/gpt-4o.html but the URL people are given — in a share, in a link, in the
+// address bar — is /p/gpt-4o, and a canonical that disagrees with the URL
+// being shared is a canonical working against us.
+const canonical = new URL(
+  Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, ''),
+  Astro.site
+).href;
 const ogImage = new URL(image, Astro.site).href;
 ---
 
