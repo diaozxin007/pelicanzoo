@@ -1,11 +1,10 @@
 // Builds public/og/<id>.png — one 1200x630 share card per specimen, so a link
 // to a single pelican previews as that pelican instead of the zoo's front gate.
 //
-// Two rules carried over from make-og.mjs, both about not spending Simon's
-// bandwidth: the card is rendered from a local copy, never hotlinked, and the
-// 79 specimens that survive only as pictures are fetched from his server once
-// into .ogcache/ and then left alone. A share card is the image every crawler
-// that ever sees the link will fetch; that bill is ours.
+// Rule carried over from make-og.mjs: the card is rendered from a local copy,
+// never hotlinked. A share card is the image every crawler that ever sees the
+// link will fetch, and that bill is ours. The local copies are the same ones
+// the site serves, in public/specimen — put there by mirror-specimens.mjs.
 //
 // Rendering needs Chrome listening on --remote-debugging-port=9446. It opens
 // its own tab and closes it again, so whatever you had open is left alone.
@@ -18,7 +17,7 @@ import { loadFeed } from '../src/lib/feed.js';
 
 const PORT = 9446;
 const OUT_DIR = 'public/og';
-const CACHE_DIR = '.ogcache';
+const MIRROR_DIR = 'public/specimen';
 const TMP = '/tmp/og-specimen.html';
 
 const args = process.argv.slice(2);
@@ -33,19 +32,16 @@ const specimens = [...wild, ...loadFeed().filter((f) => !taken.has(f.id))]
   .filter((s) => !only || s.id === only);
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-fs.mkdirSync(CACHE_DIR, { recursive: true });
 
-/** The picture-only specimens, pulled once and kept. Failing to fetch one is
- *  not fatal — that card is skipped and the page falls back to the zoo card. */
-async function localCopy(s) {
+/** The picture-only specimens, read out of the mirror the site itself serves.
+ *  Failing to find one is not fatal — that card is skipped and the page falls
+ *  back to the zoo card. */
+function localCopy(s) {
   const ext = (s.asset.match(/\.(png|jpe?g|gif|webp|svg)(?:\?|$)/i)?.[1] || 'png').toLowerCase();
-  const file = path.join(CACHE_DIR, `${s.id}.${ext}`);
-  if (fs.existsSync(file)) return file;
-  const r = await fetch(s.asset);
-  if (!r.ok) throw new Error(`${r.status} fetching ${s.asset}`);
-  fs.writeFileSync(file, Buffer.from(await r.arrayBuffer()));
-  // His server, his pace. This runs 79 times once, and never again.
-  await new Promise((r) => setTimeout(r, 300));
+  const file = path.join(MIRROR_DIR, `${s.id}.${ext}`);
+  if (!fs.existsSync(file)) {
+    throw new Error(`${file} is missing — run scripts/mirror-specimens.mjs first`);
+  }
   return file;
 }
 

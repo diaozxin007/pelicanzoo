@@ -21,9 +21,15 @@ asks whether you can tell them apart.
 
 The benchmark, the pelicans and the keeper's notes are
 [Simon Willison's](https://simonwillison.net/tags/pelican-riding-a-bicycle/).
-Every specimen links to his original post, notes are quoted with attribution,
-and raster images are served from his host rather than copied here. We built
-the enclosure; he raised the birds.
+Every specimen links to his original post and notes are quoted with
+attribution. We built the enclosure; he raised the birds.
+
+Raster specimens used to be hotlinked from his server, on the grounds of not
+copying his work. That cost him more, not less: a hotlink bills his bandwidth
+once per visitor per image, forever. They are now mirrored into
+`public/specimen/` by `scripts/mirror-specimens.mjs`, which fetches each file
+exactly once, and served from here — faster for readers, and one fetch total
+for him. `asset` in `data/specimens.json` still records where each came from.
 
 Models in the feed pen are self-reported — nobody can check who drew a pelican
 — so fed pelicans are shown as such and kept out of the guessing game.

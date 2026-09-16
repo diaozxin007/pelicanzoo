@@ -59,6 +59,38 @@ const card = `/og/${s.id}.png`;
 const hasCard = fs.existsSync(path.join(ROOT, 'public', card));
 
 const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
+
+// Hashed from this page's id rather than Math.random: the mix has to differ
+// between specimens but stay identical across builds, or every deploy is a
+// diff of 104 reshuffled lists with nothing actually changed in them.
+function seededRandom(seed) {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return () => {
+    h ^= h << 13; h ^= h >>> 17; h ^= h << 5;
+    return ((h >>> 0) % 1000000) / 1000000;
+  };
+}
+
+// A page reached from a share is where most people meet this zoo, and until now
+// it was a dead end with one bird on it. Six more, picked at random, turn it
+// into a door. Only specimens with a standalone image file qualify — a fed
+// pelican's drawing lives inside its own page, and inlining six of those would
+// cost more than the strip is worth.
+const rand = seededRandom(s.id);
+const pool = loadZoo()
+  .all.filter((x) => x.id !== s.id && (x.svg || x.picture))
+  .map((x) => ({
+    id: x.id,
+    model: x.model,
+    thumb: x.svg ? `/live/${x.id}.svg` : x.picture,
+    sort: rand(),
+  }))
+  .sort((a, b) => a.sort - b.sort);
+const alsoHere = pool.slice(0, 6);
 ---
 
 <!doctype html>
@@ -87,7 +119,7 @@ const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
     {s.svg ? (
       <div class="live" set:html={s.svg} />
     ) : (
-      <img src={s.asset} alt={`${subject} riding a bicycle, drawn by ${s.model}`} />
+      <img src={s.picture || s.asset} alt={`${subject} riding a bicycle, drawn by ${s.model}`} />
     )}
     {fed
       ? <span class="badge fed-badge">FED</span>
@@ -157,8 +189,33 @@ const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
       <a class="source" href={sourceUrl} rel="noopener">{sourceLabel}</a>
       <a class="share" href="#" rel="noopener" data-url={pageUrl} data-model={s.model}>share on X</a>
     </div>
+
+    {/* The share asks people to feed the zoo one of their own, and this is the
+        door that ask points at. Without it the invitation lands on a page with
+        no way to accept it. */}
+    <a class="feed-cta" href="/#feed">
+      <b>feed the zoo yours ↑</b>
+      <span>got a pelican out of a model? send it in</span>
+    </a>
   </div>
 </main>
+
+{alsoHere.length > 0 && (
+  <section class="also">
+    <h2>also in the zoo</h2>
+    <ul>
+      {alsoHere.map((o) => (
+        <li>
+          <a href={`/p/${o.id}`}>
+            <span class="thumb"><img src={o.thumb} alt="" loading="lazy" /></span>
+            <span class="who">{o.model}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a class="all-link" href="/">every pelican →</a>
+  </section>
+)}
 
 <footer>
   <p>
@@ -182,13 +239,17 @@ const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
   const btn = document.querySelector('.roast');
   const out = document.querySelector('.roast-out');
 
-  // Rebuilt rather than templated, so the score can slot in later without the
-  // two versions of this sentence drifting apart.
+  // A share is not a scoreboard post, it is a recruitment post: what drew this,
+  // how badly it went, and an invitation to send one in. The zoo only grows by
+  // people feeding it, so the ask is the half that has to survive being read in
+  // a timeline. Rebuilt rather than templated, so the score can slot in later
+  // without the two versions of the sentence drifting apart.
   function shareHref(score) {
     const model = share.dataset.model;
-    const text = score === null
-      ? `${model} was asked to draw a pelican riding a bicycle.`
+    const verdict = score === null
+      ? `${model} drew this pelican riding a bicycle.`
       : `${model} scored ${score}/100 for "a pelican riding a bicycle".`;
+    const text = `${verdict} Feed the zoo yours:`;
     return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) +
       '&url=' + encodeURIComponent(share.dataset.url);
   }
@@ -342,14 +403,57 @@ const pageUrl = new URL(`/p/${s.id}`, Astro.site).href;
     display: block; margin-top: .5rem;
     font: 500 .72rem/1 ui-monospace, monospace; color: var(--muted); font-style: normal;
   }
+  /* The number is the payload. Everything else on this page is context for it,
+     so it is sized like a headline rather than like a stat in a table — and it
+     is the thing someone screenshots, which only works if it survives being
+     shrunk into a timeline. */
   .score {
-    display: flex; align-items: baseline; gap: .15rem; margin: 0 0 .55rem;
-    font: 700 2.6rem/1 Georgia, "Iowan Old Style", serif;
+    display: flex; align-items: baseline; justify-content: center; gap: .45rem;
+    margin: 0 0 .7rem; padding: .9rem .8rem .7rem;
+    background: #fbf7ea; border: 1px solid var(--rule); border-radius: 4px;
+    font: 700 5.2rem/.85 Georgia, "Iowan Old Style", serif;
+    letter-spacing: -.02em;
+    /* Georgia defaults to old-style figures, so a 7 drops below the baseline and
+       runs under the /100 beside it. A score should read as a number, not as a
+       flourish. */
+    font-variant-numeric: lining-nums;
   }
-  .score span { font: 500 .78rem/1 ui-monospace, monospace; color: var(--muted); }
+  .score span { font: 500 1rem/1 ui-monospace, monospace; color: var(--muted); }
   .score[data-band='low'] b { color: #8a3b2a; }
   .score[data-band='mid'] b { color: #9a7b24; }
   .score[data-band='high'] b { color: var(--plaque); }
+
+  .feed-cta {
+    margin-top: .9rem; padding: .85rem .95rem; display: block;
+    background: var(--plaque); color: #f6f2e6; border-radius: 4px;
+    text-decoration: none; transition: .12s;
+  }
+  .feed-cta b { display: block; font: 600 .84rem/1.3 ui-monospace, "SF Mono", monospace; color: var(--brass); }
+  .feed-cta span { display: block; margin-top: .2rem; font-size: .76rem; opacity: .75; }
+  .feed-cta:hover { filter: brightness(1.18); }
+
+  .also { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem 3rem; }
+  .also h2 {
+    margin: 0 0 .9rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+    font: 600 .8rem/1 ui-monospace, monospace; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .also ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 1rem; grid-template-columns: repeat(6, 1fr); }
+  @media (max-width: 52rem) { .also ul { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 30rem) { .also ul { grid-template-columns: repeat(2, 1fr); } }
+  .also a { text-decoration: none; color: inherit; display: block; }
+  .thumb {
+    display: block; aspect-ratio: 4 / 3; background: #fff;
+    border: 1px solid var(--rule); border-radius: 3px; overflow: hidden;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .who {
+    display: block; margin-top: .4rem; font: 500 .7rem/1.35 ui-monospace, monospace;
+    color: var(--muted); overflow-wrap: anywhere;
+  }
+  .also a:hover .thumb { border-color: var(--plaque); }
+  .also a:hover .who { color: var(--plaque); }
+  .all-link { display: inline-block; margin-top: 1.1rem; font-size: .8rem; color: var(--muted); }
 
   .actions {
     margin-top: 1rem; padding-top: .9rem; border-top: 1px solid var(--rule);

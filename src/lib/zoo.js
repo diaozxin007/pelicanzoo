@@ -25,6 +25,10 @@ export function loadZoo() {
       return {
         ...s,
         svg,
+        // Served from our own host if it has been mirrored, which is all of
+        // them; `asset` stays as the record of where it was taken from, and
+        // stays as the fallback for anything added but not yet mirrored.
+        picture: pictureFor(s),
         // Every note is worth showing: even his flat descriptions are funny,
         // because he keeps calling the pelicans ducks.
         verdict: s.keeper_note && s.keeper_note.length > 15 ? s.keeper_note : null,
@@ -40,6 +44,16 @@ export function loadZoo() {
     models: [...new Set(enriched.map((s) => s.model))].sort(),
   };
   return cache;
+}
+
+/** Local mirror if scripts/mirror-specimens.mjs has taken this one, else the
+ *  original. Checked per file rather than assumed, so a specimen added to the
+ *  data before the mirror runs still shows a picture instead of nothing. */
+function pictureFor(s) {
+  if (s.alive || !s.asset) return null;
+  const ext = (s.asset.match(/\.(png|jpe?g|gif|webp|svg)(?:\?|$)/i)?.[1] || 'png').toLowerCase();
+  const rel = `/specimen/${s.id}.${ext}`;
+  return fs.existsSync(path.join(ROOT, 'public', rel)) ? rel : s.asset;
 }
 
 const VENDORS = [

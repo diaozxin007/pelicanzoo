@@ -38,7 +38,7 @@ const rounds = {
     .map((s) => ({
       model: s.model,
       vendor: s.vendor,
-      src: s.asset,
+      src: s.picture,
       svg: s.svg ? `/live/${s.id}.svg` : null,
       note: s.verdict,
       url: s.post_url,
@@ -114,7 +114,7 @@ const ogAlt =
         {s.svg ? (
           <div class="live" set:html={s.svg} />
         ) : (
-          <img src={s.asset} alt={s.keeper_note || s.model} loading="lazy" />
+          <img src={s.picture} alt={s.keeper_note || s.model} loading="lazy" />
         )}
         {s.svg && <span class="badge live-badge" title="vector original survives">ALIVE</span>}
         {s.animated && <span class="badge anim-badge">ANIMATED</span>}
