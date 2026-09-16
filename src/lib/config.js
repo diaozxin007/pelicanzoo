@@ -3,9 +3,10 @@
 export const REPO = 'diaozxin007/pelicanzoo';
 export const BRANCH = 'main';
 
-// GitHub puts the whole file into the query string. Chrome and GitHub both
-// cope well past this, but somewhere north of ~8KB the request starts getting
-// refused, so anything bigger is handed over as a download instead.
+// GitHub can take the whole file in the query string, which saves the reader a
+// paste. Chrome and GitHub both cope well past this, but somewhere north of
+// ~8KB the request starts getting refused, so anything bigger opens the same
+// page empty and travels by clipboard instead.
 //
 // Measured against the built URL, not against the file. An SVG is mostly
 // characters encodeURIComponent has to escape — every <, >, ", #, space and
