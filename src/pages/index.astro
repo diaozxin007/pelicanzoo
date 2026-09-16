@@ -3,13 +3,15 @@ import { loadZoo } from '../lib/zoo.js';
 import Guess from '../components/Guess.astro';
 import Feed from '../components/Feed.astro';
 import { loadFeed } from '../lib/feed.js';
-import { bandOf } from '../lib/scores.js';
+import { bandOf } from '../lib/bands.js';
 import Head from '../components/Head.astro';
 
 const zoo = loadZoo();
-// Merged submissions. Kept in their own pen and out of the game: the model
-// name on one of these is whatever the person who sent it typed.
-const fed = loadFeed();
+// The feed pen, read out of the database on the way past. Kept in its own pen
+// and out of the game: the model name on one of these is whatever the person
+// who sent it typed. A pelican fed a minute ago is on this page; there is no
+// build between the two.
+const fed = await loadFeed(Astro.locals.runtime?.env);
 // Newest first: the opening screen should show pelicans that actually look like
 // pelicans. Scrolling down replays the evolution backwards, which is the joke.
 // Then round-robin by model, so six qwen pelicans in a row don't read as a bug.
@@ -172,7 +174,11 @@ const ogAlt =
       {fed.map((s) => (
         <article class="pen">
           <div class="viewport">
-            <div class="live" set:html={s.svg} />
+            {/* Through an <img>, not into this document: a fed pelican is a
+                stranger's markup admitted without a human looking at it, and a
+                browser will not run script inside an <img> whatever our
+                regular-expression sanitiser missed. */}
+            <div class="live"><img src={`/fed/${s.id}.svg`} alt={`A pelican riding a bicycle, drawn by ${s.model}`} loading="lazy" /></div>
             <span class="badge fed-badge">FED</span>
           </div>
           <div class="plaque">
@@ -200,7 +206,7 @@ const ogAlt =
                 </>
               ) : (
                 <>
-                  <button class="roast">summon the critic ↯</button>
+                  <button class="roast" data-id={s.id}>summon the critic ↯</button>
                   <blockquote class="roast-out" hidden></blockquote>
                 </>
               )}
@@ -290,12 +296,10 @@ const ogAlt =
 
     btn.disabled = true;
     btn.textContent = 'the critic is looking…';
-    // Pelicans in the permanent collection are named, so the worker reads the
-    // file itself. Fed ones only exist in this page, so they travel with the
-    // request.
-    const body = btn.dataset.id
-      ? { id: btn.dataset.id }
-      : { svg: pen.querySelector('.live').innerHTML };
+    // Both kinds are something the server can look up: the collection out of
+    // its own bundle, the feed pen out of the database. Nothing needs to travel
+    // with the request, and nothing a browser could edit first does.
+    const body = { id: btn.dataset.id };
 
     let data;
     try {
@@ -419,7 +423,8 @@ const ogAlt =
   .viewport > img, .viewport > .live { position: absolute; inset: 0; }
   .viewport > img { margin: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; display: block; }
   .viewport > .live { display: grid; place-items: center; }
-  .viewport > .live svg { max-width: 100%; max-height: 100%; display: block; }
+  .viewport > .live svg,
+  .viewport > .live img { max-width: 100%; max-height: 100%; display: block; }
 
   .badge {
     position: absolute; top: .55rem; font: 700 .6rem/1 ui-monospace, monospace;

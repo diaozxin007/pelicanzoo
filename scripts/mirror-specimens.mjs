@@ -11,11 +11,19 @@
 // Provenance does not move: every specimen still links back to the post it came
 // from, and `asset` in data/specimens.json still records where it was taken.
 //
+// It also writes data/mirrored.json, the list of what is actually down. zoo.js
+// used to answer that question with fs.existsSync at build time; a server at the
+// edge has no directory to look in, so the answer has to be data by the time it
+// gets there. Anything not on the list falls back to `asset` and is hotlinked
+// again, which is the thing this script exists to stop — so the list is written
+// at the end of every run, whether or not anything was fetched.
+//
 //   node scripts/mirror-specimens.mjs [--only <id>] [--force]
 import fs from 'node:fs';
 import path from 'node:path';
 
 const OUT_DIR = 'public/specimen';
+const MANIFEST = 'data/mirrored.json';
 // Where the card renderer used to keep its own copy. Anything already sitting
 // there was fetched from the same URL, so it seeds the mirror for free.
 const LEGACY_CACHE = '.ogcache';
@@ -66,8 +74,14 @@ for (const s of specimens) {
   await new Promise((r) => setTimeout(r, 300));
 }
 
-const bytes = fs.readdirSync(OUT_DIR).reduce((n, f) => n + fs.statSync(path.join(OUT_DIR, f)).size, 0);
+// Taken from the directory rather than from `specimens`, so a run narrowed by
+// --only still writes the whole truth instead of a list of one.
+const onDisk = fs.readdirSync(OUT_DIR).filter((f) => !f.startsWith('.')).sort();
+fs.writeFileSync(MANIFEST, `${JSON.stringify(onDisk, null, 2)}\n`);
+
+const bytes = onDisk.reduce((n, f) => n + fs.statSync(path.join(OUT_DIR, f)).size, 0);
 console.log(
   `${specimens.length} specimens: ${kept} already mirrored, ${seeded} seeded from ${LEGACY_CACHE}, ` +
-    `${fetched} fetched. ${OUT_DIR} is now ${(bytes / 1e6).toFixed(1)} MB.`
+    `${fetched} fetched. ${OUT_DIR} is now ${(bytes / 1e6).toFixed(1)} MB, ` +
+    `${onDisk.length} file(s) listed in ${MANIFEST}.`
 );

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# A feeder's receipt is reachable only by a 128-bit token and has nothing on it
+# that belongs in an index.
+Disallow: /receipt
+
+Sitemap: https://pelicanzoo.ai/sitemap.xml

@@ -12,9 +12,13 @@
     "og": "node scripts/make-og.mjs",
     "og:specimens": "node scripts/make-og-specimens.mjs",
     "mirror": "node scripts/mirror-specimens.mjs",
-    "score": "node scripts/score-submissions.mjs"
+    "score": "node scripts/score-pen.mjs",
+    "intake": "node scripts/intake.mjs",
+    "backup": "node scripts/backup-pen.mjs"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.13",
+    "@cloudflare/puppeteer": "^1.4.0",
     "astro": "^5.14.1"
   },
   "devDependencies": {

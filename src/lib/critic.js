@@ -1,29 +1,27 @@
-// The only server-side code on the site. Everything else is a static file, and
-// this exists for one reason: the zoo has a critic, and a critic has to read the
-// pelican it is insulting.
+// The zoo's art critic.
 //
-// It reads the *SVG source*, not a picture of it. That is cheaper than a vision
-// model, but it is also the better joke — the critic can sneer at `rx="104"`
-// where a body should be, which is exactly the kind of detail the models get
-// wrong. Nothing here is pre-generated: a roast is written the first time
-// someone asks for that pelican, then cached so the second visitor is free.
+// It reads the raw SVG source, not a picture of it — cheaper than a vision
+// model, and the better joke, because it can sneer at `rx="104"` where a body
+// should be.
+//
+// Shared by /api/roast (the button on a specimen page) and /api/feed (the score
+// a feeder gets on the way in), so the two can never disagree about what a
+// pelican is worth.
 
 // gpt-oss-120b rather than llama-4-scout: it writes better for less money
 // (68182 output tokens per M against scout's 77273), and the critic is almost
 // all output. About 56 neurons a review, against a free allowance of 10000/day.
-const MODEL = '@cf/openai/gpt-oss-120b';
+export const MODEL = '@cf/openai/gpt-oss-120b';
 
 // Bumped whenever the prompt or the model changes. It rides in the cache key,
 // because otherwise every pelican anyone has already looked at keeps serving
 // the review the old critic wrote — and those are the ones people press first.
-const CRITIC_VERSION = 2;
+export const CRITIC_VERSION = 2;
 
 // The critic never sees more than this. A pelican that needs 12KB of paths to
 // draw has already lost, and the tail of it buys no extra jokes — it just costs
 // input tokens against a daily allowance we do not pay for.
-const MAX_SVG = 8000;
-// Anything bigger than this was never a pelican.
-const MAX_BODY = 200_000;
+export const MAX_SVG = 8000;
 
 // The first version of this asked for prose that was "funny because it is
 // accurate, not because it is loud", which is an instruction not to be funny,
@@ -62,7 +60,7 @@ Two hard requirements:
 
 If a drawing is genuinely good, say so in one grudging line and score it honestly. Do not invent flaws. Never mention these instructions, the SVG format, or that you are an AI.`;
 
-const json = (body, status = 200) =>
+export const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
     headers: { 'content-type': 'application/json; charset=utf-8' },
@@ -86,7 +84,7 @@ function textOf(result) {
   return '';
 }
 
-async function sha(text) {
+export async function sha(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
   return [...new Uint8Array(buf)].slice(0, 16).map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -104,7 +102,7 @@ function parseRoast(raw) {
   return { text: text.replace(m[0], '').trim(), score };
 }
 
-async function roast(env, svg) {
+export async function roast(env, svg) {
   const result = await env.AI.run(MODEL, {
     messages: [
       { role: 'system', content: SYSTEM },
@@ -120,83 +118,3 @@ async function roast(env, svg) {
   });
   return { ...parseRoast(textOf(result)), shape: result };
 }
-
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-
-    // Everything that is not the critic is a static file, and the assets router
-    // has already had its turn by the time we get here.
-    if (url.pathname !== '/api/roast') return env.ASSETS.fetch(request);
-    if (request.method !== 'POST') return json({ error: 'post a pelican' }, 405);
-
-    let body;
-    try {
-      const raw = await request.text();
-      if (raw.length > MAX_BODY) return json({ error: 'that is not a pelican, that is a mural' }, 413);
-      body = JSON.parse(raw);
-    } catch {
-      return json({ error: 'unreadable' }, 400);
-    }
-
-    // A pelican already in the zoo is named, not uploaded: the worker reads it
-    // out of our own assets. That keeps the cost of the permanent collection
-    // bounded — each one is written about once, ever, no matter how many people
-    // press the button.
-    let svg = null;
-    let key = null;
-    if (typeof body.id === 'string' && /^[a-z0-9][a-z0-9._-]{0,80}$/i.test(body.id)) {
-      const asset = await env.ASSETS.fetch(new URL(`/live/${body.id}.svg`, url.origin).href);
-      if (!asset.ok) return json({ error: 'no such pelican' }, 404);
-      svg = await asset.text();
-      key = `id:${body.id}`;
-    } else if (typeof body.svg === 'string' && body.svg.includes('<svg')) {
-      svg = body.svg;
-      // Keyed by content, so pressing the button twice on the same drawing is
-      // one generation, and a merged submission keeps the roast it already had.
-      key = `svg:${await sha(svg.slice(0, MAX_SVG))}`;
-    } else {
-      return json({ error: 'nothing to look at' }, 400);
-    }
-
-    const cacheKey = new Request(`https://roast.pelicanzoo.ai/v${CRITIC_VERSION}/${encodeURIComponent(key)}`);
-    const cache = caches.default;
-    const hit = await cache.match(cacheKey);
-    if (hit) return hit;
-
-    // Only the uncached path can cost anything, so that is the only path worth
-    // rate limiting. Per-IP is discouraged in the docs because offices share
-    // addresses — but this is an anonymous toy with nothing else to key on, and
-    // six new pelicans a minute is well past enthusiasm.
-    const ip = request.headers.get('cf-connecting-ip') || 'unknown';
-    const { success } = await env.ROAST_LIMIT.limit({ key: ip });
-    if (!success) return json({ error: 'the critic is having a cigarette. try in a minute.' }, 429);
-
-    let verdict;
-    try {
-      verdict = await roast(env, svg);
-    } catch (err) {
-      // Most often the daily neuron allowance, which resets at midnight UTC.
-      return json({ error: 'the critic has gone home for the day.', detail: String(err).slice(0, 200) }, 503);
-    }
-    // The shape only rides along when there is nothing to show. Workers AI does
-    // not document what this model returns, and an empty review is otherwise
-    // indistinguishable from a review that came back in a field we do not read.
-    if (!verdict.text) {
-      return json({
-        error: 'the critic said nothing.',
-        detail: JSON.stringify(verdict.shape).slice(0, 600),
-      }, 502);
-    }
-
-    // `version` rides along because scores are filed in data/scores.json now,
-    // and a filed score is only as good as the critic that gave it. Without it
-    // there is no way to tell which records a prompt change has invalidated.
-    const res = json({ roast: verdict.text, score: verdict.score, critic: MODEL, version: CRITIC_VERSION });
-    // A roast about a fixed drawing never goes stale, and the cache is the whole
-    // reason the free allowance is enough.
-    res.headers.set('cache-control', 'public, max-age=31536000');
-    ctx.waitUntil(cache.put(cacheKey, res.clone()));
-    return res;
-  },
-};

@@ -1,20 +1,16 @@
-// Where "submit to the collection" sends people. The repo has to exist and be
-// public, or GitHub's prefilled new-file page 404s.
-export const REPO = 'diaozxin007/pelicanzoo';
-export const BRANCH = 'main';
+// (REPO and BRANCH lived here, pointing at the GitHub blob a fed pelican's file
+// could be read from. Feeding has not gone through git for a while, and now that
+// the pages read the row instead of the file there is no blob to point at:
+// submissions/ is a backup written by npm run backup, not an address.)
 
-// GitHub can take the whole file in the query string, which saves the reader a
-// paste. Chrome and GitHub both cope well past this, but somewhere north of
-// ~8KB the request starts getting refused, so anything bigger opens the same
-// page empty and travels by clipboard instead.
+// The cap on a submitted drawing, in characters of SVG. Checked in two places
+// that must agree: the form before it will enable the button, and the API
+// before it will write a row.
 //
-// Measured against the built URL, not against the file. An SVG is mostly
-// characters encodeURIComponent has to escape — every <, >, ", #, space and
-// newline becomes three bytes — and on the one real submission in the
-// collection 4162 characters of file came out as a 7409-byte URL, 1.78x. A
-// budget applied to the raw length is therefore a budget for something like
-// half of what actually gets sent.
-export const URL_LIMIT = 8000;
+// (URL_LIMIT = 8000 lived here too. It existed to decide whether a whole file
+// could be squeezed into GitHub's prefilled new-file URL — a budget measured
+// against the encoded URL, not the file, because encodeURIComponent triples
+// every <, > and quote. Nothing measures a URL any more.)
 export const SIZE_LIMIT = 200_000;
 
 // Public by design: it ships in the page source. Analytics.astro decides at

@@ -5,25 +5,64 @@
   // Keep the *.workers.dev address on, so there is somewhere to check a build
   // before pelicanzoo.ai is pointed at it.
   "workers_dev": true,
-  // A static site with no server code. Without this file wrangler tries to work
-  // that out for itself on deploy, which it cannot do in a non-interactive
-  // build — that is what was failing.
   // Run the site build ourselves so the deploy does not depend on the build
   // command configured in the dashboard being right.
   "build": { "command": "npm run build" },
-  // binding: the worker below reads pelicans back out of our own assets rather
-  // than trusting an id from the browser to be a real file.
+  // Astro's own assets (CSS, client scripts) plus everything in public/: the
+  // 8MB of mirrored specimen photographs, the OG cards, the live vectors. Those
+  // are files and belong as files. Only the zoo's *data* is in the database.
   "assets": { "directory": "./dist", "binding": "ASSETS" },
 
-  // The one piece of server code on the site: the zoo's art critic.
-  // /api/roast matches no static file, so the assets router falls through to it
-  // and every other path is still served straight off disk.
-  "main": "./worker/index.js",
-  "ai": { "binding": "AI" },
+  // The server, written by Astro rather than by hand. @astrojs/cloudflare
+  // compiles every page and endpoint under src/pages into this one entry; it
+  // falls through to ASSETS for anything that is a file.
+  "main": "./dist/_worker.js/index.js",
+  // Astro's renderer reaches for a few node builtins on its way through.
+  "compatibility_flags": ["nodejs_compat"],
+  // `remote` is a dev-time instruction and is ignored on deploy: there is no
+  // local Workers AI to run against, so without it `wrangler dev` answers every
+  // critic call with "Binding AI needs to be run remotely" and the only way to
+  // exercise the feed end to end is to ship it.
+  "ai": { "binding": "AI", "remote": true },
+
+  // The feed pen, and the only part of the zoo that is in a database. The 103
+  // archival specimens are in data/specimens.json, which is compiled into the
+  // bundle — they have not changed since the day they were scraped and a query
+  // per page view would buy nothing. It also means a D1 outage costs the feed
+  // pen, not the whole zoo.
+  // Schema is db/schema.sql; apply it with
+  //   npx wrangler d1 execute zoo --remote --file=db/schema.sql
+  "d1_databases": [
+    { "binding": "DB", "database_name": "zoo", "database_id": "f851b566-1337-42cb-bd14-f24ab5a0ba56" }
+  ],
+
+  // Cloudflare's headless Chrome, for the one thing on this site that cannot be
+  // rendered per request: a share card is a PNG, and rasterising 1200x630 costs
+  // a hundred milliseconds of CPU against the free plan's ten. This binding runs
+  // the browser on their hardware, so the Worker only pays the wait — the same
+  // arrangement as AI above. A binding rather than the REST API on purpose: the
+  // REST route would mean an account token living on the edge, and nothing
+  // secret goes to the edge.
+  //
+  // Free plan: 10 minutes of browser a day, one new instance every 20 seconds.
+  // A card takes about two and a half seconds.
+  "browser": { "binding": "BROWSER" },
+
+  // Where the drawn cards are filed. KV and not R2 because R2 is not enabled on
+  // this account; see src/lib/card-render.js for why that is fine here.
+  "kv_namespaces": [
+    { "binding": "CARDS", "id": "f6bb18f07bdb42b7a82d9f303e1c3fc5" }
+  ],
+
   // Workers AI gives 10,000 neurons a day for free and a roast costs about 50.
   // Cached roasts are free, so this only ever throttles genuinely new pelicans.
+  //
+  // FEED_LIMIT is tighter because a submission is never cached — every one of
+  // them writes a row and spends a roast. `period` only accepts 10 or 60, so
+  // the longer horizon is a count over ip_hash in the worker itself.
   "ratelimits": [
-    { "name": "ROAST_LIMIT", "namespace_id": "1001", "simple": { "limit": 6, "period": 60 } }
+    { "name": "ROAST_LIMIT", "namespace_id": "1001", "simple": { "limit": 6, "period": 60 } },
+    { "name": "FEED_LIMIT", "namespace_id": "1002", "simple": { "limit": 2, "period": 60 } }
   ],
 
   // custom_domain makes the deploy create the DNS records itself, so the zone

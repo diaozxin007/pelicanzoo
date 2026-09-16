@@ -4,6 +4,10 @@ dist/
 .DS_Store
 scripts/tmp/
 
+# wrangler dev's scratch state, including the local copy of the D1 book. The
+# real one lives at Cloudflare; this is whatever the last local probe wrote.
+.wrangler/
+
 # The raw scrape is 900KB of Simon's post bodies. It is a build input, not
 # something to republish — `npm run data` regenerates it from his Datasette.
 data/source-posts.json

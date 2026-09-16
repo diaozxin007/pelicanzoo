@@ -1,0 +1,254 @@
+---
+// Where a feeder lands the moment they hand a pelican over the fence.
+//
+// A static page with no id in its URL: the pelican it describes was created
+// seconds ago and does not exist in this build, so everything on it comes from
+// GET /api/feed/<token> at runtime. The token is the only key — 128 bits in
+// the query string, no account, nothing to log into, nothing to remember.
+//
+// noindex, and not because it is secret. It is one page that renders a
+// different pelican for every reader, so there is nothing here for a crawler
+// to file under.
+import Head from '../components/Head.astro';
+import { BADGE_W, BADGE_H } from '../lib/badge.js';
+import '../styles/tokens.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+<Head
+  title="Your pelican has been received — Pelican Zoo"
+  description="The zoo has taken your pelican and the critic has read it."
+/>
+<meta name="robots" content="noindex" />
+</head>
+<body>
+
+<header class="bar">
+  <a class="back" href="/">← every pelican</a>
+  <span class="bar-count">the fence</span>
+</header>
+
+<main class="wrap">
+  <p id="r-loading" class="loading">Fetching your receipt…</p>
+
+  <section id="r-body" hidden>
+    <h1>Received.</h1>
+    <p class="lede" id="r-lede"></p>
+
+    <div class="plaque">
+      <p class="waiting" id="r-waiting" hidden>The critic is reading it. This takes about fifteen seconds.</p>
+      <div class="score" id="r-score" hidden><b id="r-num"></b><span>/100</span></div>
+      <blockquote class="roast-out" id="r-review" hidden>
+        <span id="r-review-text"></span>
+        <cite id="r-critic"></cite>
+      </blockquote>
+      <p class="no-critic" id="r-noscore" hidden>
+        The critic looked and declined to put a number on it. That happens. The
+        keeper can ask again by hand, and if a number comes back the papers
+        below appear with it.
+      </p>
+      <p class="no-critic" id="r-timeout" hidden>
+        The critic has not come back. Your pelican is in the book either way —
+        the keeper asks again by hand before letting anything in, so reload this
+        page later and the number should be here.
+      </p>
+    </div>
+
+    <section class="papers" id="r-papers" hidden>
+      <h2>Provisional papers</h2>
+      <p class="papers-lede">
+        This is the badge, drawn from the number you just got. It is not yet at
+        an address you can paste anywhere — the zoo issues the permanent one
+        when the keeper lets your pelican in, and it will carry this same score.
+      </p>
+      <img id="r-badge" width={BADGE_W} height={BADGE_H} alt="Your pelican's badge" />
+    </section>
+
+    <div class="keep">
+      <h2>Keep this link</h2>
+      <p>
+        <code id="r-url"></code>
+        <button id="r-copy" class="btn ghost">copy</button>
+      </p>
+      <p class="fineprint">
+        It is the only way back to this page — there is no account to look it up
+        from. When your pelican is let in, this link will still say so, and the
+        zoo will have a page for it at its own address.
+      </p>
+    </div>
+  </section>
+
+  <section id="r-error" hidden>
+    <h1>No such receipt.</h1>
+    <p class="lede">
+      That token does not match anything in the intake book. If you typed the
+      link by hand, one character is all it takes — the original is in the
+      address bar of the tab you submitted from.
+    </p>
+    <p><a class="btn" href="/#feed">Feed the pelicans</a></p>
+  </section>
+</main>
+
+<script>
+  const el = (id) => document.getElementById(id);
+  const token = new URLSearchParams(location.search).get('t') || '';
+
+  const show = (node) => { node.hidden = false; };
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function read() {
+    const res = await fetch(`/api/feed/${token}`);
+    if (!res.ok) return null;
+    return res.json();
+  }
+
+  async function load() {
+    if (!/^[0-9a-f]{32}$/.test(token)) return fail();
+    let data;
+    try {
+      data = await read();
+    } catch {
+      data = null;
+    }
+    if (!data) return fail();
+
+    el('r-loading').hidden = true;
+    show(el('r-body'));
+
+    const who = data.by && !/^anon(ymous)?$/i.test(data.by) ? ` from ${data.by}` : '';
+    el('r-lede').textContent =
+      `One ${data.model}${who}, in the intake book as ${data.id}. ` +
+      (data.status === 'live'
+        ? 'It is through the gate. It goes up on the wall at the next round.'
+        : 'The keeper has not looked at it yet; nothing is on the wall until they do.');
+
+    // The critic is running behind the request that sent us here, so the number
+    // arrives a few seconds after the page does. Poll rather than make the
+    // submit button wait for it — there is something to read in the meantime,
+    // and a form that hangs for fifteen seconds reads as a form that broke.
+    if (data.scoring) {
+      show(el('r-waiting'));
+      const deadline = Date.now() + 60_000;
+      while (data.scoring && Date.now() < deadline) {
+        await sleep(2500);
+        try {
+          data = (await read()) || data;
+        } catch {
+          // A dropped poll is not a verdict. Try again until the deadline.
+        }
+      }
+      el('r-waiting').hidden = true;
+      if (data.scoring) show(el('r-timeout'));
+    }
+
+    if (typeof data.score === 'number') {
+      el('r-num').textContent = String(data.score);
+      const band = data.score >= 60 ? 'high' : data.score >= 30 ? 'mid' : 'low';
+      el('r-score').dataset.band = band;
+      show(el('r-score'));
+      el('r-review-text').textContent = data.review || '';
+      el('r-critic').textContent = `— the zoo's critic, ${data.critic}`;
+      show(el('r-review'));
+      el('r-badge').src = `/api/feed/${token}/badge.svg`;
+      show(el('r-papers'));
+    } else if (!data.scoring) {
+      show(el('r-noscore'));
+    }
+
+    const url = `${location.origin}/receipt?t=${token}`;
+    el('r-url').textContent = url;
+    el('r-copy').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        el('r-copy').textContent = 'copied';
+      } catch {
+        // Selecting it is the fallback every browser allows.
+        const r = document.createRange();
+        r.selectNodeContents(el('r-url'));
+        getSelection().removeAllRanges();
+        getSelection().addRange(r);
+        el('r-copy').textContent = 'select and copy';
+      }
+    });
+  }
+
+  function fail() {
+    el('r-loading').hidden = true;
+    show(el('r-error'));
+  }
+
+  load();
+</script>
+
+<style>
+  .bar {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: .9rem 1.2rem; border-bottom: 1px solid var(--rule); background: var(--card);
+  }
+  .bar .back { color: var(--plaque); text-decoration: none; font-weight: 600; font-size: .9rem; }
+  .bar .back:hover { text-decoration: underline; }
+  .bar-count { font: 500 .72rem/1 ui-monospace, monospace; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+
+  .wrap { max-width: 52rem; margin: 0 auto; padding: 2.4rem 1.2rem 4rem; }
+  .loading { color: var(--muted); font-size: .9rem; }
+  h1 { font: 700 2rem/1.15 Georgia, "Iowan Old Style", serif; margin: 0 0 .6rem; }
+  h2 { font: 700 1rem/1.2 Georgia, "Iowan Old Style", serif; margin: 0 0 .5rem; }
+  .lede { color: var(--muted); margin: 0 0 1.6rem; line-height: 1.6; }
+
+  .plaque { margin: 0 0 2rem; }
+  .score {
+    display: flex; align-items: baseline; justify-content: center; gap: .45rem;
+    margin: 0 0 .7rem; padding: .9rem .8rem .7rem;
+    background: #fbf7ea; border: 1px solid var(--rule); border-radius: 4px;
+    font: 700 5.2rem/.85 Georgia, "Iowan Old Style", serif;
+    letter-spacing: -.02em; font-variant-numeric: lining-nums;
+  }
+  .score span { font: 500 1rem/1 ui-monospace, monospace; color: var(--muted); }
+  .score[data-band='low'] b { color: #8a3b2a; }
+  .score[data-band='mid'] b { color: #9a7b24; }
+  .score[data-band='high'] b { color: var(--plaque); }
+  .roast-out {
+    margin: 0; padding: .8rem .9rem; background: #fbf7ea;
+    border-left: 3px solid var(--plaque); font-size: .88rem; line-height: 1.55; font-style: italic;
+  }
+  .roast-out cite {
+    display: block; margin-top: .5rem;
+    font: 500 .72rem/1 ui-monospace, monospace; color: var(--muted); font-style: normal;
+  }
+  .no-critic { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+  .waiting {
+    margin: 0 0 .7rem; padding: .9rem; text-align: center;
+    background: #fbf7ea; border: 1px dashed var(--rule); border-radius: 4px;
+    color: var(--muted); font: 500 .85rem/1.5 ui-monospace, monospace;
+  }
+
+  /* The same sheet-of-paper treatment the specimen page gives the real badge,
+     so the provisional one does not read as a different kind of object. */
+  .papers {
+    position: relative; margin: 0 0 2rem; padding: 2.2rem 2rem 1.7rem; text-align: center;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+  }
+  .papers::before {
+    content: ''; position: absolute; inset: 6px; pointer-events: none;
+    border: 1px solid var(--rule); border-radius: 2px; opacity: .6;
+  }
+  .papers-lede { color: var(--muted); font-size: .85rem; line-height: 1.6; margin: 0 0 1.4rem; }
+  .papers img { max-width: 100%; height: auto; }
+
+  .keep code {
+    font: 500 .8rem/1.4 ui-monospace, monospace; word-break: break-all;
+    background: #fbf7ea; border: 1px solid var(--rule); border-radius: 3px; padding: .2rem .4rem;
+  }
+  .fineprint { color: var(--muted); font-size: .8rem; line-height: 1.6; }
+
+  .btn {
+    display: inline-block; padding: .45rem .8rem; border-radius: 3px; cursor: pointer;
+    border: 1px solid var(--plaque); background: var(--plaque); color: var(--card);
+    font: 600 .85rem/1 inherit; text-decoration: none;
+  }
+  .btn.ghost { background: transparent; color: var(--plaque); }
+</style>
+
+</body>
+</html>

@@ -10,13 +10,32 @@
 // its own tab and closes it again, so whatever you had open is left alone.
 // Output is committed, because the Cloudflare build has no browser in it.
 //
+// Archival pelicans only. Fed ones used to be drawn here too, which meant a
+// stranger's card did not exist until the keeper ran this and deployed; they are
+// drawn at the edge now, when the pelican is fed, by src/lib/card-render.js and
+// served out of KV by src/pages/og/[id].png.js. Simon's 103 stay here because
+// they have not changed since the day they were scraped and a committed PNG is
+// the cheapest possible way to serve one.
+//
+// The layout itself lives in src/lib/og-card.js, shared with the edge renderer,
+// so the two cannot drift into drawing different cards.
+//
+// It also writes data/og-cards.json, the list of which archival pelicans have a
+// card. The specimen page used to answer that with fs.existsSync while it was
+// built ahead of time; it is rendered per request now and has no directory to
+// look in, so the answer has to have been written down. One missing from the
+// list falls back to the zoo's own card, which is the honest failure — the card
+// is what every crawler fetches, and a 404 there is a link that previews as
+// nothing.
+//
 //   node scripts/make-og-specimens.mjs [--only <id>] [--force]
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadFeed } from '../src/lib/feed.js';
+import { cardHtml } from '../src/lib/og-card.js';
 
 const PORT = 9446;
 const OUT_DIR = 'public/og';
+const MANIFEST = 'data/og-cards.json';
 const MIRROR_DIR = 'public/specimen';
 const TMP = '/tmp/og-specimen.html';
 
@@ -24,11 +43,8 @@ const args = process.argv.slice(2);
 const only = args.includes('--only') ? args[args.indexOf('--only') + 1] : null;
 const force = args.includes('--force');
 
-const wild = JSON.parse(fs.readFileSync('data/specimens.json', 'utf8')).filter((s) => s.model);
-// Fed pelicans get a page, so they get a card. The person who sent one in is
-// the single most likely person to share it.
-const taken = new Set(wild.map((s) => s.id));
-const specimens = [...wild, ...loadFeed().filter((f) => !taken.has(f.id))]
+const specimens = JSON.parse(fs.readFileSync('data/specimens.json', 'utf8'))
+  .filter((s) => s.model)
   .filter((s) => !only || s.id === only);
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -43,71 +59,6 @@ function localCopy(s) {
     throw new Error(`${file} is missing — run scripts/mirror-specimens.mjs first`);
   }
   return file;
-}
-
-const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-
-// Long model names are the norm here (`qwen-3.8-27b-no-reasoning-pelican-2`),
-// and shrinking to fit beats truncating: the name is the whole caption.
-const nameSize = (n) => (n.length > 34 ? 30 : n.length > 26 ? 36 : n.length > 18 ? 44 : 54);
-
-function cardHtml(s, art) {
-  return `<!doctype html><meta charset="utf-8"><style>
-  * { box-sizing: border-box; margin: 0; }
-  body {
-    width: 1200px; height: 630px; background: #f2ede1; color: #22201b;
-    font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, sans-serif;
-    display: grid; grid-template-columns: 630px 1fr;
-  }
-  .frame {
-    position: relative; background: #fff; border-right: 6px solid #c8a64b;
-    padding: 26px;
-  }
-  /* Pinned to the box rather than sized in percentages: under a fixed parent a
-     percentage height on an SVG is still indefinite, and a square pelican
-     spills out with the bicycle cropped off. */
-  .frame > * { position: absolute; inset: 26px; margin: auto; max-width: calc(100% - 52px); max-height: calc(100% - 52px); }
-  .meta { padding: 46px 48px 40px; display: flex; flex-direction: column; }
-  /* Centred against the picture rather than stacked at the top: these names
-     are one line for o1-mini and three for the qwen variants, and a block
-     pinned to the top leaves a hole under the short ones. */
-  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .eyebrow {
-    font: 700 17px/1 ui-monospace, "SF Mono", monospace; letter-spacing: .13em;
-    text-transform: uppercase; color: #7a7265;
-  }
-  h1 {
-    margin-top: 22px; word-break: break-word;
-    font: 700 ${nameSize(s.model)}px/1.1 ui-monospace, "SF Mono", monospace; color: #1e3a2b;
-  }
-  .sub { margin-top: 18px; font-size: 25px; color: #4a453c; }
-  .tag {
-    margin-top: 26px; align-self: flex-start; padding: 7px 13px; border-radius: 3px;
-    font: 700 15px/1 ui-monospace, monospace; letter-spacing: .1em;
-    background: #1e3a2b; color: #c8a64b;
-  }
-  .tag.fed { background: #8a6a12; color: #fff; }
-  .foot {
-    margin-top: auto; border-top: 2px solid #c8a64b; padding-top: 16px;
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-size: 18px; color: #7a7265;
-  }
-  .foot b { font: 700 22px/1 ui-monospace, monospace; letter-spacing: .04em; color: #1e3a2b; }
-</style>
-<div class="frame">${art}</div>
-<div class="meta">
-  <div class="body">
-    <div class="eyebrow">a pelican riding a bicycle</div>
-    <h1>${esc(s.model)}</h1>
-    <div class="sub">${esc(s.observed || '')}</div>
-    ${s.origin === 'feed'
-      ? '<div class="tag fed">FED · SELF-REPORTED</div>'
-      : s.alive ? '<div class="tag">ALIVE · VECTOR</div>' : ''}
-  </div>
-  <div class="foot"><span>${s.origin === 'feed'
-    ? `fed by ${esc(s.by || 'a visitor')}`
-    : 'drawn by a language model'}</span><b>pelicanzoo.ai</b></div>
-</div>`;
 }
 
 /* ---- CDP ---- */
@@ -148,14 +99,10 @@ for (const s of specimens) {
 
   let art;
   try {
-    if (s.origin === 'feed') {
-      // Already sanitised by loadFeed, and it only ever exists in the repo —
-      // there is nothing to fetch.
-      art = s.svg;
-    } else if (s.alive && fs.existsSync(path.join('public/live', `${s.id}.svg`))) {
+    if (s.alive && fs.existsSync(path.join('public/live', `${s.id}.svg`))) {
       art = fs.readFileSync(path.join('public/live', `${s.id}.svg`), 'utf8');
     } else {
-      const file = await localCopy(s);
+      const file = localCopy(s);
       art = `<img src="file://${path.resolve(file)}">`;
     }
   } catch (err) {
@@ -184,5 +131,14 @@ for (const s of specimens) {
 await send('Target.closeTarget', { targetId: target.targetId });
 ws.close();
 
-const bytes = fs.readdirSync(OUT_DIR).reduce((n, f) => n + fs.statSync(path.join(OUT_DIR, f)).size, 0);
-console.log(`${OUT_DIR}: ${made} made, ${skipped} already there, ${failed} failed — ${(bytes / 1048576).toFixed(1)} MB total`);
+// Read off the directory, not off `specimens`, so a run narrowed by --only
+// still writes the whole list instead of a list of one.
+const files = fs.readdirSync(OUT_DIR).filter((f) => f.endsWith('.png'));
+const ids = files.map((f) => f.replace(/\.png$/, '')).sort();
+fs.writeFileSync(MANIFEST, `${JSON.stringify(ids, null, 2)}\n`);
+
+const bytes = files.reduce((n, f) => n + fs.statSync(path.join(OUT_DIR, f)).size, 0);
+console.log(
+  `${OUT_DIR}: ${made} made, ${skipped} already there, ${failed} failed — ` +
+    `${(bytes / 1048576).toFixed(1)} MB total, ${ids.length} listed in ${MANIFEST}`,
+);

@@ -1,0 +1,6 @@
+# The adapter writes the server bundle into dist/_worker.js, which is also the
+# assets directory. Without this line wrangler would upload the worker's own
+# source as a public file. _routes.json is a Pages artifact and means nothing to
+# a Worker.
+_worker.js
+_routes.json

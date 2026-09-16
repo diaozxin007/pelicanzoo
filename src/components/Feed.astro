@@ -11,12 +11,13 @@
       straight away — nothing to sign up for, nothing to wait for.
     </p>
     {/* The loop only closes if people know there is something at the other end
-        of it. Nobody guesses that a merged pelican comes back with papers. */}
+        of it. Nobody guesses that a pelican comes back with papers. */}
     <p class="lede reward">
-      Anything merged goes in front of the zoo's critic, who assigns it a number
-      out of 100 and will not be argued with. You get the number, and a badge
-      with it — the model, your handle, the score — to put on your own site.
-      Most of them are bad numbers. That has not stopped anybody yet.
+      It goes straight in front of the zoo's critic, who assigns it a number out
+      of 100 and will not be argued with. You get the number the moment you hand
+      it over, and a badge with it — the model, your handle, the score — to put
+      on your own site. Most of them are bad numbers. That has not stopped
+      anybody yet.
     </p>
 
     <div class="feed-board">
@@ -43,11 +44,7 @@
         <p id="f-msg" class="msg" role="status"></p>
         <div class="acts">
           <button id="f-keep" class="btn" disabled>Put it in my zoo</button>
-          {/* Opens in a new tab rather than navigating: when the file travels by
-              clipboard the instruction for what to do with it has to still be
-              on screen behind GitHub, and this page is also holding the pelican
-              the reader spent an afternoon getting out of a model. */}
-          <a id="f-pr" class="btn ghost" hidden target="_blank" rel="noopener">Submit to the collection ↗</a>
+          <button id="f-pr" class="btn ghost" hidden>Hand it over the fence</button>
         </div>
       </div>
 
@@ -70,7 +67,8 @@
 
 <script>
   import { sanitizeSvg } from '../lib/sanitize-svg.js';
-  import { REPO, BRANCH, URL_LIMIT, SIZE_LIMIT } from '../lib/config.js';
+  import { safeField } from '../lib/fields.js';
+  import { SIZE_LIMIT } from '../lib/config.js';
 
   const el = (id) => document.getElementById(id);
   const src = el('f-svg'), model = el('f-model'), by = el('f-by'), note = el('f-note');
@@ -80,14 +78,7 @@
 
   let current = null;
   let tracked = null;
-  // Set once the file has been handed to the reader to copy by hand; see the
-  // submit handler. Cleared whenever the file changes, because then what is on
-  // their clipboard is the old one.
-  let handed = false;
-
-  // A comment can't contain "--", so anything a person types has to be defanged
-  // before it goes near the header or it breaks the file it is describing.
-  const safeField = (v) => String(v || '').replace(/[\r\n]+/g, ' ').replace(/-{2,}/g, '-').trim().slice(0, 200);
+  let sending = false;
 
   function build() {
     const raw = src.value.trim();
@@ -107,27 +98,8 @@
     current = { svg: clean.svg, model: name, by: safeField(by.value), note: safeField(note.value) };
 
     keep.disabled = !name;
-    const stamp = new Date().toISOString().slice(0, 10);
-    const slug = (name || 'pelican').toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-|-$/g, '');
-    const filename = `submissions/${slug}-${stamp}.svg`;
-    const header = `<!-- pelicanzoo\nmodel: ${name}\nby: ${current.by || 'anonymous'}\ndate: ${stamp}\nnote: ${current.note}\n-->\n`;
-    current.file = header + clean.svg;
-    current.filename = filename;
-    handed = false;
-
-    // Same destination either way — GitHub's new-file page, with the name
-    // already filled in. When the whole file fits in the query string it rides
-    // along and there is nothing left to do at the other end; when it doesn't,
-    // the page opens empty and the file goes by clipboard, which has no size to
-    // exceed. Build the URL before measuring it: an SVG is mostly characters
-    // encodeURIComponent has to triple, so the file's own length says little
-    // about the request's. Everything it emits is ASCII, so .length is bytes.
-    const blank = `https://github.com/${REPO}/new/${BRANCH}?filename=${encodeURIComponent(filename)}`;
-    const filled = `${blank}&value=${encodeURIComponent(current.file)}`;
-
-    current.inline = filled.length <= URL_LIMIT;
     pr.hidden = !name;
-    pr.href = current.inline ? filled : blank;
+    pr.disabled = false;
 
     const stripped = clean.removed.length ? ` Stripped: ${clean.removed.join(', ')}.` : '';
     // Once per paste, not once per keystroke.
@@ -139,7 +111,7 @@
   }
 
   function fail(text) {
-    current = null; keep.disabled = true; pr.hidden = true;
+    current = null; keep.disabled = true; pr.hidden = true; pr.disabled = false;
     stage.innerHTML = '<p class="hint">Your pelican appears here.</p>';
     say(text, 'bad');
   }
@@ -158,55 +130,48 @@
     window.zooTrack('feed_keep', { model: current.model });
   });
 
-  /** Synchronous on purpose. navigator.clipboard.writeText hands back a promise
-   *  that can settle after the new tab has taken focus, and a write from a
-   *  document that is no longer the focused one gets refused; execCommand is
-   *  deprecated and does the job before the click handler returns, which is the
-   *  only property that matters here. The modern call is the fallback. */
-  function copy(text) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.readOnly = true;
-    ta.style.cssText = 'position:fixed;top:0;left:-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    let ok = false;
-    try { ok = document.execCommand('copy'); } catch { /* falls through */ }
-    ta.remove();
-    if (ok) return true;
-    try { navigator.clipboard.writeText(text).catch(() => {}); return true; } catch { return false; }
-  }
+  /** Over the fence. This used to build a prefilled GitHub new-file URL, with a
+   *  clipboard fallback for anything past 8KB and a second-click escape hatch
+   *  for browsers that refused the clipboard — three mechanisms that existed
+   *  only because there was nowhere to POST to. There is now.
+   *
+   *  The response comes back as soon as the row is written; the critic takes
+   *  about thirteen seconds and runs after it, so the waiting is done on the
+   *  receipt page where there is something to look at. */
+  pr.addEventListener('click', async () => {
+    if (!current || sending) return;
+    sending = true;
+    pr.disabled = true;
+    say('Handing it over…', 'ok');
+    window.zooTrack('feed_submit', { model: current.model, how: 'api' });
 
-  // The link leaves for GitHub, so everything this does has to be done on the
-  // click itself, before the new tab exists.
-  pr.addEventListener('click', (e) => {
-    if (!current) return;
-    window.zooTrack('feed_submit', { model: current.model, how: current.inline ? 'prefilled' : 'clipboard' });
-    // The file is already in the URL. Nothing to carry, nothing to explain.
-    if (current.inline) return;
-
-    if (copy(current.file)) {
-      say('Copied. GitHub is open in the other tab with an empty file of the right name — paste, then commit. It comes back as a pull request.', 'ok');
+    let res, data;
+    try {
+      res = await fetch('/api/feed', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ svg: current.svg, model: current.model, by: current.by, note: current.note }),
+      });
+      data = await res.json();
+    } catch {
+      sending = false;
+      pr.disabled = false;
+      say('Could not reach the zoo. Check your connection and try again — nothing was lost.', 'bad');
       return;
     }
 
-    // The clipboard was refused. Better to open nothing than to send somebody to
-    // a blank editor with an empty clipboard and let them work out what went
-    // wrong — but only the first time. The box above holds what they pasted,
-    // which is not the file: it has no header on it, and a submission without
-    // one has no model name. So put the real file in there and select it, and
-    // the instruction becomes true. Re-analysing it is harmless — sanitizeSvg
-    // slices from <svg, so the header is dropped and rebuilt rather than
-    // doubled. A second click is taken as "I have copied it", because if the
-    // browser refused us once it will refuse us again and a button that can
-    // never be got past is worse than one that trusts the reader.
-    if (handed) return;
-    handed = true;
-    e.preventDefault();
-    src.value = current.file;
-    src.focus();
-    src.select();
-    say('Your browser would not let us near the clipboard. The box above now holds the whole file, selected — copy it yourself, then click again and GitHub will open.', 'bad');
+    if (!res.ok || !data.token) {
+      sending = false;
+      pr.disabled = false;
+      // The worker's own sentence, not a translation of it: it knows which of
+      // the four things went wrong and this does not.
+      say(data.duplicate
+        ? 'That exact drawing is already in the book. One pelican, one verdict.'
+        : (data.error || 'The zoo refused it and did not say why.'), 'bad');
+      return;
+    }
+
+    location.href = `/receipt?t=${data.token}`;
   });
 
   el('f-clear').addEventListener('click', () => { localStorage.removeItem(KEY); render(); });
