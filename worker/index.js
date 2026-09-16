@@ -68,10 +68,15 @@ const json = (body, status = 200) =>
     headers: { 'content-type': 'application/json; charset=utf-8' },
   });
 
-/** Workers AI returns `{ response }` for chat models and an `output` array for
- *  the reasoning ones. Reading both means swapping MODEL is a one-line change. */
+/** Workers AI has three return shapes and does not say which one a given model
+ *  uses: `{ response }` for most chat models, OpenAI's `choices[].message` for
+ *  gpt-oss, and an `output` array for the ones that answer like the Responses
+ *  API. Reading all three means swapping MODEL stays a one-line change — and
+ *  gpt-oss silently returned nothing for a while because only two were here. */
 function textOf(result) {
   if (typeof result?.response === 'string') return result.response;
+  const choice = result?.choices?.[0]?.message?.content;
+  if (typeof choice === 'string') return choice;
   if (Array.isArray(result?.output)) {
     return result.output
       .filter((o) => o.type === 'message')
