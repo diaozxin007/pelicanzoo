@@ -1,0 +1,49 @@
+---
+// Everything between <head> and the page's own styles. Pulled out when the
+// per-specimen pages arrived: two pages hand-maintaining the same eighteen
+// meta tags is how one of them quietly ends up sharing the wrong card.
+import Analytics from './Analytics.astro';
+
+// The dimensions are the file's real pixels, not the 1.91:1 ratio it is cropped
+// to, and they differ per card: the front card is rendered at 2x because its
+// captions are small enough to go to mush, while a specimen card is one big
+// bird and does not earn four times the bytes, a hundred and three times over.
+const {
+  title,
+  description,
+  image = '/og.png',
+  imageAlt,
+  imageWidth = 1200,
+  imageHeight = 630,
+} = Astro.props;
+
+// Absolute, because crawlers do not resolve relative og:image. `Astro.site` is
+// the value in astro.config, so this follows the domain instead of pinning it.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<Analytics />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="theme-color" content="#1e3a2b" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Pelican Zoo" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content={imageWidth} />
+<meta property="og:image:height" content={imageHeight} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content={imageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={imageAlt} />

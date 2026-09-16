@@ -1,0 +1,18 @@
+/* The palette, and nothing else. Split out when the per-specimen pages arrived:
+   two pages each keeping their own copy of --brass is two pages that drift. */
+:root {
+  --paper: #f2ede1;
+  --card: #fffdf8;
+  --ink: #22201b;
+  --muted: #7a7265;
+  --plaque: #1e3a2b;
+  --brass: #c8a64b;
+  --rule: #ddd4c0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}

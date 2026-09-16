@@ -7,3 +7,7 @@ scripts/tmp/
 # The raw scrape is 900KB of Simon's post bodies. It is a build input, not
 # something to republish — `npm run data` regenerates it from his Datasette.
 data/source-posts.json
+
+# Originals fetched once from Simon's server to render share cards.
+# Build input, not something to republish.
+.ogcache/
