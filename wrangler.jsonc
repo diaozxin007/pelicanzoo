@@ -11,5 +11,13 @@
   // Run the site build ourselves so the deploy does not depend on the build
   // command configured in the dashboard being right.
   "build": { "command": "npm run build" },
-  "assets": { "directory": "./dist" }
+  "assets": { "directory": "./dist" },
+
+  // custom_domain makes the deploy create the DNS records itself, so the zone
+  // never drifts from what is in this file. The workers.dev address above stays
+  // on as a fallback to check a build against.
+  "routes": [
+    { "pattern": "pelicanzoo.ai", "custom_domain": true },
+    { "pattern": "www.pelicanzoo.ai", "custom_domain": true }
+  ]
 }
