@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
   <!-- Bicycle -->
-  <g id="bicycle">
+  <g id="r1-peli-2--bicycle">
     <!-- Frame -->
     <rect x="50" y="150" width="40" height="60" fill="#333"/>
     <!-- Seat -->
@@ -17,7 +17,7 @@
   </g>
 
   <!-- Pelican -->
-  <g transform="translate(150,100)" id="pelican">
+  <g transform="translate(150,100)" id="r1-peli-2--pelican">
     <!-- Body -->
     <ellipse cx="0" cy="50" rx="20" ry="30" fill="#F4A460"/>
     <!-- Neck -->

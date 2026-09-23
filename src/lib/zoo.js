@@ -1,5 +1,5 @@
 // The permanent collection. Unlike the feed pen this is not in a database and
-// should not be: these 103 pelicans were scraped out of Simon's blog once and
+// should not be: these 107 pelicans were scraped out of Simon's blog once and
 // have not changed since, so a query per page view would buy nothing and would
 // put the whole zoo behind D1's availability instead of just the feed pen.
 //
@@ -10,7 +10,7 @@ import { vendorOf } from './vendor.js';
 import specimens from '../../data/specimens.json';
 import mirrored from '../../data/mirrored.json';
 
-// Vite inlines these at build time, so the 24 surviving vectors travel with the
+// Vite inlines these at build time, so the 33 surviving vectors travel with the
 // code. They have to be inlined into the page rather than linked, or they
 // cannot be styled, scaled or handed to the critic.
 const liveFiles = import.meta.glob('../../public/live/*.svg', {

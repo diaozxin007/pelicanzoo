@@ -18,6 +18,19 @@ def viewbox(tag):
         return tag
     return tag[:4] + f' viewBox="0 0 {w.group(1)} {h.group(1)}"' + tag[4:]
 
+def scope_ids(svg, stem):
+    """Every live pelican is inlined into the same page, and ids are page-wide:
+    three of them define #sky and #wheel, and each draws with whichever came
+    first in the document. Prefixing with the file's own name keeps them apart."""
+    pre = f"{stem}--"
+    ids = [i for i in re.findall(r'\bid="([^"]+)"', svg) if not i.startswith(pre)]
+    for i in ids:
+        e = re.escape(i)
+        svg = re.sub(rf'\bid="{e}"', f'id="{pre}{i}"', svg)
+        svg = re.sub(rf"""(url\(\s*['"]?#){e}(?=['"]?\s*\))""", rf"\g<1>{pre}{i}", svg)
+        svg = re.sub(rf'((?:xlink:)?href="#){e}"', rf'\g<1>{pre}{i}"', svg)
+    return svg
+
 def clean(svg):
     svg = re.sub(r"<\?xml[^>]*\?>", "", svg)
     svg = re.sub(r"<!DOCTYPE[^>]*>", "", svg, flags=re.I)
@@ -33,7 +46,7 @@ def clean(svg):
 fixed = 0
 for f in sorted(LIVE.glob("*.svg")):
     src = f.read_text(encoding="utf-8", errors="replace")
-    out = clean(src)
+    out = scope_ids(clean(src), f.stem)
     if out != src:
         f.write_text(out, encoding="utf-8")
         fixed += 1

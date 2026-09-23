@@ -15,3 +15,6 @@ data/source-posts.json
 # Originals fetched once from Simon's server to render share cards.
 # Build input, not something to republish.
 .ogcache/
+
+# The gists the per-effort pelicans are transcribed in. Same status as the posts.
+data/source-gists.json

@@ -16,6 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 POSTS = json.loads((ROOT / "data" / "source-posts.json").read_text())
 OUT = ROOT / "data" / "specimens.json"
+GISTS = json.loads((ROOT / "data" / "source-gists.json").read_text())
+LIVE = ROOT / "public" / "live"
 
 MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
@@ -40,6 +42,13 @@ GRID = re.compile(r"comparison|grid|contact-sheet|-all-|matrix|\bvs\b|side-by-si
 
 IMG = re.compile(r"<img\b[^>]*>", re.I)
 SVG_LINK = re.compile(r'<a\b[^>]*href="(https://static\.simonwillison\.net/[^"]+\.svg)"', re.I)
+# Per-effort pelicans published as an `llm` transcript in a gist, one run per
+# thinking effort, the post itself only carrying a grid of them.
+GIST_LINK = re.compile(r'href="(https://tools\.simonwillison\.net/markdown-svg-renderer'
+                       r'\?url=https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F([0-9a-f]+))"')
+# Which transcripts are admitted so far. Claude's first; widen to let the rest in.
+GIST_ADMIT = re.compile(r"claude", re.I)
+GIST_RUN = re.compile(r"^# \d{4}-\d\d-\d\dT", re.M)
 
 # --- model vocabulary ----------------------------------------------------------
 FAMILIES = [
@@ -174,6 +183,56 @@ for p in POSTS:
             "post_url": url,
             "observed": p["created"][:10],
         })
+
+    # Each run that returned an SVG is a specimen, and a vector original from
+    # birth. A run that thought itself into the output limit and returned
+    # nothing is not; there is no pelican to hang.
+    #
+    # If the post already showed that run as a picture, it is the same pelican:
+    # the raster is brought back to life under its own id, so its page and its
+    # card stay where they were, instead of hanging a second copy beside it.
+    bare = lambda m: re.sub(r"^claude-", "", m or "")
+    shown = {(bare(s_["model"]), s_["effort"]): s_ for s_ in specimens
+             if s_["post_url"] == url and not s_["alive"]}
+    for link, gid in GIST_LINK.findall(h):
+        for fname, md in GISTS.get(gid, {}).items():
+            if not GIST_ADMIT.search(fname):
+                continue
+            for run in GIST_RUN.split(md)[1:]:
+                mm = re.search(r"^Model: \*\*(?:[\w-]+/)?([^*]+)\*\*", run, re.M)
+                svg = re.search(r"```svg\n(<svg\b.*?</svg>)\s*```", run, re.S)
+                eff = re.search(r"thinking_effort: (\w+)", run)
+                if not (mm and svg):
+                    continue
+                model = model_from_text(mm.group(1))
+                effort = eff.group(1).lower() if eff else None
+                raster = shown.get((bare(model), effort))
+                if raster:
+                    (LIVE / f"{raster['id']}.svg").write_text(svg.group(1) + "\n", encoding="utf-8")
+                    raster.update(format="svg", alive=True)
+                    continue
+                stem = f"{model}-{effort}" if effort else model
+                if stem in stems:
+                    continue
+                stems.add(stem)
+                (LIVE / f"{stem}.svg").write_text(svg.group(1) + "\n", encoding="utf-8")
+                specimens.append({
+                    "id": stem,
+                    "asset": link,
+                    "format": "svg",
+                    "alive": True,
+                    "animated": "<animate" in svg.group(1),
+                    "slide_photo": False,
+                    "species": "pelican",
+                    "model": model,
+                    "effort": effort,
+                    "model_source": "transcript",
+                    "needs_review": model is None,
+                    "keeper_note": "",          # the transcript is the model's, not his
+                    "post_title": p["title"],
+                    "post_url": url,
+                    "observed": p["created"][:10],
+                })
 
 # --- normalise -----------------------------------------------------------------
 ALIASES = {

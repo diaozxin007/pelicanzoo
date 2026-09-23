@@ -4,13 +4,20 @@
 Source: https://datasette.simonwillison.net/simonwillisonblog
 He publishes his blog database openly; we query it rather than scraping HTML.
 Output: data/source-posts.json  (one record per post, raw body preserved)
+
+Since late 2026 the per-effort pelicans live in gists, linked through his
+markdown-svg-renderer, and the post itself only carries a grid. Those gists are
+fetched here too, so extract_specimens.py stays offline.
+Output: data/source-gists.json  (gist id -> {filename: markdown})
 """
-import json, sys, time, urllib.parse, urllib.request
+import json, re, sys, time, urllib.parse, urllib.request
 from pathlib import Path
 
 DB = "https://datasette.simonwillison.net/simonwillisonblog.json"
 TAG = "pelican-riding-a-bicycle"
 OUT = Path(__file__).resolve().parent.parent / "data" / "source-posts.json"
+GISTS_OUT = OUT.with_name("source-gists.json")
+GIST_LINK = re.compile(r"markdown-svg-renderer\?url=https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F([0-9a-f]+)")
 
 SQL = """
 select 'entry' as kind, e.id, e.title, e.slug, e.created, e.body as html
@@ -60,6 +67,18 @@ def main():
     print(f"posts: {len(rows)}  {by_kind}")
     print(f"range: {rows[0]['created'][:10]} .. {rows[-1]['created'][:10]}")
     print(f"wrote: {OUT}  ({OUT.stat().st_size/1024:.0f} KB)")
+
+    ids = sorted({g for r in rows for g in GIST_LINK.findall(r["html"] or "")})
+    gists = json.loads(GISTS_OUT.read_text()) if GISTS_OUT.exists() else {}
+    # A published transcript does not change; each gist is fetched once, ever.
+    for gid in ids:
+        if gid in gists:
+            continue
+        g = fetch(f"https://api.github.com/gists/{gid}")
+        gists[gid] = {name: f["content"] for name, f in g["files"].items()}
+        time.sleep(1)
+    GISTS_OUT.write_text(json.dumps(gists, ensure_ascii=False, indent=1))
+    print(f"gists: {len(ids)} linked, {len(gists)} on file")
 
 if __name__ == "__main__":
     main()

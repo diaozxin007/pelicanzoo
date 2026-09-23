@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
   <!-- Bicycle -->
-  <g id="bicycle">
+  <g id="r1-peli-1--bicycle">
     <!-- Frame -->
     <path d="M 20,30 L 100,30 Q 260,30 290,70 L 290,150 Q 250,190 210,190 L 140,190 Q 50,190 10,230 L 10,30 Z" fill="white" stroke="black" stroke-width="2"/>
     
@@ -24,7 +24,7 @@
   </g>
 
   <!-- Pelican -->
-  <g id="pelican">
+  <g id="r1-peli-1--pelican">
     <!-- Body -->
     <ellipse cx="180" cy="100" rx="40" ry="30" fill="white"/>
     
@@ -54,7 +54,7 @@
   <path d="M 0,270 L 400,270" fill="#888"/>
   
   <!-- Clouds -->
-  <g id="clouds">
+  <g id="r1-peli-1--clouds">
     <path d="M 50,200 L 100,220 Q 125,235 150,230 L 250,230 Q 280,235 310,220 L 360,220 Z"
           fill="white"/>
     <path d="M 180,210 L 240,190 Q 270,175 300,190 L 380,190 Q 350,205 320,210 Z"

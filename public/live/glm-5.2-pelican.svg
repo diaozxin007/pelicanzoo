@@ -3,24 +3,24 @@
   <desc>Side view of a white pelican with orange beak pedaling a vintage teal bicycle, with gently spinning wheels.</desc>
 
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="glm-5.2-pelican--sky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#eaf4f6"/>
       <stop offset="100%" stop-color="#f6efe2"/>
     </linearGradient>
-    <radialGradient id="bodyGrad" cx="50%" cy="40%" r="70%">
+    <radialGradient id="glm-5.2-pelican--bodyGrad" cx="50%" cy="40%" r="70%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="70%" stop-color="#f3ecdc"/>
       <stop offset="100%" stop-color="#d9d0bc"/>
     </radialGradient>
-    <linearGradient id="beakGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="glm-5.2-pelican--beakGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f6b042"/>
       <stop offset="100%" stop-color="#e07b1c"/>
     </linearGradient>
-    <linearGradient id="pouchGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="glm-5.2-pelican--pouchGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f4a832"/>
       <stop offset="100%" stop-color="#d96a14"/>
     </linearGradient>
-    <linearGradient id="frameGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="glm-5.2-pelican--frameGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#2f7d8c"/>
       <stop offset="100%" stop-color="#1f5963"/>
     </linearGradient>
@@ -32,7 +32,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="600" height="500" fill="url(#sky)"/>
+  <rect width="600" height="500" fill="url(#glm-5.2-pelican--sky)"/>
 
   <!-- Distant hills -->
   <path d="M0 380 Q 150 340 300 370 T 600 365 L600 420 L0 420 Z" fill="#cfe0d4" opacity="0.6"/>
@@ -66,7 +66,7 @@
   </g>
 
   <!-- ============ BICYCLE ============ -->
-  <g id="bike">
+  <g id="glm-5.2-pelican--bike">
 
     <!-- Rear wheel -->
     <g transform="translate(180 360)">
@@ -101,7 +101,7 @@
     </g>
 
     <!-- Frame -->
-    <g fill="none" stroke="url(#frameGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <g fill="none" stroke="url(#glm-5.2-pelican--frameGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
       <!-- seat tube -->
       <line x1="300" y1="365" x2="235" y2="270"/>
       <!-- top tube -->
@@ -148,7 +148,7 @@
   </g>
 
   <!-- ============ PELICAN ============ -->
-  <g id="pelican">
+  <g id="glm-5.2-pelican--pelican">
     <!-- subtle body bob -->
     <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="1.2s" repeatCount="indefinite"/>
 
@@ -170,7 +170,7 @@
     <path d="M178 258 Q 168 262 165 270 Q 178 272 192 268 Z" fill="#c8bea4"/>
 
     <!-- Body -->
-    <ellipse cx="240" cy="245" rx="58" ry="48" fill="url(#bodyGrad)"/>
+    <ellipse cx="240" cy="245" rx="58" ry="48" fill="url(#glm-5.2-pelican--bodyGrad)"/>
     <!-- Body shading -->
     <path d="M240 197 Q 200 210 188 245 Q 195 282 240 293 Q 285 282 292 245 Q 280 210 240 197 Z" fill="none" stroke="#c9bf9f" stroke-width="0.8" opacity="0.6"/>
 
@@ -186,10 +186,10 @@
     <path d="M360 258 Q 380 264 392 270 Q 380 268 360 264 Z" fill="#8a8064"/>
 
     <!-- Neck -->
-    <path d="M270 215 Q 290 175 320 165 Q 345 160 352 175 Q 348 188 325 192 Q 300 198 285 220 Z" fill="url(#bodyGrad)"/>
+    <path d="M270 215 Q 290 175 320 165 Q 345 160 352 175 Q 348 188 325 192 Q 300 198 285 220 Z" fill="url(#glm-5.2-pelican--bodyGrad)"/>
 
     <!-- Head -->
-    <circle cx="350" cy="172" r="22" fill="url(#bodyGrad)"/>
+    <circle cx="350" cy="172" r="22" fill="url(#glm-5.2-pelican--bodyGrad)"/>
     <!-- Head crest during riding (a tiny wind-swept tuft) -->
     <path d="M340 152 Q 332 142 326 145 Q 332 150 335 156 Z" fill="#e8e0cc"/>
 
@@ -200,12 +200,12 @@
     <path d="M350 161 Q 358 159 362 163" stroke="#9a8e6e" stroke-width="1.2" fill="none"/>
 
     <!-- Beak top mandible -->
-    <path d="M368 168 Q 410 172 448 178 Q 450 182 446 183 Q 410 180 370 178 Z" fill="url(#beakGrad)" stroke="#b85a10" stroke-width="0.8"/>
+    <path d="M368 168 Q 410 172 448 178 Q 450 182 446 183 Q 410 180 370 178 Z" fill="url(#glm-5.2-pelican--beakGrad)" stroke="#b85a10" stroke-width="0.8"/>
     <!-- Beak tip hook -->
     <path d="M446 180 Q 452 182 448 186 Q 444 184 444 182 Z" fill="#b85a10"/>
 
     <!-- Pouch (lower mandible) -->
-    <path d="M370 180 Q 400 188 444 184 Q 438 218 405 222 Q 378 220 372 200 Z" fill="url(#pouchGrad)" stroke="#b85a10" stroke-width="0.8"/>
+    <path d="M370 180 Q 400 188 444 184 Q 438 218 405 222 Q 378 220 372 200 Z" fill="url(#glm-5.2-pelican--pouchGrad)" stroke="#b85a10" stroke-width="0.8"/>
     <!-- pouch texture -->
     <path d="M378 195 Q 400 210 432 198" stroke="#c25a08" stroke-width="0.8" fill="none" opacity="0.6"/>
     <path d="M380 205 Q 400 217 428 205" stroke="#c25a08" stroke-width="0.8" fill="none" opacity="0.5"/>

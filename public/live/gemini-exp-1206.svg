@@ -6,7 +6,7 @@
   <rect x="0" y="200" width="400" height="100" fill="#90EE90" /> <!-- Ground -->
 
   <!-- Bicycle -->
-  <g id="bicycle">
+  <g id="gemini-exp-1206--bicycle">
     <!-- Frame -->
     <line x1="150" y1="250" x2="250" y2="250" stroke="black" stroke-width="3" />
     <line x1="180" y1="220" x2="220" y2="220" stroke="black" stroke-width="3" />
@@ -43,7 +43,7 @@
   </g>
 
   <!-- Pelican -->
-  <g id="pelican" transform="translate(50, 30)">
+  <g id="gemini-exp-1206--pelican" transform="translate(50, 30)">
     <!-- Body -->
     <ellipse cx="150" cy="170" rx="35" ry="25" fill="white" stroke="black" stroke-width="2" />
     

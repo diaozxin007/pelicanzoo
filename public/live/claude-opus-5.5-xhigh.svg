@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <defs>
+    <linearGradient id="claude-opus-5.5-xhigh--sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd3ff"/>
+      <stop offset="1" stop-color="#e6f6ff"/>
+    </linearGradient>
+    <g id="claude-opus-5.5-xhigh--wheel">
+      <circle r="60" fill="none" stroke="#222" stroke-width="7"/>
+      <circle r="55" fill="none" stroke="#99a" stroke-width="2"/>
+      <g stroke="#aab" stroke-width="1.5">
+        <line x1="-55" y1="0" x2="55" y2="0"/>
+        <line x1="-55" y1="0" x2="55" y2="0" transform="rotate(30)"/>
+        <line x1="-55" y1="0" x2="55" y2="0" transform="rotate(60)"/>
+        <line x1="-55" y1="0" x2="55" y2="0" transform="rotate(90)"/>
+        <line x1="-55" y1="0" x2="55" y2="0" transform="rotate(120)"/>
+        <line x1="-55" y1="0" x2="55" y2="0" transform="rotate(150)"/>
+      </g>
+      <circle r="7" fill="#666" stroke="#333" stroke-width="2"/>
+    </g>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="400" fill="url(#claude-opus-5.5-xhigh--sky)"/>
+  <circle cx="430" cy="62" r="28" fill="#ffe066"/>
+  <g fill="#fff" opacity="0.9">
+    <ellipse cx="90" cy="70" rx="40" ry="14"/>
+    <circle cx="75" cy="62" r="14"/>
+    <circle cx="98" cy="56" r="18"/>
+    <ellipse cx="230" cy="40" rx="30" ry="10"/>
+    <circle cx="222" cy="34" r="11"/>
+    <circle cx="240" cy="31" r="13"/>
+  </g>
+  <rect y="352" width="500" height="48" fill="#8bc34a"/>
+  <rect y="352" width="500" height="18" fill="#cdb98a"/>
+  <ellipse cx="240" cy="356" rx="150" ry="6" fill="#000" opacity="0.15"/>
+
+  <!-- Motion lines -->
+  <g stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.8">
+    <line x1="30" y1="250" x2="65" y2="250"/>
+    <line x1="20" y1="282" x2="62" y2="282"/>
+    <line x1="35" y1="314" x2="68" y2="314"/>
+  </g>
+
+  <!-- Far leg (behind bike) -->
+  <path d="M205 178 L255 226 L208 278" fill="none" stroke="#d9731a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="230" y1="295" x2="208" y2="278" stroke="#444" stroke-width="5" stroke-linecap="round"/>
+  <rect x="200" y="276" width="16" height="5" rx="1" fill="#333"/>
+  <path d="M203 277 L224 274 L222 283 Z" fill="#d9731a"/>
+
+  <!-- Wheels -->
+  <use href="#claude-opus-5.5-xhigh--wheel" x="140" y="290"/>
+  <use href="#claude-opus-5.5-xhigh--wheel" x="340" y="290"/>
+
+  <!-- Chain -->
+  <circle cx="140" cy="290" r="6" fill="none" stroke="#555" stroke-width="2"/>
+  <path d="M230 282 L140 284 M230 308 L140 296" stroke="#555" stroke-width="1.5" fill="none"/>
+
+  <!-- Frame -->
+  <g stroke="#d62828" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M140 290 L230 295"/>
+    <path d="M140 290 L207 205"/>
+    <path d="M230 295 L205 198"/>
+    <path d="M207 205 L318 198"/>
+    <path d="M230 295 L324 215"/>
+    <path d="M325 220 L340 290"/>
+  </g>
+  <line x1="317" y1="192" x2="325" y2="221" stroke="#b01e1e" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="230" cy="295" r="13" fill="none" stroke="#555" stroke-width="3"/>
+
+  <!-- Seat -->
+  <line x1="205" y1="198" x2="202" y2="186" stroke="#555" stroke-width="4"/>
+  <path d="M180 184 Q200 178 218 184 Q205 191 180 188 Z" fill="#333"/>
+
+  <!-- Handlebars -->
+  <line x1="317" y1="193" x2="314" y2="178" stroke="#444" stroke-width="5" stroke-linecap="round"/>
+  <path d="M314 178 Q306 168 294 172" stroke="#444" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="294" cy="172" r="4" fill="#111"/>
+
+  <!-- Pelican: tail -->
+  <path d="M162 142 L125 128 L133 142 L122 151 L160 164 Z" fill="#e8e8e8" stroke="#bbb" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Neck (outline layer) -->
+  <path d="M235 138 C250 120 250 100 263 86 L286 86 C276 102 272 122 258 150 Z" fill="#fbfbfb" stroke="#bbb" stroke-width="3"/>
+
+  <!-- Body -->
+  <ellipse cx="205" cy="150" rx="58" ry="34" transform="rotate(-8 205 150)" fill="#fbfbfb" stroke="#bbb" stroke-width="2"/>
+
+  <!-- Head -->
+  <path d="M259 68 Q247 58 242 65 Q251 66 257 75 Z" fill="#f1f1f1" stroke="#ccc" stroke-width="1.5"/>
+  <circle cx="275" cy="78" r="18" fill="#fbfbfb" stroke="#bbb" stroke-width="2"/>
+
+  <!-- Neck (fill layer to blend joins) -->
+  <path d="M235 138 C250 120 250 100 263 86 L286 86 C276 102 272 122 258 150 Z" fill="#fbfbfb"/>
+
+  <!-- Beak & pouch -->
+  <path d="M288 88 Q340 92 386 101 Q375 128 330 126 Q298 122 290 100 Z" fill="#f9c74f" stroke="#e09520" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M286 68 Q345 76 392 98 Q398 103 390 106 L386 101 Q340 90 288 88 Z" fill="#f4a52a" stroke="#d9861a" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M292 76 Q340 84 382 99" stroke="#d9861a" stroke-width="1" fill="none"/>
+
+  <!-- Eye -->
+  <circle cx="280" cy="73" r="6" fill="#f4d6a0"/>
+  <circle cx="280" cy="73" r="3.5" fill="#222"/>
+  <circle cx="281.3" cy="71.7" r="1.2" fill="#fff"/>
+
+  <!-- Wing gripping the handlebar -->
+  <path d="M190 128 Q235 112 268 138 L300 166 Q302 176 292 175 L262 160 Q220 170 180 152 Z" fill="#e2e2e2" stroke="#aaa" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M258 132 L300 166 Q302 176 292 175 L255 158 Q262 146 258 132 Z" fill="#3a3a3a"/>
+  <g stroke="#b5b5b5" stroke-width="1.5" fill="none">
+    <path d="M200 140 Q225 150 248 150"/>
+    <path d="M195 148 Q222 158 245 158"/>
+  </g>
+
+  <!-- Near leg (in front of bike) -->
+  <path d="M220 180 L251 240 L252 310" fill="none" stroke="#f08a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="230" y1="295" x2="252" y2="312" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="230" cy="295" r="4" fill="#333"/>
+  <rect x="243" y="310" width="18" height="5" rx="1" fill="#222"/>
+  <path d="M245 310 L269 306 L267 316 Z" fill="#f08a24" stroke="#d9731a" stroke-width="1" stroke-linejoin="round"/>
+</svg>

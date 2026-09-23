@@ -9,8 +9,8 @@ asks whether you can tell them apart.
 
 ## What's in here
 
-- **The enclosure** — 103 pelicans from 66 models, 2024 to 2026, each plaque
-  linking back to the post it came from. 24 survive as vector originals, so
+- **The enclosure** — 107 pelicans from 67 models, 2024 to 2026, each plaque
+  linking back to the post it came from. 33 survive as vector originals, so
   they scale; four of those move.
 - **Who drew this one?** — 73 rounds, 51 models. Decoys come from other vendors
   where possible, because three Gemini variants side by side is unguessable
@@ -56,7 +56,7 @@ Everything is rendered per request: the homepage, `/p/<id>`, `/badge/<id>.svg`,
 the crawlers that matter for a shared link — X, WeChat, Slack, Discord — do not
 run JavaScript, and a pelican nobody can preview is a pelican nobody shares.
 
-The 103 archival pelicans are the exception: they were scraped out of Simon's
+The 107 archival pelicans are the exception: they were scraped out of Simon's
 blog once and have not changed since, so they are compiled into the worker
 bundle rather than queried. A query per page view would buy nothing, and it
 would put the whole zoo behind D1's availability instead of just the feed pen.
@@ -78,7 +78,7 @@ Neither is a publishing step, and neither is a step. `intake` takes effect on th
 next request; `backup` is insurance. Nothing about feeding a pelican waits for
 this machine any more.
 
-`npm run og:specimens` still exists, but only for Simon's 103: those cards are
+`npm run og:specimens` still exists, but only for Simon's 107: those cards are
 committed PNGs, because they have not changed since the day they were scraped
 and a file is the cheapest way to serve one. The layout both renderers draw is
 `src/lib/og-card.js`, shared so they cannot drift.
