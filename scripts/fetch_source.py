@@ -17,7 +17,7 @@ DB = "https://datasette.simonwillison.net/simonwillisonblog.json"
 TAG = "pelican-riding-a-bicycle"
 OUT = Path(__file__).resolve().parent.parent / "data" / "source-posts.json"
 GISTS_OUT = OUT.with_name("source-gists.json")
-GIST_LINK = re.compile(r"markdown-svg-renderer\?url=https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F([0-9a-f]+)")
+GIST_LINK = re.compile(r"markdown-svg-renderer\?url=(?:https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F|https://gist\.github\.com/simonw/)([0-9a-f]+)")
 
 SQL = """
 select 'entry' as kind, e.id, e.title, e.slug, e.created, e.body as html
@@ -37,6 +37,12 @@ from blog_note n
 join blog_note_tags nt on nt.note_id = n.id
 join blog_tag t on t.id = nt.tag_id
 where t.tag = :tag
+union all
+select 'beat', b.id, b.title, b.slug, b.created, b.note
+from blog_beat b
+join blog_beat_tags bt on bt.beat_id = b.id
+join blog_tag t on t.id = bt.tag_id
+where t.tag = :tag and b.is_draft = 0
 order by created
 """
 
@@ -59,6 +65,20 @@ def main():
     rows = fetch(f"{DB}?{qs}")
     if isinstance(rows, dict) and rows.get("error"):
         sys.exit(f"Datasette error: {rows['error']}")
+    # Beats store Markdown and release metadata. Archive their rendered
+    # public article so the offline extractor sees the same HTML everywhere.
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    for row in rows:
+        if row["kind"] != "beat":
+            continue
+        date = row["created"]
+        url = f"https://simonwillison.net/{date[:4]}/{months[int(date[5:7])-1]}/{int(date[8:10])}/{row['slug']}/"
+        with urllib.request.urlopen(url, timeout=60) as response:
+            page = response.read().decode()
+        body = re.search(r'<div class="entry entryPage">(.*?)<div class="entryFooter">', page, re.S)
+        if not body:
+            raise ValueError(f"Missing article body: {url}")
+        row["html"] = body.group(1)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(rows, ensure_ascii=False, indent=1))
     by_kind = {}

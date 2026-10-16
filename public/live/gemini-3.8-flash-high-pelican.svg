@@ -1,0 +1,587 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <!-- Sky & Background Gradients -->
+    <linearGradient id="gemini-3.8-flash-high-pelican--skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#BAE6FD"/>
+      <stop offset="40%" stop-color="#E0F2FE"/>
+      <stop offset="70%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#FDBA74"/>
+    </linearGradient>
+    
+    <radialGradient id="gemini-3.8-flash-high-pelican--sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#FDE047" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FDE047" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ground Gradients -->
+    <linearGradient id="gemini-3.8-flash-high-pelican--groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="20%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--woodPlank" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+
+    <!-- Pelican Gradients -->
+    <linearGradient id="gemini-3.8-flash-high-pelican--featherBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--featherDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--beakGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="65%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--pouchGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDBA74"/>
+      <stop offset="40%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#F43F5E"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--legGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+
+    <!-- Bicycle Gradients -->
+    <linearGradient id="gemini-3.8-flash-high-pelican--tealFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF"/>
+      <stop offset="50%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#115E59"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--chromeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="35%" stop-color="#E2E8F0"/>
+      <stop offset="50%" stop-color="#94A3B8"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--tireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--leatherGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9A3412"/>
+      <stop offset="50%" stop-color="#7C2D12"/>
+      <stop offset="100%" stop-color="#431407"/>
+    </linearGradient>
+    <linearGradient id="gemini-3.8-flash-high-pelican--basketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+
+    <!-- Shadows -->
+    <radialGradient id="gemini-3.8-flash-high-pelican--dropShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#451A03" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#451A03" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#451A03" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Wheel Definition (reusable) -->
+    <g id="gemini-3.8-flash-high-pelican--wheel">
+      <!-- Outer Tire -->
+      <circle cx="0" cy="0" r="76" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tireGrad)" stroke-width="14"/>
+      <!-- Whitewall Stripe -->
+      <circle cx="0" cy="0" r="70" fill="none" stroke="#FEF3C7" stroke-width="4"/>
+      <!-- Rim -->
+      <circle cx="0" cy="0" r="64" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="5"/>
+      <!-- Spokes -->
+      <g stroke="#CBD5E1" stroke-width="1.5" opacity="0.8">
+        <line x1="0" y1="0" x2="0" y2="64"/>
+        <line x1="0" y1="0" x2="0" y2="-64"/>
+        <line x1="0" y1="0" x2="64" y2="0"/>
+        <line x1="0" y1="0" x2="-64" y2="0"/>
+        <line x1="0" y1="0" x2="45.2" y2="45.2"/>
+        <line x1="0" y1="0" x2="-45.2" y2="-45.2"/>
+        <line x1="0" y1="0" x2="45.2" y2="-45.2"/>
+        <line x1="0" y1="0" x2="-45.2" y2="45.2"/>
+        <line x1="0" y1="0" x2="24.5" y2="59.1"/>
+        <line x1="0" y1="0" x2="-24.5" y2="-59.1"/>
+        <line x1="0" y1="0" x2="59.1" y2="24.5"/>
+        <line x1="0" y1="0" x2="-59.1" y2="-24.5"/>
+        <line x1="0" y1="0" x2="-24.5" y2="59.1"/>
+        <line x1="0" y1="0" x2="24.5" y2="-59.1"/>
+        <line x1="0" y1="0" x2="59.1" y2="-24.5"/>
+        <line x1="0" y1="0" x2="-59.1" y2="24.5"/>
+      </g>
+      <!-- Center Hub -->
+      <circle cx="0" cy="0" r="12" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+      <circle cx="0" cy="0" r="5" fill="#334155"/>
+    </g>
+  </defs>
+
+  <!-- BACKGROUND: Coastal Sky & Sea Pier -->
+  <rect x="0" y="0" width="800" height="600" fill="url(#gemini-3.8-flash-high-pelican--skyGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="680" cy="180" r="130" fill="url(#gemini-3.8-flash-high-pelican--sunGlow)"/>
+  <circle cx="680" cy="180" r="55" fill="#FEF9C3" opacity="0.9"/>
+
+  <!-- Distant Pier Posts & Sea Horizon -->
+  <path d="M 0,380 L 800,380 L 800,388 L 0,388 Z" fill="#38BDF8" opacity="0.5"/>
+  <g fill="#0284C7" opacity="0.2">
+    <!-- Distant sailboats -->
+    <path d="M 120,372 L 130,355 L 138,372 Z"/>
+    <path d="M 140,368 L 145,360 L 148,368 Z"/>
+    <path d="M 680,373 L 692,352 L 702,373 Z"/>
+  </g>
+
+  <!-- Clouds -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <path d="M 60,180 Q 80,160 110,165 Q 140,150 170,170 Q 200,165 210,185 Q 215,205 190,210 L 80,210 Q 55,205 60,180 Z"/>
+    <path d="M 380,130 Q 400,110 425,115 Q 450,100 475,120 Q 500,115 510,135 L 370,135 Q 365,130 380,130 Z"/>
+  </g>
+
+  <!-- Distant Birds -->
+  <g stroke="#0284C7" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M 280,140 Q 290,130 300,140 Q 310,130 320,140"/>
+    <path d="M 325,125 Q 332,118 340,125 Q 348,118 355,125"/>
+  </g>
+
+  <!-- Boardwalk Ground Planks -->
+  <rect x="0" y="475" width="800" height="125" fill="url(#gemini-3.8-flash-high-pelican--groundGrad)"/>
+  <!-- Plank Separators & Nails (Perspective) -->
+  <g stroke="#451A03" stroke-width="2" opacity="0.7">
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="0" y1="535" x2="800" y2="535"/>
+    <line x1="0" y1="575" x2="800" y2="575"/>
+    <!-- Vertical Plank Gaps -->
+    <line x1="90" y1="475" x2="70" y2="500"/>
+    <line x1="230" y1="475" x2="210" y2="500"/>
+    <line x1="410" y1="475" x2="390" y2="500"/>
+    <line x1="570" y1="475" x2="550" y2="500"/>
+    <line x1="730" y1="475" x2="710" y2="500"/>
+    <line x1="150" y1="500" x2="120" y2="535"/>
+    <line x1="330" y1="500" x2="300" y2="535"/>
+    <line x1="510" y1="500" x2="480" y2="535"/>
+    <line x1="670" y1="500" x2="640" y2="535"/>
+    <line x1="60" y1="535" x2="20" y2="575"/>
+    <line x1="240" y1="535" x2="200" y2="575"/>
+    <line x1="430" y1="535" x2="390" y2="575"/>
+    <line x1="610" y1="535" x2="570" y2="575"/>
+    <line x1="790" y1="535" x2="750" y2="575"/>
+  </g>
+  <!-- Edge Highlight on Boards -->
+  <path d="M 0,501 L 800,501 M 0,536 L 800,536 M 0,576 L 800,576" stroke="#FDE68A" stroke-width="1" opacity="0.3"/>
+
+  <!-- MOTION & SPEED ACCENTS -->
+  <g stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6">
+    <line x1="60" y1="440" x2="110" y2="440" stroke-dasharray="8 4"/>
+    <line x1="40" y1="460" x2="120" y2="460" stroke-dasharray="12 6"/>
+    <line x1="90" y1="480" x2="140" y2="480" stroke-dasharray="6 4"/>
+    <!-- Wind swirls near pelican -->
+    <path d="M 180,240 C 150,230 140,205 160,195 C 175,185 195,200 180,215" fill="none" stroke-width="2.5" stroke-dasharray="35 5"/>
+  </g>
+
+  <!-- SHADOWS UNDER BIKE -->
+  <ellipse cx="230" cy="495" rx="85" ry="14" fill="url(#gemini-3.8-flash-high-pelican--dropShadow)"/>
+  <ellipse cx="570" cy="495" rx="85" ry="14" fill="url(#gemini-3.8-flash-high-pelican--dropShadow)"/>
+  <ellipse cx="400" cy="500" rx="140" ry="16" fill="url(#gemini-3.8-flash-high-pelican--dropShadow)"/>
+
+  <!-- ==================== BICYCLE (REAR LAYER) ==================== -->
+  <!-- Far Pedal & Crank (Up/Back position) -->
+  <g id="gemini-3.8-flash-high-pelican--farPedal">
+    <line x1="380" y1="420" x2="335" y2="365" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Pedal spindle & rubber block -->
+    <rect x="315" y="358" width="30" height="10" rx="3" fill="#1E293B"/>
+    <circle cx="335" cy="363" r="3" fill="#CBD5E1"/>
+  </g>
+
+  <!-- Far Pelvis/Leg (Pushing Downwards on Far Pedal) -->
+  <g id="gemini-3.8-flash-high-pelican--farPelicanLeg">
+    <!-- Far Thigh -->
+    <path d="M 330,290 C 310,315 300,340 320,355 C 330,362 340,355 345,340 Z" fill="#CBD5E1"/>
+    <!-- Far Leg Bone -->
+    <path d="M 330,355 L 332,365" stroke="url(#gemini-3.8-flash-high-pelican--legGrad)" stroke-width="10" stroke-linecap="round"/>
+    <!-- Far Webbed Foot -->
+    <path d="M 315,368 C 305,365 310,358 328,360 L 345,365 C 335,375 320,373 315,368 Z" fill="#EA580C"/>
+  </g>
+
+  <!-- Rear Wheel -->
+  <g transform="translate(230, 420)">
+    <use href="#gemini-3.8-flash-high-pelican--wheel"/>
+  </g>
+
+  <!-- Front Wheel -->
+  <g transform="translate(570, 420)">
+    <use href="#gemini-3.8-flash-high-pelican--wheel"/>
+  </g>
+
+  <!-- ==================== BICYCLE FRAMEWORK ==================== -->
+  <g id="gemini-3.8-flash-high-pelican--bikeFrame">
+    <!-- Rear Fender (under frame) -->
+    <path d="M 150,420 A 82,82 0 0,1 285,345" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 152,420 A 82,82 0 0,1 283,345" fill="none" stroke="#CCFBF1" stroke-width="2"/>
+    <!-- Fender Stays (chrome struts) -->
+    <line x1="230" y1="420" x2="160" y2="435" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3.5"/>
+    <line x1="230" y1="420" x2="185" y2="365" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3.5"/>
+
+    <!-- Chainstay -->
+    <line x1="230" y1="420" x2="380" y2="420" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="11" stroke-linecap="round"/>
+    <line x1="230" y1="420" x2="380" y2="420" stroke="#CCFBF1" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Rear Cog, Chain & Front Chainring -->
+    <!-- Rear small gear -->
+    <circle cx="230" cy="420" r="16" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+    <!-- Chain loops -->
+    <path d="M 230,408 L 380,396 A 26,26 0 0,1 380,444 L 230,432 A 14,14 0 0,1 230,408 Z" fill="none" stroke="#1E293B" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M 230,408 L 380,396 A 26,26 0 0,1 380,444 L 230,432 A 14,14 0 0,1 230,408 Z" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 2"/>
+    <!-- Front Chainring Disc -->
+    <circle cx="380" cy="420" r="28" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+    <circle cx="380" cy="420" r="21" fill="none" stroke="#475569" stroke-width="3" stroke-dasharray="6 3"/>
+    <!-- Decorative 5-hole crankset -->
+    <circle cx="380" cy="405" r="4.5" fill="#1E293B"/>
+    <circle cx="394" cy="415" r="4.5" fill="#1E293B"/>
+    <circle cx="389" cy="432" r="4.5" fill="#1E293B"/>
+    <circle cx="371" cy="432" r="4.5" fill="#1E293B"/>
+    <circle cx="366" cy="415" r="4.5" fill="#1E293B"/>
+
+    <!-- Retro Chainguard (Teal wave) -->
+    <path d="M 310,405 L 400,398 C 415,398 420,410 415,425 C 410,435 395,438 380,435 L 300,418 C 290,416 295,405 310,405 Z" fill="url(#gemini-3.8-flash-high-pelican--tealFrame)"/>
+    <path d="M 315,409 L 398,403 C 405,403 408,410 405,417" fill="none" stroke="#CCFBF1" stroke-width="2"/>
+
+    <!-- Seatstay (rear hub to under seat) -->
+    <line x1="230" y1="420" x2="335" y2="285" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="11" stroke-linecap="round"/>
+    <line x1="230" y1="420" x2="335" y2="285" stroke="#CCFBF1" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Seat Tube (Bottom bracket to seat) -->
+    <line x1="380" y1="420" x2="335" y2="285" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="13" stroke-linecap="round"/>
+    <line x1="380" y1="420" x2="335" y2="285" stroke="#CCFBF1" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Chrome Seatpost & Vintage Saddle -->
+    <line x1="335" y1="285" x2="330" y2="260" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Saddle Springs -->
+    <circle cx="316" cy="265" r="6" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3"/>
+    <circle cx="324" cy="266" r="6" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3"/>
+    <!-- Leather Cruiser Saddle -->
+    <path d="M 295,258 C 295,252 308,246 325,246 C 345,246 360,250 365,258 C 365,264 350,265 330,265 C 305,265 295,264 295,258 Z" fill="url(#gemini-3.8-flash-high-pelican--leatherGrad)"/>
+    <!-- Chrome Rivets on Saddle -->
+    <circle cx="304" cy="256" r="1.5" fill="#E2E8F0"/>
+    <circle cx="315" cy="254" r="1.5" fill="#E2E8F0"/>
+    <circle cx="326" cy="254" r="1.5" fill="#E2E8F0"/>
+
+    <!-- Down Tube (Bottom Bracket to Head Tube) -->
+    <path d="M 380,420 C 430,390 480,335 518,275" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M 380,420 C 430,390 480,335 518,275" fill="none" stroke="#CCFBF1" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Twin Curved Cruiser Top Tubes (Swooping retro style) -->
+    <!-- Upper Top Tube -->
+    <path d="M 335,285 C 385,270 450,240 515,255" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 335,285 C 385,270 450,240 515,255" fill="none" stroke="#CCFBF1" stroke-width="2" stroke-linecap="round"/>
+    <!-- Lower Tank Tube -->
+    <path d="M 338,303 C 390,290 455,260 518,275" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Head Tube -->
+    <line x1="512" y1="245" x2="528" y2="295" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="14" stroke-linecap="round"/>
+    <line x1="512" y1="245" x2="528" y2="295" stroke="#CCFBF1" stroke-width="3" stroke-linecap="round"/>
+    <!-- Headset Rings -->
+    <rect x="506" y="240" width="13" height="6" rx="2" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+    <rect x="522" y="293" width="13" height="6" rx="2" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+
+    <!-- Front Fork -->
+    <line x1="526" y1="295" x2="570" y2="420" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="10" stroke-linecap="round"/>
+    <line x1="526" y1="295" x2="570" y2="420" stroke="#CCFBF1" stroke-width="2" stroke-linecap="round"/>
+    <!-- Chrome Fork Crown -->
+    <path d="M 520,298 L 535,294 L 532,308 Z" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+
+    <!-- Front Fender -->
+    <path d="M 525,340 A 82,82 0 0,1 645,435" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--tealFrame)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 525,340 A 82,82 0 0,1 645,435" fill="none" stroke="#CCFBF1" stroke-width="2"/>
+    <!-- Front Fender Strut -->
+    <line x1="570" y1="420" x2="635" y2="405" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3.5"/>
+  </g>
+
+  <!-- ==================== PELICAN (BODY & HEAD) ==================== -->
+  <g id="gemini-3.8-flash-high-pelican--pelicanRider">
+    <!-- Tail Feathers (Perky, sticking out behind saddle) -->
+    <g id="gemini-3.8-flash-high-pelican--tailFeathers">
+      <path d="M 305,255 C 275,250 245,260 230,275 C 248,278 268,272 285,268 Z" fill="url(#gemini-3.8-flash-high-pelican--featherDark)"/>
+      <path d="M 310,252 C 285,240 255,245 240,258 C 260,262 278,258 298,258 Z" fill="#F8FAFC"/>
+      <path d="M 315,250 C 295,230 270,230 255,240 C 275,248 290,248 308,252 Z" fill="#E2E8F0"/>
+    </g>
+
+    <!-- Far Wing (Resting forward on far handlebar) -->
+    <g id="gemini-3.8-flash-high-pelican--farWing">
+      <!-- Upper arm pointing to far handlebar -->
+      <path d="M 370,195 C 410,185 450,190 480,210 C 465,220 440,210 400,210 Z" fill="#CBD5E1"/>
+      <!-- Flight Feathers tips -->
+      <path d="M 465,205 L 495,212 L 475,218 Z" fill="#1E293B"/>
+    </g>
+
+    <!-- Main Pelican Body (Plump, proud torso leaning into the ride) -->
+    <path d="M 305,258 C 300,235 315,200 345,175 C 375,150 410,155 435,180 C 455,200 460,235 440,265 C 415,300 365,310 325,290 C 310,280 306,270 305,258 Z" fill="url(#gemini-3.8-flash-high-pelican--featherBase)"/>
+
+    <!-- Breast / Belly Contour (Soft feather curves) -->
+    <path d="M 345,175 C 380,185 430,215 425,265 C 420,295 385,308 340,298 C 370,290 400,270 400,235 C 400,205 370,185 345,175 Z" fill="#E2E8F0" opacity="0.6"/>
+
+    <!-- Cute Red Polka-Dot Bandana around Neck -->
+    <g id="gemini-3.8-flash-high-pelican--bandana">
+      <!-- Fluttering Tails behind neck -->
+      <path d="M 360,155 C 335,150 315,135 295,140 C 310,148 325,148 335,160 Z" fill="#EF4444"/>
+      <path d="M 362,158 C 340,162 320,165 305,178 C 322,175 338,168 348,165 Z" fill="#DC2626"/>
+      <!-- White dots on tails -->
+      <circle cx="318" cy="144" r="2.5" fill="#FFFFFF"/>
+      <circle cx="335" cy="150" r="2" fill="#FFFFFF"/>
+      <circle cx="320" cy="171" r="2.5" fill="#FFFFFF"/>
+      <!-- Main Bandana Collar Wrap -->
+      <path d="M 362,145 C 375,135 410,145 425,160 C 410,172 385,172 365,162 Z" fill="#EF4444"/>
+      <!-- Dots on collar -->
+      <circle cx="380" cy="152" r="3" fill="#FFFFFF"/>
+      <circle cx="400" cy="155" r="3" fill="#FFFFFF"/>
+      <circle cx="416" cy="163" r="2.5" fill="#FFFFFF"/>
+      <circle cx="390" cy="163" r="2.5" fill="#FFFFFF"/>
+      <!-- Knot -->
+      <ellipse cx="362" cy="158" rx="6" ry="7" fill="#B91C1C"/>
+      <circle cx="362" cy="158" r="3" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Graceful S-Neck -->
+    <path d="M 380,148 C 375,120 395,85 430,80 C 448,78 465,88 472,105 C 478,120 470,135 450,145 C 430,155 405,150 380,148 Z" fill="url(#gemini-3.8-flash-high-pelican--featherBase)"/>
+
+    <!-- Head & Crest Feathers -->
+    <g id="gemini-3.8-flash-high-pelican--pelicanHead">
+      <!-- Tuft/Crest feathers blown in the wind -->
+      <path d="M 425,82 C 405,75 385,78 370,68 C 385,82 400,85 415,88 Z" fill="#F8FAFC"/>
+      <path d="M 420,86 C 400,85 380,95 365,90 C 380,98 400,96 415,93 Z" fill="#CBD5E1"/>
+      <path d="M 430,78 C 420,65 405,58 390,52 C 405,65 415,70 425,76 Z" fill="#F8FAFC"/>
+
+      <!-- Main Crown & Face -->
+      <path d="M 425,82 C 445,78 472,82 485,98 C 495,112 490,132 475,140 C 455,148 435,140 425,125 C 420,110 415,95 425,82 Z" fill="#FFFFFF"/>
+
+      <!-- Pelican Eye (Determined, joyful, expressive) -->
+      <ellipse cx="460" cy="100" rx="9" ry="11" fill="#FEF08A"/>
+      <ellipse cx="462" cy="100" rx="6" ry="8" fill="#0F172A"/>
+      <!-- Catchlights (twinkle) -->
+      <circle cx="460" cy="97" r="2.5" fill="#FFFFFF"/>
+      <circle cx="464" cy="103" r="1.2" fill="#FFFFFF"/>
+      <!-- Friendly Eyebrow / Feather Brow -->
+      <path d="M 446,92 C 455,85 470,88 475,94" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 452,90 C 460,86 470,88 474,92" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- ==================== THE MAGNIFICENT BEAK & POUCH ==================== -->
+      <!-- Gular Pouch (Large, elastic, translucent peach-pink pouch) -->
+      <g id="gemini-3.8-flash-high-pelican--gularPouch">
+        <!-- Main pouch fill -->
+        <path d="M 485,118 L 610,150 C 610,150 595,215 540,250 C 490,280 445,245 440,195 C 438,175 450,150 465,138 Z" fill="url(#gemini-3.8-flash-high-pelican--pouchGrad)" opacity="0.92"/>
+        
+        <!-- Pouch Depth / Shading inside -->
+        <path d="M 480,140 C 450,175 450,225 500,245 C 545,230 580,185 595,152 Z" fill="#BE123C" opacity="0.18"/>
+
+        <!-- Cute Little Secret: Fish Silhouette inside the pouch! -->
+        <g transform="translate(505, 195) rotate(-15)" opacity="0.32">
+          <path d="M-25,0 C-15,-12 15,-10 25,0 C 15,10 -15,12 -25,0 Z" fill="#881337"/>
+          <polygon points="20,0 32,-8 32,8" fill="#881337"/>
+          <circle cx="-14" cy="-2" r="2.5" fill="#FFF"/>
+        </g>
+
+        <!-- Elastic Tension Lines / Ribs on pouch -->
+        <path d="M 505,130 Q 495,185 520,242" fill="none" stroke="#FDBA74" stroke-width="2" opacity="0.6"/>
+        <path d="M 540,138 Q 535,180 555,225" fill="none" stroke="#FDBA74" stroke-width="2" opacity="0.6"/>
+        <path d="M 570,145 Q 565,175 580,198" fill="none" stroke="#FDBA74" stroke-width="1.5" opacity="0.6"/>
+      </g>
+
+      <!-- Upper Mandible (Long, rigid beak with hooked nail at tip) -->
+      <path d="M 470,102 C 505,108 565,124 640,142 C 648,144 654,150 651,157 C 648,162 640,161 635,155 L 620,150 L 478,122 Z" fill="url(#gemini-3.8-flash-high-pelican--beakGrad)"/>
+      
+      <!-- Hooked Tip Nail Detail -->
+      <path d="M 635,141 C 644,143 652,148 650,156 C 648,162 642,160 638,154 Z" fill="#B45309"/>
+      <path d="M 648,154 Q 644,157 640,153" stroke="#78350F" stroke-width="1.5" fill="none"/>
+
+      <!-- Culmen Ridge Highlight (Top edge sheen of beak) -->
+      <path d="M 474,104 C 515,111 570,126 638,143" fill="none" stroke="#FEF08A" stroke-width="3" stroke-linecap="round"/>
+      <!-- Nostril / Beak Groove -->
+      <path d="M 485,110 L 610,138" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Base of bill soft tissue margin -->
+      <path d="M 470,102 C 466,112 470,122 478,124 C 484,120 484,108 470,102 Z" fill="#F59E0B" opacity="0.7"/>
+    </g>
+
+    <!-- Near Wing (Flapped down and forward, holding near handlebar grip) -->
+    <g id="gemini-3.8-flash-high-pelican--nearWing">
+      <!-- Main Shoulder & Wing Coverts -->
+      <path d="M 345,185 C 325,205 320,240 340,265 C 355,280 380,270 410,240 C 430,220 445,210 460,215 C 445,195 410,185 375,180 C 358,178 348,180 345,185 Z" fill="url(#gemini-3.8-flash-high-pelican--featherBase)"/>
+
+      <!-- Feather Layer Details -->
+      <path d="M 335,230 C 345,248 370,250 395,230 C 415,215 440,205 450,210 C 435,198 405,195 375,198 C 355,200 342,215 335,230 Z" fill="#F1F5F9"/>
+
+      <!-- Wing Forearm stretching to Handlebar -->
+      <path d="M 405,235 C 430,225 455,218 475,225 C 470,238 450,248 420,255 Z" fill="#E2E8F0"/>
+
+      <!-- Primary Flight Feathers (Black tipped wingtips wrapped around the handlebar grip) -->
+      <path d="M 455,220 C 470,215 488,218 495,226 C 488,235 475,236 460,232 Z" fill="url(#gemini-3.8-flash-high-pelican--featherDark)"/>
+      <path d="M 445,228 C 465,224 485,228 492,236 C 482,243 468,242 450,238 Z" fill="url(#gemini-3.8-flash-high-pelican--featherDark)"/>
+      <path d="M 435,238 C 455,232 475,236 482,246 C 470,250 455,248 438,244 Z" fill="url(#gemini-3.8-flash-high-pelican--featherDark)"/>
+
+      <!-- Feather edge highlights -->
+      <path d="M 345,215 C 375,235 425,220 465,222" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    </g>
+
+    <!-- Near Leg & Big Webbed Foot (Powering down on the forward pedal) -->
+    <g id="gemini-3.8-flash-high-pelican--nearPelicanLeg">
+      <!-- Feathered Thigh Joint -->
+      <path d="M 350,285 C 340,310 365,335 385,340 C 395,335 395,315 385,295 C 378,285 365,280 350,285 Z" fill="#E2E8F0"/>
+      <path d="M 352,286 C 346,305 366,328 380,332" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+
+      <!-- Muscular Orange Drumstick / Shin -->
+      <path d="M 378,335 L 415,420 C 418,426 426,428 430,422 C 432,418 428,410 422,402 L 390,330 Z" fill="url(#gemini-3.8-flash-high-pelican--legGrad)"/>
+      
+      <!-- Scaly Texture on Leg -->
+      <line x1="388" y1="355" x2="396" y2="353" stroke="#C2410C" stroke-width="2"/>
+      <line x1="395" y1="375" x2="403" y2="373" stroke="#C2410C" stroke-width="2"/>
+      <line x1="403" y1="395" x2="411" y2="393" stroke="#C2410C" stroke-width="2"/>
+
+      <!-- Webbed Foot (Totipalmate - all 4 toes joined by prominent webs) -->
+      <!-- Ankle joint -->
+      <ellipse cx="420" cy="422" rx="7" ry="6" fill="#EA580C"/>
+
+      <!-- Foot Webbing & Toes gripping pedal -->
+      <!-- Back toe -->
+      <path d="M 414,424 C 405,425 400,432 402,435 C 406,437 412,432 416,428 Z" fill="#C2410C"/>
+      
+      <!-- Main Webbed Paddle over the pedal -->
+      <path d="M 418,422 C 430,420 455,420 465,428 C 452,434 445,432 435,434 C 428,438 420,442 412,438 Z" fill="#F97316"/>
+      <!-- Middle Web -->
+      <path d="M 422,425 C 438,426 458,432 462,442 C 448,442 435,440 422,438 Z" fill="#FB923C"/>
+      
+      <!-- Digit Ridges / Rays -->
+      <path d="M 422,423 L 466,427" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M 422,425 L 462,440" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M 418,426 L 445,446" stroke="#C2410C" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Claws / Nails on Toes -->
+      <path d="M 466,426 L 472,428 L 465,429 Z" fill="#451A03"/>
+      <path d="M 462,439 L 467,442 L 460,443 Z" fill="#451A03"/>
+      <path d="M 444,445 L 448,449 L 442,449 Z" fill="#451A03"/>
+    </g>
+  </g>
+
+  <!-- Near Pedal & Crank (Forward/Down position, under near foot) -->
+  <g id="gemini-3.8-flash-high-pelican--nearPedalAndCrank">
+    <!-- Crank Arm -->
+    <line x1="380" y1="420" x2="425" y2="435" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="380" cy="420" r="8" fill="#334155"/>
+    <circle cx="380" cy="420" r="4" fill="#CBD5E1"/>
+    
+    <!-- Pedal Axle & Platform Block -->
+    <rect x="415" y="432" width="35" height="12" rx="3" fill="#0F172A"/>
+    <!-- Amber Pedal Reflector -->
+    <rect x="424" y="435" width="18" height="6" rx="1.5" fill="#F59E0B"/>
+    <circle cx="425" cy="435" r="3" fill="#CBD5E1"/>
+  </g>
+
+  <!-- ==================== FOREGROUND: HANDLEBARS & BASKET ==================== -->
+  <!-- Classic Chrome Cruiser Handlebars (Sweeping back gracefully) -->
+  <g id="gemini-3.8-flash-high-pelican--handlebarsAndBasket">
+    <!-- Handlebar Stem rising from Headset -->
+    <path d="M 512,245 L 505,195 L 518,195" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="512" cy="195" r="7" fill="#64748B"/>
+
+    <!-- Swept Back Cruiser Bar -->
+    <!-- Far Bar side -->
+    <path d="M 510,195 Q 495,195 480,210" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="7" stroke-linecap="round"/>
+    <!-- Far Grip -->
+    <path d="M 485,206 L 472,216" stroke="#451A03" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- Near Bar (Sweeping towards viewer and back to pelican's wing) -->
+    <path d="M 510,195 C 525,195 530,210 515,222 C 505,230 488,230 472,228" fill="none" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 510,195 C 525,195 530,210 515,222 C 505,230 488,230 472,228" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Brown Leather Grip (wrapped under wing primaries) -->
+    <path d="M 488,228 L 468,228" stroke="url(#gemini-3.8-flash-high-pelican--leatherGrad)" stroke-width="11" stroke-linecap="round"/>
+    <!-- Chrome Grip End-Cap -->
+    <circle cx="466" cy="228" r="4.5" fill="url(#gemini-3.8-flash-high-pelican--chromeGrad)"/>
+
+    <!-- Retro Brass Bicycle Bell -->
+    <g transform="translate(524, 192)">
+      <circle cx="0" cy="0" r="10" fill="#F59E0B"/>
+      <circle cx="-2" cy="-2" r="8" fill="#FBBF24"/>
+      <ellipse cx="-4" cy="-4" rx="3" ry="2" fill="#FEF08A"/>
+      <!-- Bell Thumb Lever -->
+      <path d="M 4,7 L 10,10 L 8,13" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Ding Soundwaves -->
+      <path d="M 4,-12 C 9,-10 12,-6 13,-1" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 8,-16 C 15,-13 18,-8 19,-2" fill="none" stroke="#FBBF24" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- FRONT WICKER BASKET & PASSENGER SARDINE -->
+    <g id="gemini-3.8-flash-high-pelican--frontBasket" transform="translate(535, 215)">
+      <!-- Basket Mounting Brackets -->
+      <line x1="5" y1="20" x2="-22" y2="28" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3.5"/>
+      <line x1="5" y1="45" x2="-10" y2="80" stroke="url(#gemini-3.8-flash-high-pelican--chromeGrad)" stroke-width="3.5"/>
+
+      <!-- Basket Back Wall -->
+      <rect x="0" y="5" width="55" height="50" rx="6" fill="#92400E"/>
+
+      <!-- ADORABLE PASSENGER: A Little Sardine Enjoying the Ride! -->
+      <g id="gemini-3.8-flash-high-pelican--passengerFish" transform="translate(25, 5)">
+        <!-- Fish Body arched happily -->
+        <path d="M -12,8 C -5,-8 15,-10 22,-2 C 25,6 15,18 -2,12 Z" fill="#38BDF8"/>
+        <!-- Belly -->
+        <path d="M -10,9 C -2,2 12,0 18,3 C 14,12 2,13 -10,9 Z" fill="#E0F2FE"/>
+        <!-- Tail Fin waving -->
+        <path d="M 20,0 C 28,-8 34,-5 32,2 C 34,8 28,10 18,5 Z" fill="#0284C7"/>
+        <!-- Dorsal Fin -->
+        <path d="M 2,-6 Q 8,-14 12,-6 Z" fill="#0284C7"/>
+        <!-- Fish Pectoral Fin "Fin-five" -->
+        <path d="M 5,6 Q 10,12 15,7 Q 10,3 5,6 Z" fill="#0284C7"/>
+        <!-- Big Happy Fish Eye -->
+        <circle cx="-5" cy="2" r="4.5" fill="#FFFFFF"/>
+        <circle cx="-6" cy="2" r="2.5" fill="#0F172A"/>
+        <circle cx="-7" cy="1" r="1" fill="#FFFFFF"/>
+        <!-- Fish Smile -->
+        <path d="M -12,4 Q -8,7 -6,4" fill="none" stroke="#0F172A" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+
+      <!-- Basket Body (Warm Woven Texture) -->
+      <path d="M -2,10 L 58,10 L 52,56 C 50,60 46,62 40,62 L 10,62 C 4,62 0,60 -2,56 Z" fill="url(#gemini-3.8-flash-high-pelican--basketGrad)"/>
+      <!-- Rim of Basket -->
+      <rect x="-4" y="7" width="64" height="6" rx="3" fill="#B45309"/>
+      <rect x="-3" y="8" width="62" height="3" rx="1.5" fill="#FDE68A" opacity="0.6"/>
+      
+      <!-- Wicker Weave Pattern Lines -->
+      <g stroke="#78350F" stroke-width="1.5" opacity="0.55">
+        <!-- Horizontal Weave Ribs -->
+        <path d="M -1,18 Q 28,21 56,18"/>
+        <path d="M 0,26 Q 28,29 55,26"/>
+        <path d="M 2,34 Q 28,37 53,34"/>
+        <path d="M 4,42 Q 28,45 51,42"/>
+        <path d="M 6,50 Q 28,53 49,50"/>
+        <!-- Cross Hatches -->
+        <path d="M 8,12 L 3,58"/>
+        <path d="M 18,12 L 14,60"/>
+        <path d="M 28,12 L 26,61"/>
+        <path d="M 38,12 L 38,60"/>
+        <path d="M 48,12 L 46,58"/>
+        <path d="M 3,12 L 8,58"/>
+        <path d="M 12,12 L 18,60"/>
+        <path d="M 22,12 L 30,61"/>
+        <path d="M 32,12 L 42,60"/>
+        <path d="M 42,12 L 49,58"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== WHIMSICAL EXTRAS (SUNGLASSES ON SARDINE & SEAGULL) ==================== -->
+  <!-- Tiny Seagull Watching from Bottom Corner -->
+  <g transform="translate(690, 480) scale(0.7)">
+    <ellipse cx="20" cy="30" rx="12" ry="6" fill="url(#gemini-3.8-flash-high-pelican--dropShadow)"/>
+    <!-- Feet -->
+    <path d="M 16,24 L 16,30 M 14,30 L 19,30" stroke="#F59E0B" stroke-width="2"/>
+    <path d="M 24,24 L 24,30 M 22,30 L 27,30" stroke="#F59E0B" stroke-width="2"/>
+    <!-- Body -->
+    <path d="M 10,24 C 5,18 10,8 24,10 C 32,12 36,20 28,24 Z" fill="#FFFFFF"/>
+    <path d="M 8,18 L -2,12 L 8,14 Z" fill="#334155"/>
+    <!-- Head -->
+    <circle cx="28" cy="8" r="6" fill="#FFFFFF"/>
+    <circle cx="29" cy="7" r="1.5" fill="#0F172A"/>
+    <!-- Curious Beak pointing up at Pelican -->
+    <path d="M 33,8 L 42,9 L 33,12 Z" fill="#F59E0B"/>
+  </g>
+</svg>

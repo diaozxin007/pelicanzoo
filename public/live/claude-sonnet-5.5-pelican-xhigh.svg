@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="claude-sonnet-5.5-pelican-xhigh--sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7ec8f2"/>
+      <stop offset="1" stop-color="#dff3ff"/>
+    </linearGradient>
+    <linearGradient id="claude-sonnet-5.5-pelican-xhigh--pouch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd27a"/>
+      <stop offset="1" stop-color="#ff9f43"/>
+    </linearGradient>
+
+    <g id="claude-sonnet-5.5-pelican-xhigh--wheel">
+      <circle r="88" fill="none" stroke="#263238" stroke-width="9"/>
+      <circle r="80" fill="none" stroke="#90a4ae" stroke-width="2"/>
+      <g stroke="#90a4ae" stroke-width="1.5">
+        <line x1="-80" y1="0" x2="80" y2="0"/>
+        <line x1="-80" y1="0" x2="80" y2="0" transform="rotate(30)"/>
+        <line x1="-80" y1="0" x2="80" y2="0" transform="rotate(60)"/>
+        <line x1="-80" y1="0" x2="80" y2="0" transform="rotate(90)"/>
+        <line x1="-80" y1="0" x2="80" y2="0" transform="rotate(120)"/>
+        <line x1="-80" y1="0" x2="80" y2="0" transform="rotate(150)"/>
+      </g>
+      <circle r="9" fill="#455a64"/>
+    </g>
+  </defs>
+
+  <!-- Sky & ground -->
+  <rect width="800" height="600" fill="url(#claude-sonnet-5.5-pelican-xhigh--sky)"/>
+  <circle cx="680" cy="90" r="45" fill="#fff59d"/>
+  <circle cx="680" cy="90" r="60" fill="#fff59d" opacity="0.35"/>
+
+  <!-- Clouds -->
+  <g fill="#fff" opacity="0.9">
+    <ellipse cx="130" cy="100" rx="55" ry="18"/>
+    <ellipse cx="165" cy="88" rx="35" ry="18"/>
+    <ellipse cx="450" cy="60" rx="50" ry="14"/>
+    <ellipse cx="480" cy="50" rx="30" ry="14"/>
+  </g>
+
+  <rect y="500" width="800" height="100" fill="#8bc34a"/>
+  <rect y="500" width="800" height="8" fill="#7cb342"/>
+  <ellipse cx="410" cy="506" rx="270" ry="10" fill="#000" opacity="0.18"/>
+
+  <!-- Speed lines -->
+  <g stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.8">
+    <line x1="30" y1="300" x2="110" y2="300"/>
+    <line x1="60" y1="340" x2="130" y2="340"/>
+    <line x1="20" y1="380" x2="90" y2="380"/>
+  </g>
+
+  <!-- Far leg -->
+  <path d="M350 290 L403 326 L382 382" fill="none" stroke="#e08a00" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M370 384 L400 384 L392 392 L368 392 Z" fill="#e08a00"/>
+
+  <!-- Wheels -->
+  <use href="#claude-sonnet-5.5-pelican-xhigh--wheel" x="250" y="410"/>
+  <use href="#claude-sonnet-5.5-pelican-xhigh--wheel" x="570" y="410"/>
+
+  <!-- Chain / chainring -->
+  <circle cx="400" cy="410" r="20" fill="none" stroke="#455a64" stroke-width="4"/>
+  <circle cx="250" cy="410" r="9" fill="none" stroke="#455a64" stroke-width="3"/>
+  <line x1="250" y1="401" x2="400" y2="390" stroke="#455a64" stroke-width="2"/>
+  <line x1="250" y1="419" x2="400" y2="430" stroke="#455a64" stroke-width="2"/>
+
+  <!-- Bike frame -->
+  <g fill="none" stroke="#e53935" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="250" y1="410" x2="400" y2="410"/>
+    <line x1="250" y1="410" x2="364" y2="304"/>
+    <line x1="400" y1="410" x2="362" y2="298"/>
+    <line x1="362" y1="304" x2="507" y2="297"/>
+    <line x1="400" y1="410" x2="511" y2="318"/>
+    <line x1="505" y1="290" x2="514" y2="320"/>
+    <line x1="512" y1="312" x2="570" y2="410"/>
+  </g>
+  <!-- Stem & handlebars -->
+  <g fill="none" stroke="#37474f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="505" y1="292" x2="518" y2="268"/>
+    <path d="M518 268 L548 268 Q562 268 562 284"/>
+  </g>
+  <!-- Cranks -->
+  <line x1="380" y1="384" x2="420" y2="436" stroke="#37474f" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="400" cy="410" r="7" fill="#37474f"/>
+
+  <!-- Tail -->
+  <path d="M275 262 L215 285 L222 300 L280 292 Z" fill="#cfd8dc" stroke="#78909c" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Body -->
+  <ellipse cx="345" cy="255" rx="88" ry="50" transform="rotate(-12 345 255)" fill="#fafafa" stroke="#78909c" stroke-width="3"/>
+
+  <!-- Saddle -->
+  <ellipse cx="362" cy="303" rx="28" ry="7" fill="#37474f"/>
+
+  <!-- Near leg -->
+  <path d="M358 295 L432 332 L420 430" fill="none" stroke="#ff9800" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M405 430 L448 430 L440 442 L404 442 Z" fill="#ff9800" stroke="#e65100" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Neck -->
+  <path d="M392 250 C445 240 405 185 452 158" fill="none" stroke="#78909c" stroke-width="34" stroke-linecap="round"/>
+  <path d="M392 250 C445 240 405 185 452 158" fill="none" stroke="#fafafa" stroke-width="28" stroke-linecap="round"/>
+
+  <!-- Wing (arm to handlebar) -->
+  <path d="M340 232 C400 222 480 245 550 272 L552 286 C480 292 400 290 335 275 Z" fill="#b0bec5" stroke="#546e7a" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M340 245 C400 240 470 258 530 276" fill="none" stroke="#eceff1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M500 262 L552 272 L552 286 L515 285 Z" fill="#37474f"/>
+  <circle cx="553" cy="280" r="8" fill="#263238"/>
+
+  <!-- Head -->
+  <circle cx="458" cy="150" r="26" fill="#fafafa" stroke="#78909c" stroke-width="3"/>
+  <path d="M436 136 Q450 118 474 128" fill="none" stroke="#ffe082" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Beak pouch -->
+  <path d="M474 158 Q535 232 618 184 L474 168 Z" fill="url(#claude-sonnet-5.5-pelican-xhigh--pouch)" stroke="#e65100" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Upper beak -->
+  <path d="M470 140 L620 178 Q626 184 618 187 L474 166 Z" fill="#ffb300" stroke="#e65100" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M606 178 Q626 176 624 190 Q614 190 606 184 Z" fill="#e65100"/>
+
+  <!-- Eye -->
+  <circle cx="466" cy="142" r="6" fill="#111"/>
+  <circle cx="468" cy="140" r="2" fill="#fff"/>
+
+  <!-- Helmet -->
+  <path d="M432 140 Q440 108 478 122 Q480 130 472 132 Q450 126 438 146 Z" fill="#1e88e5" stroke="#0d47a1" stroke-width="3" stroke-linejoin="round"/>
+</svg>

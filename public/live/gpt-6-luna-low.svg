@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="gpt-6-luna-low--title">Pelican riding a bicycle</title>
+  <desc id="gpt-6-luna-low--desc">A cheerful pelican pedals a blue bicycle along a sunny path.</desc>
+
+  <!-- Sky and ground -->
+  <rect width="800" height="600" fill="#eaf7ff"/>
+  <circle cx="675" cy="105" r="42" fill="#ffd66b"/>
+  <path d="M0 465 Q180 430 360 465 T800 455 V600 H0Z" fill="#d8efcf"/>
+  <path d="M0 515 Q180 485 390 512 T800 500" fill="none" stroke="#b4d99f" stroke-width="5" opacity=".7"/>
+
+  <!-- Bicycle wheels -->
+  <g fill="none" stroke="#34495e" stroke-width="9">
+    <circle cx="225" cy="425" r="88"/>
+    <circle cx="575" cy="425" r="88"/>
+  </g>
+  <g fill="none" stroke="#9bb0bc" stroke-width="3">
+    <circle cx="225" cy="425" r="76"/>
+    <circle cx="575" cy="425" r="76"/>
+  </g>
+
+  <!-- Bicycle frame -->
+  <g fill="none" stroke="#2689a8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M225 425 L335 425 L290 300 L225 425"/>
+    <path d="M335 425 L455 305 L575 425"/>
+    <path d="M335 425 L575 425"/>
+    <path d="M455 305 L470 278"/>
+  </g>
+
+  <!-- Crank and pedals -->
+  <circle cx="335" cy="425" r="13" fill="#f3b64a" stroke="#34495e" stroke-width="4"/>
+  <path d="M335 425 L365 448 M335 425 L313 398" stroke="#34495e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M354 452 L378 452 M301 394 L322 394" stroke="#34495e" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Seat and handlebars -->
+  <path d="M290 300 L273 282" stroke="#34495e" stroke-width="7" stroke-linecap="round"/>
+  <path d="M252 280 Q274 269 297 278" fill="none" stroke="#34495e" stroke-width="10" stroke-linecap="round"/>
+  <path d="M470 278 L492 256 L515 256" fill="none" stroke="#34495e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M510 256 Q525 251 530 260" fill="none" stroke="#34495e" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Pelican body -->
+  <path d="M335 244
+           Q356 194 414 193
+           Q465 191 489 232
+           Q501 256 476 278
+           Q444 304 387 285
+           Q348 273 335 244Z"
+        fill="#fffdf7" stroke="#42576a" stroke-width="5"/>
+  <!-- Wing -->
+  <path d="M371 229 Q411 207 454 235 Q431 271 383 264 Q365 257 371 229Z"
+        fill="#dce8eb" stroke="#42576a" stroke-width="4"/>
+  <path d="M390 238 Q414 247 440 239 M389 250 Q413 259 430 253"
+        fill="none" stroke="#a8bbc2" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Neck and head -->
+  <path d="M397 209 Q390 176 380 151" fill="none" stroke="#fffdf7" stroke-width="25" stroke-linecap="round"/>
+  <path d="M397 209 Q390 176 380 151" fill="none" stroke="#42576a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="374" cy="130" r="34" fill="#fffdf7" stroke="#42576a" stroke-width="5"/>
+  <circle cx="385" cy="124" r="4.5" fill="#263746"/>
+
+  <!-- Pelican beak and pouch -->
+  <path d="M347 137 Q301 128 255 143 Q299 161 350 151Z"
+        fill="#f1a63b" stroke="#9c642c" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M255 143 Q286 150 316 171 Q338 185 350 151 Q316 160 255 143Z"
+        fill="#f5c15b" stroke="#9c642c" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M264 144 Q303 145 340 151" fill="none" stroke="#d8872c" stroke-width="3"/>
+
+  <!-- Legs reaching the pedals -->
+  <path d="M399 278 Q376 317 346 348 L335 414" fill="none" stroke="#f1a63b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M447 277 Q462 316 438 346 L361 440" fill="none" stroke="#f1a63b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M335 414 L322 394 M361 440 L378 452" fill="none" stroke="#9c642c" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Feet on pedals -->
+  <path d="M322 394 Q309 389 300 395 L317 401Z" fill="#f1a63b" stroke="#9c642c" stroke-width="3"/>
+  <path d="M378 452 Q389 448 396 454 L380 460Z" fill="#f1a63b" stroke="#9c642c" stroke-width="3"/>
+
+  <!-- Small motion marks -->
+  <path d="M102 340 L128 340 M116 363 L140 363 M660 330 L687 330"
+        stroke="#74b5c5" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+</svg>

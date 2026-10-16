@@ -9,9 +9,9 @@
 // Nothing here imports anything.
 const VENDORS = [
   [/^(claude|opus|sonnet|haiku|fable)/i, 'Anthropic'],
-  [/^(gpt|o1|o3|o4|codex|muse|astra)/i, 'OpenAI'],
+  [/^(gpt|o1|o3|o4|codex|astra)/i, 'OpenAI'],
   [/^(gemini|gemma)/i, 'Google'],
-  [/^llama/i, 'Meta'],
+  [/^(llama|muse)/i, 'Meta'],
   [/^(qwen|qwq)/i, 'Alibaba'],
   [/^deepseek/i, 'DeepSeek'],
   [/^glm/i, 'Zhipu'],

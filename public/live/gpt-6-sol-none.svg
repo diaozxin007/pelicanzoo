@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="A pelican riding a bicycle">
+  <rect width="600" height="400" fill="#dff5ff"/>
+  <circle cx="495" cy="72" r="36" fill="#ffd86b"/>
+  <path d="M0 325 Q150 305 300 325 T600 325 V400 H0Z" fill="#b9dda6"/>
+
+  <!-- Bicycle wheels and frame -->
+  <g fill="none" stroke="#293d4a" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="165" cy="305" r="67" stroke-width="7"/>
+    <circle cx="440" cy="305" r="67" stroke-width="7"/>
+    <path d="M165 305 238 215 311 305 165 305 M238 215h116l-43 90 129-0 M354 215l86 90" stroke-width="8"/>
+    <path d="M238 215 226 197 h-33 M354 215l-10-38 43-13" stroke-width="8"/>
+    <path d="M311 305l19 17m-38-34 19 17" stroke-width="7"/>
+    <circle cx="311" cy="305" r="12" fill="#fff" stroke-width="5"/>
+  </g>
+
+  <!-- Pelican body, wing, neck, and head -->
+  <path d="M225 181 Q204 145 230 122 Q256 100 302 119 Q347 133 352 179 Q347 211 317 222 L259 216 Q232 209 225 181Z"
+        fill="#fff9eb" stroke="#344957" stroke-width="5"/>
+  <path d="M255 154 Q292 137 328 169 Q310 201 272 193 Q249 183 255 154Z"
+        fill="#e8d6b7" stroke="#344957" stroke-width="4"/>
+  <path d="M312 147 Q343 116 332 77 Q326 47 350 38 Q375 29 387 53 Q397 78 381 99 Q366 118 375 153"
+        fill="#fff9eb" stroke="#344957" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M370 101 Q393 124 433 118 Q448 115 452 104 Q434 153 392 159 Q374 155 370 101Z"
+        fill="#f5a34f" stroke="#344957" stroke-width="4"/>
+  <path d="M380 95 Q430 91 491 102 Q475 114 452 112 L380 108Z"
+        fill="#ffc34f" stroke="#344957" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="365" cy="58" r="4.5" fill="#293d4a"/>
+
+  <!-- Feet on pedals and wing on handlebars -->
+  <path d="M251 210 Q262 241 289 276 L309 293 M298 214 Q319 232 330 265 L311 287"
+        fill="none" stroke="#f5a34f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M300 294h25 M299 289l18 8" fill="none" stroke="#f5a34f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M314 174 Q341 164 357 169 L386 164" fill="none" stroke="#fff9eb" stroke-width="18" stroke-linecap="round"/>
+  <path d="M314 174 Q341 164 357 169 L386 164" fill="none" stroke="#344957" stroke-width="4" stroke-linecap="round"/>
+</svg>

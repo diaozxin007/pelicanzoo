@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="A pelican riding a bicycle">
+  <rect width="600" height="400" fill="#dff5ff"/>
+  <path d="M0 330 Q300 315 600 330 V400 H0Z" fill="#a8d991"/>
+
+  <!-- Bicycle wheels and frame -->
+  <g fill="none" stroke="#34495e" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="160" cy="295" r="65" stroke-width="9"/>
+    <circle cx="440" cy="295" r="65" stroke-width="9"/>
+    <path d="M160 295 240 205 335 295 160 295 M240 205 315 205 335 295 M335 295 440 295 395 185"
+          stroke-width="9"/>
+    <path d="M375 185h45m-195 15h42" stroke-width="10"/>
+    <path d="M335 295l25 20m-25-20-20-20" stroke-width="7"/>
+  </g>
+
+  <!-- Pelican -->
+  <path d="M219 181 Q205 136 236 108 Q264 80 307 104 Q339 122 334 167
+           Q321 205 278 213 Q244 214 219 181Z"
+        fill="#fffaf0" stroke="#d9d3c4" stroke-width="4"/>
+  <path d="M249 161 Q284 132 315 165 Q298 200 263 190Z"
+        fill="#eee9dc" stroke="#d9d3c4" stroke-width="3"/>
+  <path d="M246 108 Q229 77 243 52 Q259 29 281 48 Q300 67 288 104Z"
+        fill="#fffaf0" stroke="#d9d3c4" stroke-width="4"/>
+  <circle cx="272" cy="65" r="4.5" fill="#263238"/>
+
+  <!-- Long beak and pouch -->
+  <path d="M281 78 Q343 77 432 101 Q355 111 285 96Z"
+        fill="#f5b544" stroke="#bd7b25" stroke-width="3"/>
+  <path d="M287 96 Q354 112 420 105 Q377 157 329 139 Q301 127 287 96Z"
+        fill="#f7c76b" stroke="#bd7b25" stroke-width="3"/>
+
+  <!-- Legs on pedals -->
+  <path d="M246 204 278 244 335 295 M280 206 303 248 315 275"
+        fill="none" stroke="#eca949" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M328 297h25m-47-20h23" stroke="#bd7b25" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Wing reaching the handlebars -->
+  <path d="M303 158 Q345 157 370 181 L395 185"
+        fill="none" stroke="#fffaf0" stroke-width="20" stroke-linecap="round"/>
+  <path d="M303 158 Q345 157 370 181 L395 185"
+        fill="none" stroke="#d9d3c4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="398" cy="185" r="8" fill="#f5b544"/>
+</svg>

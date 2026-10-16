@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="gpt-6-luna-medium--title">Pelican riding a bicycle</title>
+  <desc id="gpt-6-luna-medium--desc">A cheerful pelican pedals a blue bicycle beneath a sunny sky.</desc>
+
+  <rect width="800" height="600" fill="#f5f2e9"/>
+  <circle cx="686" cy="104" r="42" fill="#f4c95d"/>
+  <path d="M0 493 Q190 475 385 493 T800 485 V600 H0Z" fill="#e5eadb"/>
+  <path d="M0 493 Q190 475 385 493 T800 485" fill="none" stroke="#c8d3bf" stroke-width="3"/>
+
+  <!-- Bicycle wheels and spokes -->
+  <g fill="none" stroke="#36545b" stroke-linecap="round">
+    <circle cx="235" cy="425" r="103" stroke-width="10"/>
+    <circle cx="565" cy="425" r="103" stroke-width="10"/>
+    <g stroke="#9aaba8" stroke-width="2">
+      <path d="M235 322V528 M132 425H338 M162 352L308 498 M162 498L308 352"/>
+      <path d="M565 322V528 M462 425H668 M492 352L638 498 M492 498L638 352"/>
+    </g>
+  </g>
+
+  <!-- Bicycle frame -->
+  <g fill="none" stroke="#397f89" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M235 425L350 310L405 425L235 425"/>
+    <path d="M350 310L510 310L565 425L405 425"/>
+    <path d="M510 310L565 425"/>
+  </g>
+  <g fill="none" stroke="#36545b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M350 310L338 279"/>
+    <path d="M510 310L519 273L550 258"/>
+    <path d="M530 258L571 258"/>
+  </g>
+  <path d="M310 277 Q337 267 365 278" fill="none" stroke="#36545b" stroke-width="11" stroke-linecap="round"/>
+  <g fill="#36545b">
+    <circle cx="235" cy="425" r="10"/>
+    <circle cx="565" cy="425" r="10"/>
+    <circle cx="405" cy="425" r="13"/>
+  </g>
+  <g stroke="#36545b" stroke-width="7" stroke-linecap="round">
+    <path d="M405 425L431 404"/>
+    <path d="M405 425L381 447"/>
+    <path d="M423 398L440 410"/>
+    <path d="M373 441L389 453"/>
+  </g>
+
+  <!-- Pelican legs and feet -->
+  <g fill="none" stroke="#db8748" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M362 284C374 322 393 354 405 388L431 404"/>
+    <path d="M423 283C424 323 443 349 448 374L381 447"/>
+  </g>
+  <g fill="none" stroke="#db8748" stroke-width="6" stroke-linecap="round">
+    <path d="M427 400L440 410"/>
+    <path d="M377 443L389 453"/>
+  </g>
+
+  <!-- Pelican body -->
+  <path d="M296 258
+           C303 224 344 204 390 211
+           C432 216 462 242 460 270
+           C458 300 423 315 378 311
+           C337 308 304 291 296 272Z"
+        fill="#fffdf5" stroke="#36545b" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Neck -->
+  <path d="M383 252
+           C401 229 400 197 414 173
+           C426 151 445 137 465 141
+           C479 144 485 156 478 168
+           C465 188 468 218 452 244
+           C439 266 416 277 397 276Z"
+        fill="#fffdf5" stroke="#36545b" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Wing -->
+  <path d="M316 252
+           C339 224 380 222 413 238
+           C431 247 438 265 426 279
+           C404 300 350 293 321 276
+           C311 270 309 261 316 252Z"
+        fill="#e9e5d7" stroke="#36545b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M338 258C359 269 385 275 407 272" fill="none" stroke="#c9c4b5" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Head -->
+  <path d="M433 137
+           C439 119 457 111 475 118
+           C491 124 498 139 491 153
+           C485 166 468 172 451 164
+           C439 159 430 149 433 137Z"
+        fill="#fffdf5" stroke="#36545b" stroke-width="5"/>
+  <circle cx="467" cy="133" r="4.5" fill="#263e43"/>
+
+  <!-- Bill and pouch -->
+  <path d="M480 143
+           C522 145 592 156 654 166
+           Q666 168 661 177
+           L518 193
+           C514 213 499 224 486 214
+           C476 207 478 187 473 171
+           C470 159 473 149 480 143Z"
+        fill="#e69a4c" stroke="#36545b" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M496 186C535 180 586 175 646 172" fill="none" stroke="#c97838" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Small finishing details -->
+  <path d="M282 547H650" stroke="#b8c6b5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M93 158Q106 145 119 158Q132 145 145 158" fill="none" stroke="#d5ddd4" stroke-width="4" stroke-linecap="round"/>
+</svg>

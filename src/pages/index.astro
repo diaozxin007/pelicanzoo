@@ -36,7 +36,7 @@ const rounds = {
     // filename — that attribution is an inference, and marking someone wrong
     // on an inference is worse than one fewer round.
     .filter(
-      (s) => s.species === 'pelican' && s.model && !s.slide_photo && s.model_source === 'filename'
+      (s) => s.species === 'pelican' && s.model && !s.slide_photo && ['filename', 'transcript'].includes(s.model_source)
     )
     .map((s) => ({
       model: s.model,

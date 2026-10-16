@@ -44,11 +44,10 @@ IMG = re.compile(r"<img\b[^>]*>", re.I)
 SVG_LINK = re.compile(r'<a\b[^>]*href="(https://static\.simonwillison\.net/[^"]+\.svg)"', re.I)
 # Per-effort pelicans published as an `llm` transcript in a gist, one run per
 # thinking effort, the post itself only carrying a grid of them.
-GIST_LINK = re.compile(r'href="(https://tools\.simonwillison\.net/markdown-svg-renderer'
-                       r'\?url=https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F([0-9a-f]+))"')
-# Which transcripts are admitted so far. Claude's first; widen to let the rest in.
-GIST_ADMIT = re.compile(r"claude", re.I)
-GIST_RUN = re.compile(r"^# \d{4}-\d\d-\d\dT", re.M)
+GIST_LINK = re.compile(r'(https://tools\.simonwillison\.net/markdown-svg-renderer'
+                       r'\?url=(?:https%3A%2F%2Fgist\.github\.com%2Fsimonw%2F|https://gist\.github\.com/simonw/)([0-9a-f]+))')
+# Admit runs by their actual prompt, not the arbitrary transcript filename.
+GIST_RUN = re.compile(r"(?=^# \d{4}-\d\d-\d\dT)", re.M)
 
 # --- model vocabulary ----------------------------------------------------------
 FAMILIES = [
@@ -59,7 +58,7 @@ FAMILIES = [
     "granite","nemotron","sonar","aya","reka","dbrx","arctic","exaone","solar",
     "cohere","yi","internlm","baichuan","seed","ling","longcat","apriel","trillium",
     "muse","spark","astra","fable","luna","terra","sol","opus","sonnet","haiku",
-    "flash","pro","nano","mini","turbo","maverick","scout","behemoth",
+    "large","small","argon","wonder","flash","pro","nano","mini","turbo","maverick","scout","behemoth",
     "lite","preview","exp","instruct","chat","vision","coder","math","air",
     "plus","max","ultra","base","it","distill","zero","next","omni",
 ]
@@ -120,6 +119,10 @@ for p in POSTS:
     h, url = p["html"] or "", post_url(p)
     items = [(attr(t.group(0), "src"), attr(t.group(0), "alt")) for t in IMG.finditer(h)]
     items += [(m.group(1), "") for m in SVG_LINK.finditer(h)]
+    # Preserve the reviewed historical Markdown archive; support the newer
+    # blogmarks as Markdown as well as the HTML records already archived.
+    if p["created"][:10] >= "2026-09-23":
+        items += [(m.group(2), m.group(1)) for m in re.finditer(r"!\[([^\]]*)\]\((https://[^\s)]+)\)", h)]
 
     for src, alt in items:
         if not src:
@@ -154,6 +157,8 @@ for p in POSTS:
             continue
 
         # Same drawing re-posted as .jpg and .png: one pelican, one card.
+        if stem == "image" and p["slug"] == "llm-gemini" and p["created"].startswith("2026-09-02"):
+            stem = "gemini-3.8-flash-high-pelican"
         if stem in stems:
             continue
         seen.add(src)
@@ -166,6 +171,8 @@ for p in POSTS:
             model, msrc = model_from_text(p["title"] or ""), "title"
         eff = EFFORT.search(stem) or (EFFORT.search(alt) if is_slide else None)
 
+        if stem == "mistral-large-4-pelican":
+            eff = EFFORT.search("high")
         specimens.append({
             "id": stem,
             "asset": src,
@@ -191,17 +198,23 @@ for p in POSTS:
     # If the post already showed that run as a picture, it is the same pelican:
     # the raster is brought back to life under its own id, so its page and its
     # card stay where they were, instead of hanging a second copy beside it.
-    bare = lambda m: re.sub(r"^claude-", "", m or "")
+    bare = lambda m: re.sub(r"^claude-", "", "muse-wonder-1.0" if m == "muse-wonder" else (m or ""))
     shown = {(bare(s_["model"]), s_["effort"]): s_ for s_ in specimens
              if s_["post_url"] == url and not s_["alive"]}
     for link, gid in GIST_LINK.findall(h):
         for fname, md in GISTS.get(gid, {}).items():
-            if not GIST_ADMIT.search(fname):
-                continue
             for run in GIST_RUN.split(md)[1:]:
+                # Comparison links can point to much older model transcripts.
+                # They belong to the original post, not this release's date.
+                run_date = re.match(r"# (\d{4}-\d\d-\d\d)", run)
+                if p["created"][:10] >= "2026-09-23" and run_date and run_date.group(1) < "2026-09-23":
+                    continue
+                prompt = re.search(r"## Prompt\s+(.*?)\s+## (?:Options|Response)", run, re.S)
+                if not prompt or not re.fullmatch(r"Generate an SVG of a pelican riding a bicycle[.!]?", prompt.group(1).strip(), re.I):
+                    continue
                 mm = re.search(r"^Model: \*\*(?:[\w-]+/)?([^*]+)\*\*", run, re.M)
-                svg = re.search(r"```svg\n(<svg\b.*?</svg>)\s*```", run, re.S)
-                eff = re.search(r"thinking_effort: (\w+)", run)
+                svg = re.search(r"```(?:svg|xml)\n(<svg\b.*?</svg>)\s*```", run, re.S)
+                eff = re.search(r"(?:thinking_effort|thinking_level|reasoning_effort): (\w+)", run)
                 if not (mm and svg):
                     continue
                 model = model_from_text(mm.group(1))
@@ -236,6 +249,8 @@ for p in POSTS:
 
 # --- normalise -----------------------------------------------------------------
 ALIASES = {
+    "haiku-5.5": "claude-haiku-5.5",
+    "muse-wonder": "muse-wonder-1.0",
     "gpt-45": "gpt-4.5",
     "gpt-120": "gpt-oss-120b",     # gpt-oss-120b, filename drops the "oss"
     "gpt-20": "gpt-oss-20b",

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- background -->
+  <rect width="400" height="300" fill="#cfeeff"/>
+  <circle cx="340" cy="45" r="25" fill="#ffe27a"/>
+  <rect y="272" width="400" height="28" fill="#8cc474"/>
+  <ellipse cx="200" cy="274" rx="140" ry="5" fill="#000" opacity=".12"/>
+
+  <!-- wheels -->
+  <g fill="none" stroke="#333" stroke-width="5">
+    <circle cx="110" cy="220" r="52"/>
+    <circle cx="290" cy="220" r="52"/>
+  </g>
+  <g stroke="#888" stroke-width="1">
+    <path d="M110 168V272M58 220H162M73 183L147 257M147 183L73 257"/>
+    <path d="M290 168V272M238 220H342M253 183L327 257M327 183L253 257"/>
+  </g>
+
+  <!-- bicycle frame -->
+  <g fill="none" stroke="#d63031" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M110 220L175 150L265 150L190 225L110 220"/>
+    <path d="M175 150L190 225"/>
+    <path d="M265 150L290 220"/>
+    <path d="M265 150L262 130L282 128" stroke="#333"/>
+  </g>
+  <rect x="158" y="142" width="36" height="8" rx="4" fill="#333"/>
+  <circle cx="190" cy="225" r="8" fill="#555"/>
+  <path d="M190 225L200 244" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+  <rect x="192" y="242" width="22" height="6" rx="2" fill="#333"/>
+
+  <!-- tail -->
+  <polygon points="150,100 112,115 150,130" fill="#e8e8e8" stroke="#aaa" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- leg -->
+  <path d="M195 125L230 160L204 240" fill="none" stroke="#f39c12" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="212" cy="243" rx="14" ry="5" fill="#e67e22"/>
+
+  <!-- body -->
+  <ellipse cx="195" cy="110" rx="52" ry="32" transform="rotate(-8 195 110)" fill="#fff" stroke="#aaa" stroke-width="2"/>
+
+  <!-- neck -->
+  <path d="M215 98Q255 90 228 68Q214 52 238 50" fill="none" stroke="#aaa" stroke-width="20" stroke-linecap="round"/>
+  <path d="M215 98Q255 90 228 68Q214 52 238 50" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+
+  <!-- head -->
+  <circle cx="240" cy="48" r="15" fill="#fff" stroke="#aaa" stroke-width="2"/>
+
+  <!-- beak & pouch -->
+  <path d="M250 50L332 64L250 56Z" fill="#f5a623" stroke="#c77d0a" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M250 56Q285 95 330 65Z" fill="#ffcc66" stroke="#c77d0a" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M250 50Q290 46 332 64" fill="none" stroke="#c77d0a" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- eye -->
+  <circle cx="243" cy="44" r="3.5" fill="#222"/>
+  <circle cx="244" cy="43" r="1" fill="#fff"/>
+
+  <!-- wing -->
+  <path d="M165 100Q205 85 235 112Q205 140 160 125Q150 110 165 100Z" fill="#d9dde0" stroke="#999" stroke-width="2"/>
+  <path d="M175 108Q200 102 222 114M172 116Q198 116 215 122" fill="none" stroke="#aaa" stroke-width="1.5"/>
+
+  <!-- arm reaching the handlebar -->
+  <path d="M225 108Q265 110 280 130" fill="none" stroke="#d9dde0" stroke-width="8" stroke-linecap="round"/>
+</svg>
