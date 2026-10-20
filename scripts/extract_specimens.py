@@ -63,7 +63,7 @@ FAMILIES = [
     "plus","max","ultra","base","it","distill","zero","next","omni",
 ]
 VENDOR_PREFIX = re.compile(r"^(cerebras|groq|together|openrouter|bedrock|us|eu|apac|amazon|google|meta|alibaba|ollama|lmstudio|mlx|local)[-.]", re.I)
-VERSION = r"\d+(?:[.-]\d+)*[a-z]?"
+VERSION = r"v?\d+(?:[.-]\d+)*[a-z]?"
 EFFORT = re.compile(r"\b(low|medium|high|max|minimal|xhigh|ultra|thinking|nothinking|no-thinking|reasoning|no-reasoning)\b", re.I)
 
 FAM_RE = re.compile(r"(?<![a-z])(" + "|".join(sorted(FAMILIES, key=len, reverse=True)) + r")(?![a-z])", re.I)
@@ -217,7 +217,7 @@ for p in POSTS:
                 eff = re.search(r"(?:thinking_effort|thinking_level|reasoning_effort): (\w+)", run)
                 if not (mm and svg):
                     continue
-                model = model_from_text(mm.group(1))
+                model = model_from_text(mm.group(1).rsplit("/", 1)[-1])
                 effort = eff.group(1).lower() if eff else None
                 raster = shown.get((bare(model), effort))
                 if raster:
