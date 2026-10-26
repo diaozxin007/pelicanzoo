@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="kimi-k3.1-pro-high--title">Pelican riding a bicycle</title>
+  <desc id="kimi-k3.1-pro-high--desc">A cheerful white pelican with a long orange bill pedals a red bicycle beneath a sunny sky.</desc>
+
+  <defs>
+    <linearGradient id="kimi-k3.1-pro-high--sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cceeff"/>
+      <stop offset="1" stop-color="#f5fcff"/>
+    </linearGradient>
+    <linearGradient id="kimi-k3.1-pro-high--feathers" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e5eef2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#kimi-k3.1-pro-high--sky)"/>
+  <circle cx="685" cy="82" r="45" fill="#ffd166"/>
+  <g fill="#ffffff" opacity="0.9">
+    <path d="M74 121c5-24 38-28 50-9 14-24 55-15 55 13 26-3 35 31 8 36H86c-31-2-35-36-12-40z"/>
+    <path d="M560 224c4-18 29-22 40-8 12-18 43-10 43 12 21-1 26 25 5 28h-79c-23-2-25-28-9-32z"/>
+  </g>
+  <path d="M0 509 Q150 474 300 510 T600 505 T800 498 V600 H0Z" fill="#b7dfc2"/>
+  <path d="M0 540 Q200 526 400 541 T800 535" fill="none" stroke="#82b88f" stroke-width="5"/>
+  <g stroke="#79a9ba" stroke-width="5" stroke-linecap="round" opacity="0.65">
+    <path d="M73 284h86"/>
+    <path d="M101 307h55"/>
+    <path d="M44 331h105"/>
+  </g>
+
+  <!-- Wheels -->
+  <g fill="#f8fcff" fill-opacity="0.45" stroke="#334155">
+    <circle cx="235" cy="445" r="95" stroke-width="10"/>
+    <circle cx="565" cy="445" r="95" stroke-width="10"/>
+    <circle cx="235" cy="445" r="84" stroke-width="3"/>
+    <circle cx="565" cy="445" r="84" stroke-width="3"/>
+  </g>
+  <g stroke="#94a3b8" stroke-width="2">
+    <path d="M235 361v168M151 445h168M176 386l118 118M176 504l118-118"/>
+    <path d="M565 361v168M481 445h168M506 386l118 118M506 504l118-118"/>
+  </g>
+  <g fill="#475569">
+    <circle cx="235" cy="445" r="10"/>
+    <circle cx="565" cy="445" r="10"/>
+  </g>
+
+  <!-- Bicycle frame -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M235 445L333 326 380 445ZM333 326L498 337 380 445M498 337L520 382 565 445"
+          stroke="#e76f51" stroke-width="11"/>
+    <path d="M510 360L552 445" stroke="#c9553d" stroke-width="6"/>
+    <path d="M333 326L323 302" stroke="#475569" stroke-width="8"/>
+    <path d="M498 337L482 282 515 276M482 282l-23-12" stroke="#475569" stroke-width="8"/>
+    <path d="M289 301q34-12 69 0" stroke="#334155" stroke-width="13"/>
+    <path d="M235 438L380 423M235 452L380 467" stroke="#64748b" stroke-width="3"/>
+  </g>
+
+  <!-- Legs behind the body -->
+  <g fill="none" stroke="#e8953f" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M314 310Q326 359 356 385L405 425"/>
+    <path d="M363 316Q386 362 375 405L350 462"/>
+  </g>
+  <g fill="#f2a65a" stroke="#b86b2d" stroke-width="3" stroke-linejoin="round">
+    <path d="M388 418l35-4-10 13 20 7-37 3-14-9z"/>
+    <path d="M334 455l32 3-9 10 18 10-37-5-13-10z"/>
+  </g>
+
+  <!-- Tail and neck -->
+  <path d="M283 252l-60-22 38 45-45 5 67 35z"
+        fill="url(#kimi-k3.1-pro-high--feathers)" stroke="#52677a" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M344 213c-15-39-8-79 20-102 20-17 50-14 64 6 13 19 5 39-13 48-22 11-24 36 2 71l-29 30c-22-20-35-35-44-53z"
+        fill="url(#kimi-k3.1-pro-high--feathers)" stroke="#52677a" stroke-width="4"/>
+
+  <!-- Body -->
+  <path d="M287 320c-30-24-36-70-21-105 16-38 57-52 95-39 39 13 63 49 62 94-1 46-35 73-81 72-21 0-40-8-55-22z"
+        fill="url(#kimi-k3.1-pro-high--feathers)" stroke="#52677a" stroke-width="4"/>
+
+  <!-- Bill and pouch -->
+  <path d="M426 108c81-2 171 9 248 29-80 15-165 15-241-2z"
+        fill="#f4a261" stroke="#a96332" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M433 135c73 13 163 14 241 2-33 46-88 69-150 57-47-9-77-30-91-59z"
+        fill="#f6bd60" stroke="#a96332" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M462 151c52 16 113 18 164 8" fill="none" stroke="#e89b4b" stroke-width="3"/>
+
+  <!-- Head -->
+  <path d="M365 80q-9-24 11-12 4-25 17-3 17-20 16 10"
+        fill="#ffffff" stroke="#52677a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="397" cy="112" r="46" fill="url(#kimi-k3.1-pro-high--feathers)" stroke="#52677a" stroke-width="4"/>
+  <circle cx="413" cy="99" r="8" fill="#ffffff" stroke="#52677a" stroke-width="3"/>
+  <circle cx="415" cy="99" r="3.5" fill="#1f2937"/>
+  <path d="M372 128q15 12 30 4" fill="none" stroke="#c6d5dc" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Wing reaching for the handlebar -->
+  <path d="M388 211c36 4 55 32 73 54l33 12c12 5 10 20-3 21-39-3-72-20-94-47z"
+        fill="url(#kimi-k3.1-pro-high--feathers)" stroke="#52677a" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M480 278q15-9 27 2" fill="none" stroke="#52677a" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Folded wing and feather details -->
+  <path d="M293 215c38-18 87 3 99 42 7 24-8 49-33 56-4-31-35-47-65-62-17-8-13-29-1-36z"
+        fill="#d9e7ed" stroke="#52677a" stroke-width="4"/>
+  <g fill="none" stroke="#a9bec9" stroke-width="3" stroke-linecap="round">
+    <path d="M307 231q42 11 61 48"/>
+    <path d="M300 248q35 12 54 39"/>
+    <path d="M327 215q38 11 51 38"/>
+  </g>
+
+  <!-- Crank and pedals -->
+  <g stroke="#334155" stroke-linecap="round">
+    <circle cx="380" cy="445" r="21" fill="#f8fafc" stroke-width="5"/>
+    <path d="M380 445l30-20M380 445l-30 20" stroke-width="6"/>
+    <path d="M398 424h28M335 468h30" stroke-width="7"/>
+    <circle cx="380" cy="445" r="5" fill="#334155" stroke="none"/>
+  </g>
+
+  <!-- A few speeding feathers -->
+  <g fill="#ffffff" stroke="#8da6b5" stroke-width="2">
+    <path d="M190 201q20-12 25 4-14 13-25-4z"/>
+    <path d="M163 231q15-9 19 4-11 10-19-4z"/>
+  </g>
+</svg>

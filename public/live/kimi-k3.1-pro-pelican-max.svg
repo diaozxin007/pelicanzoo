@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 800 600"
+     role="img" aria-labelledby="title desc">
+  <title id="kimi-k3.1-pro-pelican-max--title">A pelican riding a bicycle</title>
+  <desc id="kimi-k3.1-pro-pelican-max--desc">A cheerful white pelican with a long golden bill pedals a coral bicycle, holding the handlebars with one wing.</desc>
+
+  <defs>
+    <linearGradient id="kimi-k3.1-pro-pelican-max--sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dff3f7"/>
+      <stop offset="1" stop-color="#fff9e8"/>
+    </linearGradient>
+    <linearGradient id="kimi-k3.1-pro-pelican-max--feathers" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e9f0f3"/>
+    </linearGradient>
+    <linearGradient id="kimi-k3.1-pro-pelican-max--bill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#f4a261"/>
+    </linearGradient>
+
+    <g id="kimi-k3.1-pro-pelican-max--wheel">
+      <circle r="82" fill="none" stroke="#263746" stroke-width="8"/>
+      <circle r="72" fill="none" stroke="#aebdc5" stroke-width="3"/>
+      <g stroke="#aebdc5" stroke-width="2">
+        <line x1="0" y1="-72" x2="0" y2="72"/>
+        <line x1="0" y1="-72" x2="0" y2="72" transform="rotate(30)"/>
+        <line x1="0" y1="-72" x2="0" y2="72" transform="rotate(60)"/>
+        <line x1="0" y1="-72" x2="0" y2="72" transform="rotate(90)"/>
+        <line x1="0" y1="-72" x2="0" y2="72" transform="rotate(120)"/>
+        <line x1="0" y1="-72" x2="0" y2="72" transform="rotate(150)"/>
+      </g>
+      <circle r="8" fill="#ffffff" stroke="#263746" stroke-width="4"/>
+    </g>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#kimi-k3.1-pro-pelican-max--sky)"/>
+  <circle cx="690" cy="78" r="42" fill="#ffd166" opacity="0.8"/>
+
+  <g fill="#ffffff" opacity="0.8">
+    <ellipse cx="112" cy="105" rx="55" ry="18"/>
+    <circle cx="91" cy="94" r="23"/>
+    <circle cx="124" cy="87" r="30"/>
+    <circle cx="151" cy="101" r="20"/>
+  </g>
+
+  <path d="M0 516 C170 500 310 526 470 513 C610 502 710 506 800 516
+           L800 600 L0 600 Z"
+        fill="#d8ead3"/>
+
+  <!-- Motion marks and shadows -->
+  <g fill="none" stroke="#8ecae6" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <path d="M78 377 H151"/>
+    <path d="M98 400 H139"/>
+    <path d="M61 424 H120"/>
+  </g>
+  <g fill="#67816b" opacity="0.18">
+    <ellipse cx="225" cy="521" rx="103" ry="11"/>
+    <ellipse cx="575" cy="521" rx="103" ry="11"/>
+  </g>
+
+  <!-- Bicycle -->
+  <use href="#kimi-k3.1-pro-pelican-max--wheel" transform="translate(225 430)"/>
+  <use href="#kimi-k3.1-pro-pelican-max--wheel" transform="translate(575 430)"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M230 422 L382 416 M230 438 L382 444"
+          stroke="#6b7280" stroke-width="2"/>
+
+    <path d="M225 430 L335 320 L385 430 Z
+             M335 320 L490 325 L505 360 L385 430
+             M505 360 L575 430"
+          stroke="#e76f51" stroke-width="10"/>
+
+    <path d="M490 325 L505 360" stroke="#c8553d" stroke-width="12"/>
+    <path d="M335 320 L328 302 M490 325 L478 282"
+          stroke="#36494f" stroke-width="7"/>
+
+    <path d="M478 282 L467 274
+             M478 282 Q489 272 501 278"
+          stroke="#36494f" stroke-width="7"/>
+
+    <path d="M385 430 L411 404 M385 430 L359 456"
+          stroke="#263746" stroke-width="5"/>
+  </g>
+
+  <path d="M299 302 Q329 293 358 303 Q362 313 347 317
+           L309 316 Q297 313 299 302 Z"
+        fill="#36494f"/>
+  <circle cx="385" cy="430" r="17" fill="#fff9e8"
+          stroke="#263746" stroke-width="4"/>
+
+  <!-- Pelican's legs, behind the body -->
+  <path d="M334 288 C319 342 326 411 359 456"
+        fill="none" stroke="#d98e4a" stroke-width="12"
+        stroke-linecap="round"/>
+  <path d="M374 289 C389 333 391 372 411 404"
+        fill="none" stroke="#f4a261" stroke-width="12"
+        stroke-linecap="round"/>
+
+  <!-- Tail -->
+  <path d="M285 215 C260 200 238 200 216 209
+           C236 222 249 238 271 253
+           C251 249 235 251 220 260
+           C247 269 270 270 294 264 Z"
+        fill="url(#kimi-k3.1-pro-pelican-max--feathers)" stroke="#263746" stroke-width="4"
+        stroke-linejoin="round"/>
+
+  <!-- Curved neck -->
+  <path d="M397 270 C438 232 413 181 443 151"
+        fill="none" stroke="#263746" stroke-width="58"
+        stroke-linecap="round"/>
+  <path d="M397 270 C438 232 413 181 443 151"
+        fill="none" stroke="#fffdf7" stroke-width="48"
+        stroke-linecap="round"/>
+
+  <!-- Body -->
+  <ellipse cx="350" cy="244" rx="96" ry="78"
+           transform="rotate(-12 350 244)"
+           fill="url(#kimi-k3.1-pro-pelican-max--feathers)" stroke="#263746" stroke-width="4"/>
+  <path d="M285 275 Q333 315 393 295"
+        fill="none" stroke="#d2dee4" stroke-width="4"
+        stroke-linecap="round"/>
+
+  <!-- Head crest and head -->
+  <path d="M425 93 Q409 82 417 74 Q432 79 438 89
+           Q432 71 444 67 Q453 79 452 91 Z"
+        fill="#fffdf7" stroke="#263746" stroke-width="4"
+        stroke-linejoin="round"/>
+  <ellipse cx="449" cy="124" rx="46" ry="42"
+           fill="url(#kimi-k3.1-pro-pelican-max--feathers)" stroke="#263746" stroke-width="4"/>
+
+  <!-- Pouch and long upper bill -->
+  <path d="M478 136 C540 144 616 147 670 141
+           C649 172 604 190 554 187
+           C515 184 488 164 478 136 Z"
+        fill="#f6b85f" stroke="#263746" stroke-width="4"
+        stroke-linejoin="round"/>
+  <path d="M477 116 C535 111 615 119 686 139
+           C625 146 548 144 478 137 Z"
+        fill="url(#kimi-k3.1-pro-pelican-max--bill)" stroke="#263746" stroke-width="4"
+        stroke-linejoin="round"/>
+  <path d="M500 151 Q548 174 620 158"
+        fill="none" stroke="#de9445" stroke-width="3"
+        stroke-linecap="round" opacity="0.7"/>
+  <path d="M669 134 L686 139 L671 145 Z" fill="#df8148"/>
+
+  <!-- Eye -->
+  <circle cx="460" cy="112" r="7" fill="#263746"/>
+  <circle cx="462" cy="110" r="2.2" fill="#ffffff"/>
+  <path d="M450 101 Q460 96 469 101"
+        fill="none" stroke="#263746" stroke-width="3"
+        stroke-linecap="round"/>
+
+  <!-- Wing reaching for the handlebars -->
+  <path d="M333 202 C365 185 402 198 417 225
+           C430 247 448 260 472 268
+           L468 285 C434 280 407 264 386 245
+           C370 267 348 279 323 273
+           C312 245 315 219 333 202 Z"
+        fill="#d9e2ec" stroke="#263746" stroke-width="4"
+        stroke-linejoin="round"/>
+  <path d="M337 224 Q362 213 389 229
+           M330 246 Q352 239 374 249
+           M410 246 Q432 266 458 274"
+        fill="none" stroke="#aebdc5" stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M464 267 Q478 263 483 273 Q477 282 468 281"
+        fill="#d9e2ec" stroke="#263746" stroke-width="3"
+        stroke-linecap="round"/>
+
+  <!-- Webbed feet on the pedals -->
+  <path d="M399 396 C407 394 414 397 420 401
+           L434 402 Q439 407 433 411
+           L411 410 L400 406 Z"
+        fill="#f4a261" stroke="#263746" stroke-width="3"
+        stroke-linejoin="round"/>
+  <path d="M346 447 C354 445 362 448 368 452
+           L382 454 Q386 459 380 463
+           L358 461 L347 457 Z"
+        fill="#d98e4a" stroke="#263746" stroke-width="3"
+        stroke-linejoin="round"/>
+
+  <g stroke="#263746" stroke-width="5" stroke-linecap="round">
+    <path d="M401 413 H428"/>
+    <path d="M348 465 H375"/>
+  </g>
+  <g stroke="#c77b35" stroke-width="2" stroke-linecap="round">
+    <path d="M414 402 L418 409 M422 403 L425 409"/>
+    <path d="M361 453 L365 460 M370 455 L373 461"/>
+  </g>
+</svg>

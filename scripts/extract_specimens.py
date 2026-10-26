@@ -63,7 +63,7 @@ FAMILIES = [
     "plus","max","ultra","base","it","distill","zero","next","omni",
 ]
 VENDOR_PREFIX = re.compile(r"^(cerebras|groq|together|openrouter|bedrock|us|eu|apac|amazon|google|meta|alibaba|ollama|lmstudio|mlx|local)[-.]", re.I)
-VERSION = r"v?\d+(?:[.-]\d+)*[a-z]?"
+VERSION = r"[vk]?\d+(?:[.-]\d+)*[a-z]?"
 EFFORT = re.compile(r"\b(low|medium|high|max|minimal|xhigh|ultra|thinking|nothinking|no-thinking|reasoning|no-reasoning)\b", re.I)
 
 FAM_RE = re.compile(r"(?<![a-z])(" + "|".join(sorted(FAMILIES, key=len, reverse=True)) + r")(?![a-z])", re.I)
@@ -114,9 +114,32 @@ def post_url(p):
     y, mo, d = p["created"][:4], int(p["created"][5:7]), int(p["created"][8:10])
     return f"https://simonwillison.net/{y}/{MONTHS[mo-1]}/{d}/{p['slug']}/"
 
+def transcript_runs(md):
+    """Support both LLM logs and the newer endpoint-command notebooks."""
+    if GIST_RUN.search(md):
+        yield from GIST_RUN.split(md)[1:]
+        return
+    title = re.match(r"# ([a-z0-9.-]+)\s*\n", md)
+    prompt = re.search(r"^> (Generate an SVG of a pelican riding a bicycle)\s*$", md, re.M)
+    if not (title and prompt):
+        return
+    for section in re.split(r"(?=^## (?:Low|Medium|High|Max)\s*$)", md, flags=re.M)[1:]:
+        heading = re.match(r"## (\w+)", section).group(1).lower()
+        effort = re.search(r"-o reasoning_effort (\w+)", section)
+        response = re.search(r"^### Response\s*\n(.*)", section, re.M | re.S)
+        if not response:
+            continue
+        # Only the final response is admitted; reasoning can contain drafts.
+        yield (f"Model: **{title.group(1)}**\n\n## Prompt\n\n{prompt.group(1)}"
+               f"\n\n## Options\n\n- reasoning_effort: {effort.group(1) if effort else heading}"
+               f"\n\n## Response\n\n{response.group(1)}")
+
 specimens, seen, stems = [], set(), set()
 for p in POSTS:
     h, url = p["html"] or "", post_url(p)
+    # A p5.js watercolor tool uses a different prompt, not this SVG benchmark.
+    if p["slug"] == "pelican-watercolor":
+        continue
     items = [(attr(t.group(0), "src"), attr(t.group(0), "alt")) for t in IMG.finditer(h)]
     items += [(m.group(1), "") for m in SVG_LINK.finditer(h)]
     # Preserve the reviewed historical Markdown archive; support the newer
@@ -157,6 +180,8 @@ for p in POSTS:
             continue
 
         # Same drawing re-posted as .jpg and .png: one pelican, one card.
+        if stem == "image-2" and p["slug"] == "kimi-k31-pro":
+            stem = "kimi-k3.1-pro-pelican-max"
         if stem == "image" and p["slug"] == "llm-gemini" and p["created"].startswith("2026-09-02"):
             stem = "gemini-3.8-flash-high-pelican"
         if stem in stems:
@@ -203,7 +228,7 @@ for p in POSTS:
              if s_["post_url"] == url and not s_["alive"]}
     for link, gid in GIST_LINK.findall(h):
         for fname, md in GISTS.get(gid, {}).items():
-            for run in GIST_RUN.split(md)[1:]:
+            for run in transcript_runs(md):
                 # Comparison links can point to much older model transcripts.
                 # They belong to the original post, not this release's date.
                 run_date = re.match(r"# (\d{4}-\d\d-\d\d)", run)
@@ -249,6 +274,7 @@ for p in POSTS:
 
 # --- normalise -----------------------------------------------------------------
 ALIASES = {
+    "kimi-3": "kimi-k3",
     "haiku-5.5": "claude-haiku-5.5",
     "muse-wonder": "muse-wonder-1.0",
     "gpt-45": "gpt-4.5",
