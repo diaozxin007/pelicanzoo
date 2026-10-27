@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="gpt-6.1-terra-high--title">A pelican riding a bicycle</title>
+  <desc id="gpt-6.1-terra-high--desc">A cheerful white pelican pedals a red bicycle beneath a blue sky.</desc>
+
+  <rect width="760" height="520" fill="#eaf8fc"/>
+  <circle cx="650" cy="85" r="34" fill="#ffdb72"/>
+  <g fill="#fff" opacity=".8">
+    <path d="M95 102c3-17 28-22 39-7 11-11 32-5 34 10H95z"/>
+    <path d="M530 68c4-14 22-17 31-6 9-9 26-4 28 8h-59z"/>
+  </g>
+  <path d="M0 479h760v41H0z" fill="#d4eacb"/>
+  <path d="M0 479h760" stroke="#a8cfa1" stroke-width="3"/>
+
+  <!-- Wheels -->
+  <defs>
+    <g id="gpt-6.1-terra-high--wheel">
+      <circle r="82" fill="#fff" stroke="#293c46" stroke-width="10"/>
+      <circle r="72" fill="none" stroke="#8ca5ad" stroke-width="3"/>
+      <g stroke="#b2c5c9" stroke-width="2">
+        <path d="M-72 0h144M0-72v144"/>
+        <path d="M-51-51 51 51M51-51-51 51"/>
+        <path d="M-28-66 28 66M28-66-28 66"/>
+        <path d="M-66-28 66 28M66-28-66 28"/>
+      </g>
+      <circle r="6" fill="#405a62"/>
+    </g>
+  </defs>
+  <use href="#gpt-6.1-terra-high--wheel" x="202" y="397"/>
+  <use href="#gpt-6.1-terra-high--wheel" x="550" y="397"/>
+
+  <!-- Bicycle frame -->
+  <g fill="none" stroke="#d75a49" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M202 397 322 309 361 397H202"/>
+    <path d="M322 309 465 315 361 397"/>
+    <path d="M465 315 550 397"/>
+  </g>
+  <g fill="none" stroke="#405a62" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M315 307h-20m20 0h22" stroke-width="9"/>
+    <path d="M465 315 457 281q-2-9 8-9h21" stroke-width="6"/>
+    <path d="M482 272h13" stroke-width="8"/>
+    <circle cx="361" cy="397" r="21" stroke-width="4"/>
+    <path d="M334 410 388 384" stroke-width="5"/>
+    <path d="M325 411h19M379 383h19" stroke-width="6"/>
+  </g>
+
+  <!-- Pelican's legs and webbed feet -->
+  <g fill="none" stroke="#e89a40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M307 272 323 323 382 382"/>
+    <path d="M340 273 375 326 337 407"/>
+  </g>
+  <g fill="#e89a40">
+    <path d="M378 378q8-2 14 2l11 4q2 3-3 4h-20q-7-2-2-10z"/>
+    <path d="M333 403q7-3 12 1l12 4q2 4-3 4h-20q-6-2-1-9z"/>
+  </g>
+
+  <!-- Neck -->
+  <path d="M360 241c36-5 57-20 59-46 1-13-7-24-8-37-2-18 10-31 27-31 18 0 29 13 25 30-3 13-13 22-13 36 0 45-32 75-78 78z"
+        fill="#fffdf5" stroke="#bdc9c8" stroke-width="3"/>
+
+  <!-- Pouch and long bill -->
+  <path d="M448 166q17 52 52 57 44 5 94-44-69 7-146-13z"
+        fill="#f2b64f" stroke="#d8963d" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M450 150q59 0 143 23 8 2 3 6l-144-5z"
+        fill="#f5c45e" stroke="#d8963d" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Body and tail -->
+  <path d="M244 224q-21-3-34-16 4 22 26 34
+           c-2 31 29 49 78 49 52 0 83-21 79-49
+           -4-27-33-42-78-42-34 0-57 8-71 24z"
+        fill="#fffdf5" stroke="#bdc9c8" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M260 229c17-15 48-19 79-12 18 4 27 15 24 26-4 18-26 28-52 26-24-2-41-14-51-40z"
+        fill="#e6eeeb" stroke="#c9d5d1" stroke-width="2"/>
+  <path d="M279 241q19 19 49 17M274 234q16 15 39 17"
+        fill="none" stroke="#c4d2ce" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Face -->
+  <circle cx="435" cy="147" r="8" fill="#fff"/>
+  <circle cx="437" cy="147" r="3.5" fill="#293c46"/>
+  <circle cx="438" cy="146" r="1" fill="#fff"/>
+  <path d="M459 157q45 3 88 13" fill="none" stroke="#e6a94c" stroke-width="2" stroke-linecap="round"/>
+</svg>

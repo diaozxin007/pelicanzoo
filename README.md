@@ -9,8 +9,8 @@ asks whether you can tell them apart.
 
 ## What's in here
 
-- **The enclosure** — 171 specimens from 87 models, 2024 to 2026, each plaque
-  linking back to the post it came from. 93 survive as vector originals, so
+- **The enclosure** — 177 specimens from 88 models, 2024 to 2026, each plaque
+  linking back to the post it came from. 99 survive as vector originals, so
   they scale; six of those move.
 - **Who drew this one?** — verified filenames and model transcripts. Decoys come from other vendors
   where possible, because three Gemini variants side by side is unguessable

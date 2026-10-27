@@ -124,6 +124,11 @@
   "gpt-6.1-sol-max",
   "gpt-6.1-sol-medium",
   "gpt-6.1-sol-xhigh",
+  "gpt-6.1-terra-high",
+  "gpt-6.1-terra-low",
+  "gpt-6.1-terra-medium",
+  "gpt-6.1-terra-none",
+  "gpt-6.1-terra-xhigh",
   "haiku-5.5-max",
   "kimi-3-pelican",
   "kimi-k2-pelican-64-colors",
@@ -169,5 +174,6 @@
   "qwen3-4b-thinking-pelican",
   "r1-peli-1",
   "r1-peli-2",
+  "terra-max",
   "thinking-pelican"
 ]

@@ -189,6 +189,8 @@ for p in POSTS:
         seen.add(src)
         stems.add(stem)
         model = model_from_text(stem)
+        if model == "terra" and p["slug"] == "gpt-61-terra":
+            model = "gpt-6.1-terra"
         msrc = "filename"
         if not model and is_slide:
             model, msrc = model_from_text(alt), "alt"
