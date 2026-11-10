@@ -276,6 +276,7 @@ for p in POSTS:
 
 # --- normalise -----------------------------------------------------------------
 ALIASES = {
+    "fable-5.2": "claude-fable-5.2",
     "kimi-3": "kimi-k3",
     "haiku-5.5": "claude-haiku-5.5",
     "muse-wonder": "muse-wonder-1.0",

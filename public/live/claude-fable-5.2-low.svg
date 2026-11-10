@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <rect width="600" height="450" fill="#cfeaf7"/>
+  <rect y="370" width="600" height="80" fill="#8ccf7e"/>
+  <circle cx="520" cy="70" r="35" fill="#ffd94a"/>
+
+  <!-- wheels -->
+  <g fill="none" stroke="#222" stroke-width="7">
+    <circle cx="170" cy="320" r="60"/>
+    <circle cx="420" cy="320" r="60"/>
+  </g>
+  <g stroke="#888" stroke-width="2">
+    <path d="M170 260V380M110 320H230M128 278L212 362M128 362L212 278"/>
+    <path d="M420 260V380M360 320H480M378 278L462 362M378 362L462 278"/>
+  </g>
+
+  <!-- frame -->
+  <g fill="none" stroke="#d6336c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M170 320L240 230L370 230L290 320Z"/>
+    <path d="M240 230L290 320"/>
+    <path d="M240 230L230 205"/>
+    <path d="M420 320L365 205"/>
+    <path d="M365 205L335 195"/>
+  </g>
+  <rect x="205" y="197" width="55" height="10" rx="5" fill="#333"/>
+  <circle cx="290" cy="320" r="12" fill="#555"/>
+  <path d="M290 320L310 345" stroke="#333" stroke-width="6" stroke-linecap="round"/>
+  <rect x="298" y="343" width="28" height="7" rx="3" fill="#333"/>
+
+  <!-- pelican leg -->
+  <path d="M250 215L290 275L310 340" fill="none" stroke="#f39c12" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M300 338L330 340L318 348Z" fill="#f39c12"/>
+
+  <!-- body -->
+  <ellipse cx="235" cy="165" rx="75" ry="55" fill="#fff" stroke="#bbb" stroke-width="2" transform="rotate(-15 235 165)"/>
+  <path d="M160 185L135 205L175 200Z" fill="#fff" stroke="#bbb" stroke-width="2"/>
+  <!-- wing reaching to handlebar -->
+  <path d="M210 150Q260 130 300 170Q325 190 337 195Q290 205 240 195Q205 185 210 150Z" fill="#e8e8e8" stroke="#aaa" stroke-width="2"/>
+
+  <!-- neck -->
+  <path d="M285 140Q320 110 310 70" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
+  <!-- head -->
+  <circle cx="315" cy="65" r="26" fill="#fff" stroke="#bbb" stroke-width="2"/>
+  <circle cx="324" cy="58" r="5" fill="#222"/>
+  <!-- beak and pouch -->
+  <path d="M335 55L450 80L338 82Z" fill="#f5a623" stroke="#c97f10" stroke-width="2"/>
+  <path d="M338 82L450 80Q400 130 345 105Z" fill="#ffc94d" stroke="#c97f10" stroke-width="2"/>
+</svg>
