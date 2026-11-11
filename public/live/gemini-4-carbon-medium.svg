@@ -1,0 +1,353 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <!-- Sky & Ocean Gradients -->
+    <linearGradient id="gemini-4-carbon-medium--skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6EC6FF"/>
+      <stop offset="65%" stop-color="#B8E7FF"/>
+      <stop offset="100%" stop-color="#E6F8FF"/>
+    </linearGradient>
+
+    <linearGradient id="gemini-4-carbon-medium--seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0088A9"/>
+      <stop offset="100%" stop-color="#48CAE4"/>
+    </linearGradient>
+
+    <linearGradient id="gemini-4-carbon-medium--pathGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E9C46A"/>
+      <stop offset="15%" stop-color="#DFB357"/>
+      <stop offset="100%" stop-color="#C99A3E"/>
+    </linearGradient>
+
+    <!-- Pelican Gradients -->
+    <linearGradient id="gemini-4-carbon-medium--bodyGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#F2F6FA"/>
+      <stop offset="100%" stop-color="#CFDCE8"/>
+    </linearGradient>
+
+    <linearGradient id="gemini-4-carbon-medium--pouchGrad" x1="0%" y1="0%" x2="20%" y2="100%">
+      <stop offset="0%" stop-color="#FFD166"/>
+      <stop offset="55%" stop-color="#FCA311"/>
+      <stop offset="100%" stop-color="#E85D04"/>
+    </linearGradient>
+
+    <linearGradient id="gemini-4-carbon-medium--upperBeakGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="75%" stop-color="#FFD166"/>
+      <stop offset="100%" stop-color="#F48C06"/>
+    </linearGradient>
+
+    <!-- Bicycle Frame Gradient -->
+    <linearGradient id="gemini-4-carbon-medium--frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF595E"/>
+      <stop offset="100%" stop-color="#D62828"/>
+    </linearGradient>
+
+    <linearGradient id="gemini-4-carbon-medium--rimGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8F9FA"/>
+      <stop offset="100%" stop-color="#ADB5BD"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. BACKGROUND: SKY, SUN, CLOUDS, OCEAN, BOARDWALK -->
+  <rect width="800" height="600" fill="url(#gemini-4-carbon-medium--skyGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="120" cy="105" r="58" fill="#FFF3B0" opacity="0.4"/>
+  <circle cx="120" cy="105" r="42" fill="#FFD166"/>
+
+  <!-- Fluffy Clouds -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <path d="M180,155 Q180,130 205,130 Q218,108 245,115 Q268,105 282,128 Q305,128 305,155 Z"/>
+    <path d="M580,105 Q580,82 605,82 Q620,60 650,68 Q675,65 685,85 Q708,86 708,105 Z"/>
+    <path d="M45,250 Q45,235 62,235 Q72,220 92,226 Q108,226 112,250 Z" opacity="0.7"/>
+  </g>
+
+  <!-- Distant Seagulls -->
+  <g fill="none" stroke="#5C8AA8" stroke-width="2.2" stroke-linecap="round">
+    <path d="M340,95 Q348,86 356,95 Q364,86 372,95"/>
+    <path d="M385,78 Q391,71 397,78 Q403,71 409,78"/>
+  </g>
+
+  <!-- Sparkling Ocean Horizon -->
+  <rect x="0" y="430" width="800" height="80" fill="url(#gemini-4-carbon-medium--seaGrad)"/>
+  <g stroke="#90E0EF" stroke-width="2" stroke-linecap="round" opacity="0.7">
+    <line x1="60" y1="450" x2="115" y2="450"/>
+    <line x1="210" y1="468" x2="280" y2="468"/>
+    <line x1="470" y1="448" x2="530" y2="448"/>
+    <line x1="640" y1="465" x2="725" y2="465"/>
+    <line x1="130" y1="485" x2="175" y2="485"/>
+    <line x1="580" y1="482" x2="620" y2="482"/>
+  </g>
+
+  <!-- Coastal Path & Wooden Railing -->
+  <g id="gemini-4-carbon-medium--boardwalk">
+    <!-- Posts -->
+    <g fill="#D4A373" stroke="#A97B50" stroke-width="2">
+      <rect x="75" y="468" width="14" height="45" rx="2"/>
+      <rect x="235" y="468" width="14" height="45" rx="2"/>
+      <rect x="395" y="468" width="14" height="45" rx="2"/>
+      <rect x="555" y="468" width="14" height="45" rx="2"/>
+      <rect x="715" y="468" width="14" height="45" rx="2"/>
+    </g>
+    <!-- Rope between posts -->
+    <path d="M0,480 Q40,492 82,478 Q160,496 242,478 Q320,496 402,478 Q480,496 562,478 Q640,496 722,478 Q760,488 800,482" fill="none" stroke="#FAEDCD" stroke-width="4"/>
+    <!-- Sandy/Boardwalk Ground -->
+    <rect x="0" y="505" width="800" height="95" fill="url(#gemini-4-carbon-medium--pathGrad)"/>
+    <line x1="0" y1="505" x2="800" y2="505" stroke="#FFF3B0" stroke-width="4"/>
+  </g>
+
+  <!-- Ground Shadow under Bicycle -->
+  <ellipse cx="410" cy="532" rx="215" ry="12" fill="#9C7125" opacity="0.45"/>
+
+  <!-- 2. PELICAN BACK LIMBS (Behind Bike) -->
+  <g id="gemini-4-carbon-medium--pelican-back">
+    <!-- Far Leg -->
+    <path d="M352,320 L405,342 L365,405" fill="none" stroke="#E07A00" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Far Webbed Foot -->
+    <path d="M355,403 L392,396 L385,409 L352,409 Z" fill="#E07A00" stroke="#C46600" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Back Pedal Platform -->
+    <rect x="348" y="406" width="34" height="8" rx="3" fill="#343A40"/>
+
+    <!-- Far Wing reaching to far handlebar -->
+    <path d="M398,268 Q435,280 472,250 Q458,292 405,292 Z" fill="#DCE6F2" stroke="#9EB3C7" stroke-width="2"/>
+    <path d="M452,265 Q465,255 474,248 Q470,264 456,274 Z" fill="#3A4756"/>
+    <!-- Far Handlebar & Grip -->
+    <path d="M498,284 Q492,252 465,248" fill="none" stroke="#ADB5BD" stroke-width="7" stroke-linecap="round"/>
+    <rect x="450" y="242" width="24" height="10" rx="5" transform="rotate(8 462 247)" fill="#495057"/>
+  </g>
+
+  <!-- 3. BICYCLE -->
+  <g id="gemini-4-carbon-medium--bicycle">
+    <!-- Rear Wheel (cx=260, cy=435, r=85) -->
+    <g transform="translate(260, 435)">
+      <!-- Spokes -->
+      <g stroke="#CED4DA" stroke-width="2">
+        <line x1="-78" y1="0" x2="78" y2="0"/>
+        <line x1="0" y1="-78" x2="0" y2="78"/>
+        <line x1="-55" y1="-55" x2="55" y2="55"/>
+        <line x1="-55" y1="55" x2="55" y2="-55"/>
+        <line x1="-72" y1="-30" x2="72" y2="30"/>
+        <line x1="-30" y1="72" x2="30" y2="-72"/>
+        <line x1="-72" y1="30" x2="72" y2="-30"/>
+        <line x1="-30" y1="-72" x2="30" y2="72"/>
+      </g>
+      <!-- Rim & Tire -->
+      <circle r="76" fill="none" stroke="url(#gemini-4-carbon-medium--rimGrad)" stroke-width="6"/>
+      <circle r="84" fill="none" stroke="#2B2D42" stroke-width="12"/>
+      <!-- Whitewall stripe -->
+      <circle r="80" fill="none" stroke="#FFF8E7" stroke-width="2.5"/>
+      <circle r="10" fill="#ADB5BD" stroke="#495057" stroke-width="3"/>
+    </g>
+
+    <!-- Front Wheel (cx=555, cy=435, r=85) -->
+    <g transform="translate(555, 435)">
+      <!-- Spokes -->
+      <g stroke="#CED4DA" stroke-width="2">
+        <line x1="-78" y1="0" x2="78" y2="0"/>
+        <line x1="0" y1="-78" x2="0" y2="78"/>
+        <line x1="-55" y1="-55" x2="55" y2="55"/>
+        <line x1="-55" y1="55" x2="55" y2="-55"/>
+        <line x1="-72" y1="-30" x2="72" y2="30"/>
+        <line x1="-30" y1="72" x2="30" y2="-72"/>
+        <line x1="-72" y1="30" x2="72" y2="-30"/>
+        <line x1="-30" y1="-72" x2="30" y2="72"/>
+      </g>
+      <!-- Rim & Tire -->
+      <circle r="76" fill="none" stroke="url(#gemini-4-carbon-medium--rimGrad)" stroke-width="6"/>
+      <circle r="84" fill="none" stroke="#2B2D42" stroke-width="12"/>
+      <!-- Whitewall stripe -->
+      <circle r="80" fill="none" stroke="#FFF8E7" stroke-width="2.5"/>
+      <circle r="10" fill="#ADB5BD" stroke="#495057" stroke-width="3"/>
+    </g>
+
+    <!-- Vintage Cream Fenders -->
+    <path d="M166,422 A96,96 0 0,1 348,395" fill="none" stroke="#FFF8E7" stroke-width="10" stroke-linecap="round"/>
+    <path d="M475,382 A96,96 0 0,1 642,395" fill="none" stroke="#FFF8E7" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Back Crank Arm -->
+    <line x1="385" y1="445" x2="365" y2="405" stroke="#8D99AE" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Bicycle Frame (Cruiser Geometry) -->
+    <g fill="none" stroke="url(#gemini-4-carbon-medium--frameGrad)" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Chainstay -->
+      <line x1="260" y1="435" x2="385" y2="445" stroke-width="9"/>
+      <!-- Seatstays -->
+      <path d="M260,435 Q300,380 344,342" stroke-width="8"/>
+      <!-- Down tube (curved beach cruiser) -->
+      <path d="M385,445 Q450,415 504,328" stroke-width="11"/>
+      <!-- Top tube (sweeping arch) -->
+      <path d="M342,340 Q425,315 500,312" stroke-width="11"/>
+      <!-- Seat tube -->
+      <line x1="385" y1="445" x2="336" y2="322" stroke-width="11"/>
+      <!-- Head tube -->
+      <line x1="497" y1="302" x2="509" y2="342" stroke-width="13"/>
+      <!-- Front Fork -->
+      <path d="M506,336 Q525,390 555,435" stroke-width="10"/>
+    </g>
+
+    <!-- Seat Post & Leather Saddle -->
+    <line x1="336" y1="322" x2="330" y2="304" stroke="#CED4DA" stroke-width="7" stroke-linecap="round"/>
+    <path d="M300,302 Q330,312 362,302 Q366,294 352,292 Q330,295 304,289 Q292,292 300,302 Z" fill="#6F4518" stroke="#432818" stroke-width="2"/>
+
+    <!-- Handlebar Stem & Near Bar -->
+    <path d="M497,302 L490,275 Q484,258 452,265" fill="none" stroke="#DEE2E6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Little Brass Bike Bell -->
+    <path d="M478,256 A8,8 0 0,1 492,256 Z" fill="#FFD166" stroke="#E09F3E" stroke-width="1.5"/>
+
+    <!-- Front Wicker Basket -->
+    <g transform="translate(514, 286) rotate(12)">
+      <rect x="0" y="0" width="46" height="38" rx="5" fill="#DDA15E" stroke="#9C6644" stroke-width="2.5"/>
+      <line x1="3" y1="10" x2="43" y2="10" stroke="#9C6644" stroke-width="2"/>
+      <line x1="3" y1="20" x2="43" y2="20" stroke="#9C6644" stroke-width="2"/>
+      <line x1="3" y1="30" x2="43" y2="30" stroke="#9C6644" stroke-width="2"/>
+      <line x1="15" y1="2" x2="15" y2="36" stroke="#BC6C25" stroke-width="2"/>
+      <line x1="31" y1="2" x2="31" y2="36" stroke="#BC6C25" stroke-width="2"/>
+    </g>
+
+    <!-- Chain & Retro Chainguard -->
+    <path d="M260,425 L385,425 A20,20 0 0,1 385,465 L260,445" fill="none" stroke="#495057" stroke-width="3" stroke-dasharray="4,3"/>
+    <path d="M285,424 Q340,412 392,422 A25,25 0 0,1 408,448 L285,436 Z" fill="#FFF8E7" stroke="#E63946" stroke-width="2"/>
+    <!-- Sprocket / Crankset -->
+    <circle cx="385" cy="445" r="20" fill="#DEE2E6" stroke="#6C757D" stroke-width="3"/>
+    <circle cx="385" cy="445" r="12" fill="none" stroke="#6C757D" stroke-width="2" stroke-dasharray="5,4"/>
+    <circle cx="385" cy="445" r="5" fill="#495057"/>
+
+    <!-- Near Crank Arm (extending down to 405, 485) -->
+    <line x1="385" y1="445" x2="405" y2="485" stroke="#EBEBEB" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <!-- 4. PELICAN BODY, NECK, HEAD & ICONIC BEAK -->
+  <g id="gemini-4-carbon-medium--pelican-main">
+    <!-- Near Leg (Bent, pressing down on lower pedal) -->
+    <path d="M346,318 L398,388 L404,480" fill="none" stroke="#FF9F1C" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Knee highlight -->
+    <circle cx="398" cy="388" r="6" fill="#FFB703"/>
+    <!-- Near Webbed Foot -->
+    <path d="M393,480 L438,476 L432,489 L392,487 Z" fill="#FF9F1C" stroke="#E07A00" stroke-width="1.8" stroke-linejoin="round"/>
+    <!-- Near Pedal Platform -->
+    <rect x="390" y="486" width="38" height="9" rx="3" fill="#212529" stroke="#6C757D" stroke-width="1.5"/>
+    <!-- Reflector on pedal -->
+    <rect x="401" y="488" width="16" height="5" rx="1" fill="#FCA311"/>
+
+    <!-- Tail Feathers -->
+    <path d="M298,295 L252,276 L268,294 L248,302 L272,308 L262,318 L305,314 Z" fill="url(#gemini-4-carbon-medium--bodyGrad)" stroke="#AEBFD1" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Plump Pelican Body & S-Curved Neck -->
+    <path d="M294,296
+             C295,332 345,342 388,325
+             C430,308 448,278 440,245
+             C434,220 412,202 414,174
+             C416,152 430,142 448,142
+             C465,142 476,125 466,110
+             C456,95 426,95 410,108
+             C398,118 394,114 382,110
+             C392,122 390,127 380,128
+             C392,134 394,142 390,162
+             C385,190 398,215 395,235
+             C392,252 365,256 335,264
+             C308,271 294,282 294,296 Z"
+          fill="url(#gemini-4-carbon-medium--bodyGrad)" stroke="#9EB3C7" stroke-width="2.2" stroke-linejoin="round"/>
+
+    <!-- Fluffy Chest Feather Accents -->
+    <path d="M418,262 Q430,268 424,280" fill="none" stroke="#CFDCE8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M406,282 Q418,288 412,300" fill="none" stroke="#CFDCE8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Cute Fish Tail Peeking Out of Beak! -->
+    <g transform="translate(585, 134) rotate(-14)">
+      <path d="M0,6 L22,-8 L18,6 L24,18 Z" fill="#48CAE4" stroke="#0077B6" stroke-width="1.8" stroke-linejoin="round"/>
+      <line x1="4" y1="6" x2="16" y2="1" stroke="#90E0EF" stroke-width="1.5"/>
+      <line x1="4" y1="6" x2="16" y2="11" stroke="#90E0EF" stroke-width="1.5"/>
+    </g>
+
+    <!-- Giant Golden Gular Pouch (Lower Beak) -->
+    <path d="M454,132
+             C465,192 518,218 568,196
+             C600,182 618,156 626,136
+             L454,132 Z"
+          fill="url(#gemini-4-carbon-medium--pouchGrad)" stroke="#D96B00" stroke-width="2.2" stroke-linejoin="round"/>
+
+    <!-- Subtle Pouch Stretch Lines -->
+    <path d="M472,145 Q515,192 588,162" fill="none" stroke="#E85D04" stroke-width="1.8" opacity="0.45" stroke-linecap="round"/>
+    <path d="M490,142 Q532,175 604,148" fill="none" stroke="#FFF3B0" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Long Upper Mandible with Classic Pelican Hook -->
+    <path d="M454,116
+             C510,118 575,120 625,125
+             C635,126 639,134 633,143
+             C629,147 625,142 624,137
+             C570,136 510,136 452,133
+             Z"
+          fill="url(#gemini-4-carbon-medium--upperBeakGrad)" stroke="#D96B00" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Smile / Mouth Crease -->
+    <path d="M446,131 Q454,136 462,133" fill="none" stroke="#B55400" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- Expressive Pelican Eye -->
+    <circle cx="445" cy="117" r="9.5" fill="#FFF3B0"/>
+    <circle cx="446" cy="117" r="6.5" fill="#FFFFFF" stroke="#5C6B73" stroke-width="1.5"/>
+    <circle cx="448" cy="116" r="3.8" fill="#1D2D44"/>
+    <circle cx="449.5" cy="114.5" r="1.4" fill="#FFFFFF"/>
+    <!-- Happy Cheek Blush -->
+    <ellipse cx="438" cy="128" rx="5.5" ry="3" fill="#FF8FA3" opacity="0.55"/>
+
+    <!-- Jaunty Sailor Cap -->
+    <g transform="translate(425, 95) rotate(-14)">
+      <path d="M-16,6 C-16,-10 18,-10 18,6 Z" fill="#FFFFFF" stroke="#1D3557" stroke-width="2"/>
+      <rect x="-17" y="3" width="36" height="6" rx="2" fill="#1D3557"/>
+      <path d="M-12,8 Q4,13 24,7" fill="none" stroke="#1D3557" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="1" cy="-6" r="2.5" fill="#FFD166"/>
+    </g>
+
+    <!-- Fluttering Striped Seaside Scarf -->
+    <g id="gemini-4-carbon-medium--scarf">
+      <!-- Flowing tails in the wind -->
+      <path d="M394,205 C355,195 315,215 272,196 L266,214 C312,232 352,214 394,220 Z" fill="#E63946" stroke="#A8202C" stroke-width="2" stroke-linejoin="round"/>
+      <!-- White stripes on tail -->
+      <path d="M352,204 L349,218 M318,206 L314,220 M286,201 L281,217" stroke="#FFFFFF" stroke-width="5"/>
+      <path d="M392,214 C362,218 335,238 302,232 L300,246 C336,252 365,232 396,225 Z" fill="#D62828" stroke="#9B1B26" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Neck wrap -->
+      <path d="M387,202 Q415,212 436,204 Q440,216 435,224 Q412,230 386,220 Z" fill="#E63946" stroke="#A8202C" stroke-width="2"/>
+      <path d="M402,206 L400,224 M422,207 L420,225" stroke="#FFFFFF" stroke-width="5"/>
+    </g>
+
+    <!-- Near Wing (Sweeping forward to grip near handlebar) -->
+    <g id="gemini-4-carbon-medium--near-wing">
+      <!-- Main white wing curve -->
+      <path d="M362,268
+               C340,295 365,326 408,314
+               C434,306 452,288 462,270
+               C455,258 442,258 432,266
+               C415,278 395,272 380,264
+               C372,260 366,262 362,268 Z"
+            fill="#FFFFFF" stroke="#9EB3C7" stroke-width="2.2" stroke-linejoin="round"/>
+
+      <!-- Dark Slate Primary Wingtips Wrapping Around Handlebar Grip -->
+      <path d="M428,306 C444,298 456,284 463,270 C456,262 446,263 440,270 C438,282 434,294 428,306 Z" fill="#2B2D42"/>
+      <!-- Feather detail strokes -->
+      <path d="M374,286 Q398,296 426,282" fill="none" stroke="#CFDCE8" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M382,300 Q406,308 436,292" fill="none" stroke="#CFDCE8" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- Near Handlebar Rubber Grip & Wing Feathers Curling Over -->
+      <rect x="438" y="259" width="28" height="11" rx="5.5" transform="rotate(-12 452 264)" fill="#343A40" stroke="#212529" stroke-width="1.5"/>
+      <!-- Feather fingers gripping bar -->
+      <path d="M444,260 Q452,252 458,261 Q463,254 467,264" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M444,260 Q452,252 458,261 Q463,254 467,264" fill="none" stroke="#2B2D42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- 5. MOTION LINES & SEA BREEZE ACCENTS -->
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.75" fill="none">
+    <line x1="95" y1="360" x2="155" y2="360"/>
+    <line x1="65" y1="385" x2="140" y2="385"/>
+    <line x1="105" y1="410" x2="150" y2="410"/>
+    <path d="M165,220 L235,220 C250,220 250,202 236,202 C226,202 226,212 234,212"/>
+  </g>
+
+  <!-- Little kicked-up dust/sand puffs behind rear wheel -->
+  <g fill="#FFF3B0" opacity="0.75">
+    <circle cx="162" cy="518" r="7"/>
+    <circle cx="148" cy="514" r="5"/>
+    <circle cx="136" cy="519" r="3.5"/>
+  </g>
+</svg>

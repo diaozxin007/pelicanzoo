@@ -140,6 +140,11 @@ for p in POSTS:
     # A p5.js watercolor tool uses a different prompt, not this SVG benchmark.
     if p["slug"] == "pelican-watercolor":
         continue
+    # The article image duplicates the high effort transcript.
+    if p["slug"] == "llm-gemini" and p["created"].startswith("2026-11-10"):
+        h = re.sub(r'<img\b[^>]*carbon-pelican\.webp[^>]*>', '', h, flags=re.I)
+    if p["slug"] == "muse-ember":
+        h = re.sub(r'<img\b[^>]*>', '', h, flags=re.I)
     items = [(attr(t.group(0), "src"), attr(t.group(0), "alt")) for t in IMG.finditer(h)]
     items += [(m.group(1), "") for m in SVG_LINK.finditer(h)]
     # Preserve the reviewed historical Markdown archive; support the newer
@@ -245,7 +250,14 @@ for p in POSTS:
                 if not (mm and svg):
                     continue
                 model = model_from_text(mm.group(1).rsplit("/", 1)[-1])
+                if p["slug"] == "llm-gemini" and p["created"].startswith("2026-11-10"):
+                    model = "gemini-4-carbon"
+                if p["slug"] == "muse-ember":
+                    model = "muse-ember-1.0"
                 effort = eff.group(1).lower() if eff else None
+                # Simon reports this run did not return a complete drawing.
+                if p["slug"] == "muse-ember" and effort == "high":
+                    continue
                 raster = shown.get((bare(model), effort))
                 if raster:
                     (LIVE / f"{raster['id']}.svg").write_text(svg.group(1) + "\n", encoding="utf-8")

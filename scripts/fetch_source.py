@@ -65,6 +65,16 @@ def main():
     rows = fetch(f"{DB}?{qs}")
     if isinstance(rows, dict) and rows.get("error"):
         sys.exit(f"Datasette error: {rows['error']}")
+    # This post contains the benchmark but is not tagged as a pelican post.
+    url = "https://simonwillison.net/2026/Nov/10/muse-ember/"
+    with urllib.request.urlopen(url, timeout=60) as response:
+        page = response.read().decode()
+    body = re.search(r'<div class="entry entryPage">(.*?)<div class="entryFooter">', page, re.S)
+    if not body:
+        raise ValueError(f"Missing article body: {url}")
+    if not any(row['slug'] == 'muse-ember' for row in rows):
+        rows.append({'kind': 'blogmark', 'id': 'muse-ember', 'title': 'Introducing Our Smallest, Most Efficient Model: Muse Ember', 'slug': 'muse-ember', 'created': '2026-11-10T07:28:00', 'html': body.group(1)})
+        rows.sort(key=lambda row: row['created'])
     # Beats store Markdown and release metadata. Archive their rendered
     # public article so the offline extractor sees the same HTML everywhere.
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
