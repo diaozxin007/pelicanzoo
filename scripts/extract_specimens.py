@@ -58,7 +58,7 @@ FAMILIES = [
     "granite","nemotron","sonar","aya","reka","dbrx","arctic","exaone","solar",
     "cohere","yi","internlm","baichuan","seed","ling","longcat","apriel","trillium",
     "muse","spark","astra","fable","luna","terra","sol","opus","sonnet","haiku",
-    "large","small","argon","wonder","flash","pro","nano","mini","turbo","maverick","scout","behemoth",
+    "large","small","argon","hydrogen","wonder","flash","pro","nano","mini","turbo","maverick","scout","behemoth",
     "lite","preview","exp","instruct","chat","vision","coder","math","air",
     "plus","max","ultra","base","it","distill","zero","next","omni",
 ]

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Background Sky & Ground -->
+  <rect width="400" height="300" fill="#E8F6FF" />
+  <rect y="260" width="400" height="40" fill="#A8D5BA" />
+  <line x1="0" y1="260" x2="400" y2="260" stroke="#7FB896" stroke-width="3" />
+
+  <!-- Subtle Clouds -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <ellipse cx="80" cy="60" rx="28" ry="12" />
+    <ellipse cx="95" cy="54" rx="20" ry="12" />
+    <ellipse cx="320" cy="48" rx="32" ry="13" />
+    <ellipse cx="305" cy="42" rx="18" ry="11" />
+  </g>
+
+  <!-- BICYCLE (Back Layer: Back Pedal & Rear Spokes) -->
+  <g id="gemini-4-hydrogen-medium--bicycle-back">
+    <!-- Back Crank & Pedal -->
+    <line x1="185" y1="215" x2="170" y2="195" stroke="#555" stroke-width="4" stroke-linecap="round" />
+    <rect x="161" y="192" width="16" height="6" rx="2" fill="#333" />
+  </g>
+
+  <!-- Pelican Back Leg (reaching to back pedal) -->
+  <g id="gemini-4-hydrogen-medium--pelican-back-leg">
+    <path d="M 162 145 L 168 175 L 169 193" fill="none" stroke="#D96B00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 163 193 L 176 193 L 173 197 L 165 197 Z" fill="#D96B00" />
+  </g>
+
+  <!-- BICYCLE WHEELS -->
+  <g id="gemini-4-hydrogen-medium--wheels">
+    <!-- Rear Wheel -->
+    <g transform="translate(120, 215)">
+      <circle r="42" fill="none" stroke="#2B2D42" stroke-width="6" />
+      <circle r="38" fill="none" stroke="#8D99AE" stroke-width="2" />
+      <g stroke="#8D99AE" stroke-width="1.5">
+        <line x1="-38" y1="0" x2="38" y2="0" />
+        <line x1="0" y1="-38" x2="0" y2="38" />
+        <line x1="-27" y1="-27" x2="27" y2="27" />
+        <line x1="-27" y1="27" x2="27" y2="-27" />
+      </g>
+      <circle r="5" fill="#555" />
+    </g>
+
+    <!-- Front Wheel -->
+    <g transform="translate(280, 215)">
+      <circle r="42" fill="none" stroke="#2B2D42" stroke-width="6" />
+      <circle r="38" fill="none" stroke="#8D99AE" stroke-width="2" />
+      <g stroke="#8D99AE" stroke-width="1.5">
+        <line x1="-38" y1="0" x2="38" y2="0" />
+        <line x1="0" y1="-38" x2="0" y2="38" />
+        <line x1="-27" y1="-27" x2="27" y2="27" />
+        <line x1="-27" y1="27" x2="27" y2="-27" />
+      </g>
+      <circle r="5" fill="#555" />
+    </g>
+  </g>
+
+  <!-- BICYCLE FRAME -->
+  <g id="gemini-4-hydrogen-medium--bicycle-frame" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Frame Tubes -->
+    <path d="M 120 215 L 185 215 L 162 152 Z" fill="none" stroke="#E63946" stroke-width="5" />
+    <path d="M 162 152 L 252 148 L 258 165 L 185 215" fill="none" stroke="#E63946" stroke-width="5" />
+    <!-- Front Fork -->
+    <line x1="252" y1="148" x2="280" y2="215" stroke="#E63946" stroke-width="5" />
+    <!-- Seat Post & Saddle -->
+    <line x1="162" y1="152" x2="158" y2="140" stroke="#8D99AE" stroke-width="4" />
+    <path d="M 142 140 Q 158 136 172 141 Q 165 147 145 145 Z" fill="#2B2D42" />
+    <!-- Handlebar Stem & Bars -->
+    <line x1="252" y1="148" x2="245" y2="122" stroke="#8D99AE" stroke-width="4" />
+    <path d="M 245 122 Q 238 118 228 122" fill="none" stroke="#2B2D42" stroke-width="4.5" />
+    <line x1="234" y1="120" x2="225" y2="123" stroke="#2B2D42" stroke-width="6" />
+    <!-- Chainring -->
+    <circle cx="185" cy="215" r="10" fill="#8D99AE" stroke="#555" stroke-width="2" />
+  </g>
+
+  <!-- PELICAN -->
+  <g id="gemini-4-hydrogen-medium--pelican">
+    <!-- Tail Feathers -->
+    <path d="M 135 126 L 108 118 L 120 128 L 106 132 L 130 137 Z" fill="#E5E0D5" stroke="#D0C9BC" stroke-width="1.5" stroke-linejoin="round" />
+
+    <!-- Body -->
+    <ellipse cx="160" cy="122" rx="34" ry="24" transform="rotate(-12 160 122)" fill="#FFFDF7" stroke="#D0C9BC" stroke-width="2" />
+
+    <!-- Neck & Head -->
+    <path d="M 176 112 Q 194 95 190 74 Q 189 58 205 58 Q 220 58 222 72 Q 214 82 206 86 Q 204 106 190 124 Z" fill="#FFFDF7" stroke="#D0C9BC" stroke-width="2" stroke-linejoin="round" />
+
+    <!-- Head Crest Tuft -->
+    <path d="M 196 60 Q 188 52 184 56 Q 190 61 193 63" fill="#FFFDF7" stroke="#D0C9BC" stroke-width="1.5" stroke-linecap="round" />
+
+    <!-- Throat Pouch -->
+    <path d="M 212 75 Q 245 112 288 86 Q 250 78 216 72 Z" fill="#F4A261" stroke="#E76F51" stroke-width="1.5" stroke-linejoin="round" />
+
+    <!-- Upper Beak -->
+    <path d="M 216 64 Q 258 68 296 86 Q 299 88 294 90 Q 255 82 214 75 Z" fill="#FCBF49" stroke="#E09F3E" stroke-width="1.5" stroke-linejoin="round" />
+    <!-- Beak Tip Hook -->
+    <path d="M 290 84 Q 298 86 296 92 Q 292 89 288 88 Z" fill="#E76F51" />
+
+    <!-- Eye -->
+    <circle cx="207" cy="68" r="4" fill="#2B2D42" />
+    <circle cx="208.5" cy="66.5" r="1.4" fill="#FFFFFF" />
+
+    <!-- Front Leg (reaching to front pedal) -->
+    <path d="M 164 142 L 180 185 L 200 232" fill="none" stroke="#F77F00" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Webbed Foot on Front Pedal -->
+    <path d="M 194 231 L 212 232 L 209 237 L 195 236 Z" fill="#F77F00" stroke="#D96B00" stroke-width="1" stroke-linejoin="round" />
+
+    <!-- Wing (Reaching to Handlebar) -->
+    <path d="M 155 114 Q 182 104 205 114 Q 220 118 232 121 Q 224 128 206 128 Q 180 132 156 126 Z" fill="#F4EFE6" stroke="#D0C9BC" stroke-width="2" stroke-linejoin="round" />
+    <!-- Wing Feather Accents -->
+    <path d="M 185 120 Q 202 122 216 122" fill="none" stroke="#D0C9BC" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M 178 125 Q 195 126 208 125" fill="none" stroke="#D0C9BC" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+
+  <!-- BICYCLE FRONT CRANK & PEDAL (Foreground) -->
+  <g id="gemini-4-hydrogen-medium--bicycle-front-crank">
+    <line x1="185" y1="215" x2="201" y2="235" stroke="#555" stroke-width="4.5" stroke-linecap="round" />
+    <circle cx="185" cy="215" r="4" fill="#333" />
+    <rect x="193" y="233" width="16" height="6" rx="2" fill="#2B2D42" />
+  </g>
+</svg>
