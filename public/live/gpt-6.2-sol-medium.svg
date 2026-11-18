@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 330"
+     role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-sol-medium--title">Pelican on a bicycle</title>
+  <desc id="gpt-6.2-sol-medium--desc">A white pelican with a golden bill pedals a teal bicycle.</desc>
+
+  <rect width="460" height="330" rx="24" fill="#fff6df"/>
+  <circle cx="368" cy="69" r="34" fill="#ffd67a"/>
+  <path d="M39 123h46m-60 16h37m-30 49h37"
+        fill="none" stroke="#e8bd83" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="230" cy="304" rx="186" ry="9" fill="#eed9b6"/>
+
+  <!-- Wheels -->
+  <defs>
+    <g id="gpt-6.2-sol-medium--wheel">
+      <circle r="55" fill="#fffaf0" stroke="#203645" stroke-width="7"/>
+      <circle r="47" fill="none" stroke="#a6c2c0" stroke-width="2"/>
+      <path d="M-47 0h94M0-47v94M-33-33l66 66m0-66-66 66"
+            stroke="#a6c2c0" stroke-width="2"/>
+      <circle r="6" fill="#203645"/>
+    </g>
+  </defs>
+  <use href="#gpt-6.2-sol-medium--wheel" x="112" y="244"/>
+  <use href="#gpt-6.2-sol-medium--wheel" x="348" y="244"/>
+
+  <!-- Frame, saddle, and handlebars -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M112 244l68-72 33 72H112m68-72 125-7-92 79m92-79 43 79"
+          stroke="#168b87" stroke-width="9"/>
+    <path d="M180 172l-7-17m132 10-10-24q-7-17 10-17h14"
+          stroke="#203645" stroke-width="6"/>
+    <path d="M155 155h39m118-31h14" stroke="#203645" stroke-width="9"/>
+  </g>
+  <circle cx="213" cy="244" r="16" fill="#fffaf0" stroke="#203645" stroke-width="4"/>
+  <path d="M213 244l17 18h17" fill="none" stroke="#203645"
+        stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Pelican -->
+  <g stroke="#203645" stroke-width="3.5" stroke-linecap="round"
+     stroke-linejoin="round">
+    <path d="M220 69c-10 9-9 20-21 28-13 9-40 5-67 17l-24-5
+             14 19-17 1c22 20 56 30 86 24 32-6 47-24 48-48
+             1-11 4-17 13-21 11-5 15-17 8-27-8-12-28-12-39-1
+             -5 5-6 10-1 13Z" fill="#fffdf6"/>
+    <path d="M249 66c27 0 51 8 79 20-13 4-42 4-67 0
+             -6-1-10-8-12-20Z" fill="#ffb94e"/>
+    <path d="M253 77c23 6 51 9 75 9-23 14-58 20-69 8-4-4-6-10-6-17Z"
+          fill="#f49a59"/>
+    <path d="M167 115c17-12 39-11 60-1l48 13 37-5
+             c4 0 6 6 2 8l-39 10-54-8c-17 16-44 13-60 4"
+          fill="#e0ecea"/>
+    <path d="M190 152l29 37-7 37 18 31 17 1"
+          fill="none" stroke="#d77b39" stroke-width="6"/>
+  </g>
+  <circle cx="241" cy="65" r="3.5" fill="#203645"/>
+  <circle cx="242" cy="64" r="1" fill="#fffdf6"/>
+</svg>

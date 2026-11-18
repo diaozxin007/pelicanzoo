@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 840 560"
+     role="img" aria-labelledby="title desc" stroke-linecap="round" stroke-linejoin="round">
+  <title id="gpt-6.2-astra-max--title">Pelican on a beach cruiser</title>
+  <desc id="gpt-6.2-astra-max--desc">A white pelican pedals a turquoise bicycle along the coast, one wing on the handlebars and a red scarf streaming behind it.</desc>
+
+  <defs>
+    <linearGradient id="gpt-6.2-astra-max--sky" x2="0%" y2="100%">
+      <stop stop-color="#c5e8e4"/>
+      <stop offset="1" stop-color="#fff1d5"/>
+    </linearGradient>
+    <linearGradient id="gpt-6.2-astra-max--plumage" x2="15%" y2="100%">
+      <stop stop-color="#fffdf2"/>
+      <stop offset=".62" stop-color="#fff9e9"/>
+      <stop offset="1" stop-color="#e1e6da"/>
+    </linearGradient>
+    <linearGradient id="gpt-6.2-astra-max--pouch" x2="15%" y2="100%">
+      <stop stop-color="#ffcb78"/>
+      <stop offset="1" stop-color="#ed9360"/>
+    </linearGradient>
+    <linearGradient id="gpt-6.2-astra-max--bill">
+      <stop stop-color="#ffc05a"/>
+      <stop offset=".82" stop-color="#ffd174"/>
+      <stop offset="1" stop-color="#e88948"/>
+    </linearGradient>
+
+    <g id="gpt-6.2-astra-max--wheel" fill="none">
+      <path d="M0 -76V76 M-76 0H76 M-53.7 -53.7L53.7 53.7 M-53.7 53.7L53.7 -53.7
+               M-29 -70L29 70 M-70 -29L70 29 M-70 29L70 -29 M-29 70L29 -70"
+            stroke="#91a7a1" stroke-width="1.7"/>
+      <circle r="83" stroke="#263e46" stroke-width="12"/>
+      <circle r="80.5" stroke="#efdfbd" stroke-width="4.5"/>
+      <circle r="77" stroke="#678789" stroke-width="2"/>
+      <path d="M29 -71l-2.5 6" stroke="#526e70" stroke-width="3"/>
+      <circle r="6.5" fill="#ddc59a" stroke="#263e46" stroke-width="2.5"/>
+    </g>
+    <path id="gpt-6.2-astra-max--guards" d="M157 433A93 93 0 0 1 304 353 M520 368A93 93 0 0 1 683 425"/>
+    <path id="gpt-6.2-astra-max--frame" d="M250 429L347 330L403 427Z
+                        M347 330C406 339 469 312 533 307L546 341L403 427
+                        M546 341C562 376 574 424 590 429"/>
+    <path id="gpt-6.2-astra-max--posts" d="M347 330L328 300 M533 307L525 284Q523 277 533 274L577 263"/>
+  </defs>
+
+  <!-- Salt air and a sandy coastal path -->
+  <rect width="840" height="560" fill="url(#gpt-6.2-astra-max--sky)"/>
+  <circle cx="159" cy="105" r="44" fill="#ffd485"/>
+  <g fill="#fffaf0" opacity=".85">
+    <path d="M38 169q6-15 24-13q9-23 31-12q18-15 33 5q18-2 27 16Z"/>
+    <path d="M550 77q8-13 23-11q8-21 27-14q12-7 23 8q16-2 24 15Z"/>
+  </g>
+  <path d="M703 100q10-4 18 4q3-10 14-12 M743 82q7-3 13 3q3-7 10-9"
+        fill="none" stroke="#80a6a2" stroke-width="2.8"/>
+  <path d="M0 312q59-17 104-6t100 15H0Z M590 322q56-15 91-10q93-26 159-14v27Z" fill="#acc8b9"/>
+  <path d="M0 320c173-4 279 5 424 1s281-5 416-2v109H0Z" fill="#add9cf"/>
+  <path d="M0 385q140-14 291-2t282-4t267 1v49H0Z" fill="#bfe0d2"/>
+  <path d="M23 342h54m15 0h9m30-12h52m-75 30h46m481-24h63m16 0h15m-36 25h69m16 0h26"
+        fill="none" stroke="#edf1db" stroke-width="3"/>
+  <path d="M0 406c124-17 226 10 352 5s311-23 488-6v155H0Z" fill="#e7d5af"/>
+  <path d="M0 434c162-16 267 12 431-3s280-17 409-1v130H0Z" fill="#f4e5c7"/>
+  <g fill="none" stroke="#9cae8d" stroke-width="2.5">
+    <path d="M48 408q-2-12-9-17m9 17q2-17 11-25m-5 24q5-9 11-12"/>
+    <path d="M748 403q-2-12-10-17m10 17q2-19 10-25m-4 25q5-11 12-14"/>
+  </g>
+  <path d="M62 481h31m10 0h6m592-8h27m10 0h7M86 524h36m599-9h42"
+        fill="none" stroke="#decca9" stroke-width="3"/>
+  <ellipse cx="421" cy="519" rx="245" ry="8" fill="#d9c8a6"/>
+  <path d="M111 224h47m-25 16h38m-76 0h17" fill="none" stroke="#91b9ae" stroke-width="3"/>
+
+  <!-- Wheels, fenders, and the far pedal -->
+  <use xlink:href="#gpt-6.2-astra-max--wheel" x="250" y="429"/>
+  <use xlink:href="#gpt-6.2-astra-max--wheel" x="590" y="429"/>
+  <g fill="none">
+    <use xlink:href="#gpt-6.2-astra-max--guards" stroke="#29444a" stroke-width="6.5"/>
+    <use xlink:href="#gpt-6.2-astra-max--guards" stroke="#e9c58c" stroke-width="3"/>
+    <path d="M403 427l-29 29" stroke="#526d6d" stroke-width="7"/>
+  </g>
+  <rect x="356" y="454" width="37" height="7" rx="3" fill="#a77652" stroke="#29444a" stroke-width="3"/>
+
+  <!-- Far leg, bent back at the hock -->
+  <path d="M324 279q7 39-4 71q-3 6 0 13l30 75q2 6-2 10q-4 7 5 7l38-1
+           q-6-4-12-4l5-5l-14 2l3-5l-11 2l-28-87q15-34 14-72Z"
+        fill="#d69050" stroke="#29444a" stroke-width="3.5"/>
+
+  <!-- Enamel frame and polished fittings -->
+  <g fill="none">
+    <path d="M568 266c42 12 23 61-22 77" stroke="#526e6c" stroke-width="2.5"/>
+    <use xlink:href="#gpt-6.2-astra-max--posts" stroke="#29444a" stroke-width="9"/>
+    <use xlink:href="#gpt-6.2-astra-max--posts" stroke="#c1d1c6" stroke-width="5"/>
+    <use xlink:href="#gpt-6.2-astra-max--frame" stroke="#233f46" stroke-width="11"/>
+    <use xlink:href="#gpt-6.2-astra-max--frame" stroke="#329c92" stroke-width="6.5"/>
+    <path d="M360 331q22 2 44-1m50 66l21-13" stroke="#9ed6bd" stroke-width="2"/>
+    <path d="M555 269l24-7" stroke="#233f46" stroke-width="10"/>
+    <path d="M555 269l24-7" stroke="#ac704c" stroke-width="6"/>
+  </g>
+  <path d="M295 298q4-7 20-4q19 6 34 2q10-2 11 4q0 5-10 8q-25 6-48-2q-9-2-7-8Z"
+        fill="#a86749" stroke="#233f46" stroke-width="3.5"/>
+  <g stroke="#29444a">
+    <path d="M540 320l15-9" fill="none" stroke-width="3"/>
+    <path d="M550 311q-2-10 15-11l3 15q-14 5-18-4Z" fill="#d4aa6e" stroke-width="3"/>
+    <ellipse cx="566" cy="308" rx="4" ry="7.5" transform="rotate(-10 566 308)" fill="#fff0b7" stroke-width="2.5"/>
+    <path d="M250 421l151-14a20.1 20.1 0 1 1 4 40l-155-10a8 8 0 0 1 0-16Z"
+          fill="none" stroke-width="2.8"/>
+    <circle cx="403" cy="427" r="18.5" fill="#e9d9b4" stroke-width="3"/>
+    <circle cx="403" cy="427" r="11" fill="none" stroke="#83a49b" stroke-width="4" stroke-dasharray="9 5"/>
+    <path d="M403 427l29-29" stroke-width="8"/>
+    <path d="M403 427l29-29" stroke="#c1d1c6" stroke-width="4"/>
+    <rect x="414" y="397" width="44" height="8" rx="3" fill="#a77652" stroke-width="3"/>
+    <circle cx="250" cy="429" r="4" fill="#f8e5b6" stroke-width="2"/>
+    <circle cx="590" cy="429" r="4" fill="#f8e5b6" stroke-width="2"/>
+  </g>
+
+  <!-- Near leg and webbed foot on the raised pedal -->
+  <path d="M359 275q6 28 28 52l24 58l-2 7q-3 6 4 6q25 3 48-5l-15-1l7-8l-18 3l5-7l-16 5
+           l-22-63q-7-12-20-47Z" fill="#f0ac58" stroke="#29444a" stroke-width="3.5"/>
+  <path d="M397 347l7-3m-3 12l7-3m-4 12l7-3m9 30l15-4"
+        fill="none" stroke="#c48047" stroke-width="2"/>
+
+  <!-- The far wing reaches around the handlebar grip -->
+  <path d="M418 197c26-5 40 10 58 25c22 19 50 26 71 28q10 0 16 5l10 8q5 7-2 6l-11-6
+           q8 9 2 10q-4 2-11-7q5 8-1 8l-12-9c-46 1-90-14-118-35Z"
+        fill="#d3dfd6" stroke="#233f46" stroke-width="4"/>
+  <path d="M474 230q29 21 62 25m-47-12q17 11 35 14" fill="none" stroke="#96ada5" stroke-width="2.5"/>
+
+  <!-- White plumage, swept neck, and folded flight feathers -->
+  <path d="M189 219c27 8 44 9 65-2c25-13 54-12 83-3c15 5 28 1 35-15
+           c11-23 33-45 34-64c1-10-6-16-5-27q-6-4-14-3q5-7 15-8l-11-6q12-3 21 1
+           c12-16 29-20 45-14c18 6 27 17 27 33l-8 18c-11 10-19 17-17 32
+           c2 18 16 32 11 56c-5 23-25 43-46 60c-29 23-65 29-98 23
+           c-34-4-63-20-81-39q-29-5-54-22h20q-14-8-22-20Z"
+        fill="url(#gpt-6.2-astra-max--plumage)" stroke="#233f46" stroke-width="4.5"/>
+  <path d="M447 146c-19 20-4 39-5 57c-1 25-17 46-39 61c28-10 52-35 54-58
+           c1-20-13-37-6-55Z" fill="#dce6dc"/>
+  <path d="M268 267q43 24 87 20q39-1 69-22q-38 35-82 33q-43-1-74-31Z" fill="#cddcd4"/>
+  <path d="M374 229c-36-13-66-7-99 3q-34 8-77 1q11 12 40 15l-23 2q19 10 47 7l-20 6
+           q39 15 75 4q35-8 57-30Z" fill="#405b64" stroke="#233f46" stroke-width="3.5"/>
+  <path d="M383 227c-13-18-45-21-75-12c-25 8-51 14-72 14q10 12 36 11l-14 6
+           q24 6 46-3l-10 8c31 6 67-1 84-12q9-5 5-12Z"
+        fill="#e8ecdf" stroke="#29444a" stroke-width="3.5"/>
+  <path d="M281 233q12 2 24-4m5 5q14 1 26-6m6 4q11 0 19-5"
+        fill="none" stroke="#a1b6ac" stroke-width="2.4"/>
+
+  <!-- Windblown neckerchief -->
+  <g stroke="#29444a" stroke-width="3.3">
+    <path d="M390 173c-24-1-40 14-59 19h-17l14 6l-11 9c31 0 50-17 75-25Z" fill="#c45549"/>
+    <path d="M392 171c-27-17-45-6-67-6q-21 1-41-12l9 16l-14 5c31 13 53 5 73 1
+             q20-3 34 8Z" fill="#e67657"/>
+    <path d="M390 165q30 14 69-5l4 16q-37 19-80 6Z" fill="#e67657"/>
+    <path d="M383 166q10-2 15 7l-6 11q-12 3-14-6Z" fill="#f18a65"/>
+  </g>
+  <path d="M408 181q23 4 44-7m-148-10l-4 10" fill="none" stroke="#ffc49b" stroke-width="2.6"/>
+
+  <!-- The pelican's hanging throat pouch and long, hooked upper bill -->
+  <path d="M430 112q6-20 24-19q15 0 20 12l-4 15q-13-7-26-1q-10 3-15-1Z" fill="#f1d58c"/>
+  <path d="M465 115c64 5 147 19 220 19c-34 13-70 30-104 43c-45 16-77 9-99-12
+           q-18-14-19-38Z" fill="url(#gpt-6.2-astra-max--pouch)" stroke="#233f46" stroke-width="4"/>
+  <path d="M481 132q8 32 41 44q20 7 40 0q-50-1-67-43Z" fill="#ffd388" opacity=".85"/>
+  <path d="M493 138q12 21 35 30m-19-28q19 17 42 21" fill="none" stroke="#d68a52" stroke-width="2.3"/>
+  <path d="M465 102q13-1 30 3c61 10 131 19 185 22q12 1 12 7q1 7-8 14q-3 3-5 0l3-11
+           c-77-1-146-8-205-15q-12-2-13-9Z" fill="url(#gpt-6.2-astra-max--bill)" stroke="#233f46" stroke-width="4"/>
+  <path d="M486 108q73 13 141 19" fill="none" stroke="#ffe3a0" stroke-width="3"/>
+  <ellipse cx="479" cy="112" rx="3.6" ry="1.8" fill="#905f3f" transform="rotate(9 479 112)"/>
+
+  <path d="M436 91q7-5 14-2" fill="none" stroke="#677b76" stroke-width="2.5"/>
+  <ellipse cx="451" cy="105" rx="9" ry="9.5" fill="#fffdf1" stroke="#233f46" stroke-width="2.8"/>
+  <circle cx="454" cy="106" r="5.3" fill="#233f46"/>
+  <circle cx="455.5" cy="103.5" r="1.7" fill="white"/>
+</svg>

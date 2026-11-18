@@ -161,6 +161,8 @@ for p in POSTS:
             continue
         name = src.rsplit("/", 1)[-1]
         stem, ext = name.rsplit(".", 1)[0], name.rsplit(".", 1)[-1].lower()
+        if p["slug"] == "gpt62-astra-and-sol" and stem == "astra-6-2-max":
+            continue  # The same drawing is included in the transcript.
         blob = f"{stem} {alt}"
 
         is_slide = bool(SLIDE.search(name))

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 720 480" role="img"
+     aria-labelledby="title desc" stroke-linecap="round" stroke-linejoin="round">
+  <title id="gpt-6.2-sol-max--title">Pelican riding a bicycle</title>
+  <desc id="gpt-6.2-sol-max--desc">A white pelican in a fluttering teal scarf pedals a coral bicycle, with one wing on the handlebars.</desc>
+
+  <defs>
+    <g id="gpt-6.2-sol-max--wheel">
+      <circle r="84" fill="#fffbef" stroke="#263a49" stroke-width="8"/>
+      <circle r="76" fill="none" stroke="#77a9a0" stroke-width="2.5"/>
+      <path d="M0 -75V75 M-75 0H75 M-53 -53L53 53 M53 -53L-53 53
+               M-29 -69L29 69 M29 -69L-29 69 M-69 -29L69 29 M69 -29L-69 29"
+            fill="none" stroke="#9ab4ad" stroke-width="1.5"/>
+      <circle r="8" fill="#e1eee5" stroke="#263a49" stroke-width="3.5"/>
+    </g>
+    <path id="gpt-6.2-sol-max--frame" d="M202 354L294 245L333 349Z
+                        M294 245L467 242L479 273L333 349
+                        M479 273C491 301 499 334 520 354"/>
+    <path id="gpt-6.2-sol-max--bars" d="M467 242L456 216Q453 208 462 206L475 203
+                       Q482 191 493 197L509 205"/>
+    <path id="gpt-6.2-sol-max--far-leg" d="M294 222L273 289L287 370"/>
+    <path id="gpt-6.2-sol-max--near-leg" d="M327 222L366 259L352 303"/>
+    <path id="gpt-6.2-sol-max--pelican" d="M206 176Q219 182 241 183
+                          C271 174 296 174 321 176
+                          C348 178 358 161 360 142
+                          C361 122 365 105 377 96
+                          Q368 95 363 87Q376 91 386 90
+                          C405 83 424 93 432 111
+                          Q421 124 429 140
+                          C407 146 397 155 392 175
+                          C383 208 365 228 337 235
+                          C306 243 280 232 255 216
+                          Q228 209 206 196L226 197Q210 188 206 176Z"/>
+    <clipPath id="gpt-6.2-sol-max--pelican-clip"><use xlink:href="#gpt-6.2-sol-max--pelican"/></clipPath>
+  </defs>
+
+  <!-- Sky and motion lines -->
+  <rect width="720" height="480" rx="26" fill="#fff7e8"/>
+  <circle cx="475" cy="139" r="109" fill="#ffe0a0"/>
+  <path d="M111 119H135C137 109 146 103 155 105
+           Q163 106 166 114Q172 110 178 113Q182 115 184 119H205"
+        fill="none" stroke="#e7c8a5" stroke-width="3"/>
+  <path d="M103 202H159 M127 220H182 M91 238H120"
+        fill="none" stroke="#83ada1" stroke-width="3.5"/>
+  <ellipse cx="360" cy="442" rx="262" ry="11" fill="#e3ebde"/>
+
+  <!-- Wheels, chain, and far pedal -->
+  <use xlink:href="#gpt-6.2-sol-max--wheel" x="202" y="354"/>
+  <use xlink:href="#gpt-6.2-sol-max--wheel" x="520" y="354"/>
+  <g fill="none" stroke="#263a49">
+    <path d="M202 347L333 332M202 361L333 366" stroke-width="2.5"/>
+    <path d="M333 349L303 385M289 385H316" stroke-width="7"/>
+    <use xlink:href="#gpt-6.2-sol-max--far-leg" stroke-width="11"/>
+    <use xlink:href="#gpt-6.2-sol-max--far-leg" stroke="#d8975f" stroke-width="6.5"/>
+  </g>
+  <path d="M282 369Q287 366 293 370L307 374Q315 373 314 378
+           Q312 382 303 382H284Q279 381 280 376Z"
+        fill="#d8975f" stroke="#263a49" stroke-width="3.5"/>
+
+  <!-- Bicycle frame and controls -->
+  <g fill="none" stroke="#263a49">
+    <path d="M295 248L288 229" stroke-width="8"/>
+    <use xlink:href="#gpt-6.2-sol-max--bars" stroke-width="8"/>
+    <use xlink:href="#gpt-6.2-sol-max--bars" stroke="#adc6bf" stroke-width="3.5"/>
+    <path d="M494 198L510 205" stroke-width="10"/>
+    <use xlink:href="#gpt-6.2-sol-max--frame" stroke-width="14"/>
+    <use xlink:href="#gpt-6.2-sol-max--frame" stroke="#eb7058" stroke-width="8.5"/>
+    <path d="M315 246L442 243" stroke="#ffa78a" stroke-width="2.5"/>
+  </g>
+  <path d="M263 230C279 227 292 233 310 230Q320 229 316 236
+           Q313 240 297 240H280Q267 239 262 235Q258 232 263 230Z"
+        fill="#263a49"/>
+  <g fill="#fff0c9">
+    <circle cx="202" cy="354" r="3.5"/>
+    <circle cx="520" cy="354" r="3.5"/>
+  </g>
+  <circle cx="333" cy="349" r="17" fill="#ffdb94" stroke="#263a49" stroke-width="4"/>
+  <path d="M333 349L363 315M348 316H377" fill="none" stroke="#263a49" stroke-width="8"/>
+  <path d="M335 346L360 318" fill="none" stroke="#b5ccc4" stroke-width="2.5"/>
+
+  <!-- Near leg and webbed foot -->
+  <use xlink:href="#gpt-6.2-sol-max--near-leg" fill="none" stroke="#263a49" stroke-width="13"/>
+  <use xlink:href="#gpt-6.2-sol-max--near-leg" fill="none" stroke="#f4b464" stroke-width="8"/>
+  <path d="M347 300Q352 297 358 301L365 305Q371 301 374 305L374 307
+           Q382 305 383 309Q383 314 374 314H349Q343 314 345 307Z"
+        fill="#f4b464" stroke="#263a49" stroke-width="3.5"/>
+  <path d="M357 306L365 310" fill="none" stroke="#bb754b" stroke-width="2"/>
+
+  <!-- Fluttering scarf tail and the pelican's long bill -->
+  <path d="M365 154C341 162 331 136 300 145L313 153L303 162
+           C331 153 336 178 364 165Z"
+        fill="#68afa4" stroke="#263a49" stroke-width="4"/>
+  <path d="M420 119C465 124 524 138 573 139
+           C548 157 524 170 493 168C466 166 439 153 420 139Z"
+        fill="#eca65c" stroke="#263a49" stroke-width="4.5"/>
+  <path d="M438 140C471 151 503 154 543 149C509 168 469 165 438 140Z"
+        fill="#f8c778"/>
+  <path d="M421 108C465 111 523 125 568 135Q576 137 575 142
+           Q574 146 569 146L567 143C512 144 450 136 421 132Q416 123 421 108Z"
+        fill="#ffd17b" stroke="#263a49" stroke-width="4.5"/>
+  <path d="M443 116Q492 122 539 133" fill="none" stroke="#ffe7af" stroke-width="2.5"/>
+
+  <!-- Body and face -->
+  <use xlink:href="#gpt-6.2-sol-max--pelican" fill="#fffdf5"/>
+  <path d="M200 188C245 197 291 236 333 220
+           C371 205 367 175 392 151Q406 139 435 137L441 233L325 256L207 221Z"
+        clip-path="url(#gpt-6.2-sol-max--pelican-clip)" fill="#dae9e5"/>
+  <use xlink:href="#gpt-6.2-sol-max--pelican" fill="none" stroke="#263a49" stroke-width="4.5"/>
+  <ellipse cx="396" cy="125" rx="7" ry="3.5" fill="#f1c7a9"/>
+  <circle cx="408" cy="111" r="8" fill="#f6dfa9"/>
+  <circle cx="410" cy="111" r="4.6" fill="#263a49"/>
+  <circle cx="411.5" cy="109.5" r="1.4" fill="#fffdf5"/>
+  <path d="M400 101Q406 97 412 100" fill="none" stroke="#263a49" stroke-width="2"/>
+  <path d="M358 147Q374 157 409 148L398 164Q372 174 354 160Z"
+        fill="#68afa4" stroke="#263a49" stroke-width="4"/>
+  <path d="M362 155Q374 161 390 157" fill="none" stroke="#b8ded0" stroke-width="2.5"/>
+
+  <!-- Wing reaches forward to the handlebar grip -->
+  <path d="M310 190C327 178 347 181 369 191
+           C402 205 446 202 480 192Q493 188 500 195
+           Q505 201 496 205L486 208Q491 212 482 215
+           C430 231 372 229 331 217Q302 207 310 190Z"
+        fill="#edf5ef" stroke="#263a49" stroke-width="4.5"/>
+  <path d="M326 200C353 213 380 216 409 215
+           M370 200C392 207 412 209 432 207
+           M455 213Q470 211 483 205"
+        fill="none" stroke="#8eb3af" stroke-width="2.5"/>
+</svg>

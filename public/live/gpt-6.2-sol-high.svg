@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560"
+     role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-sol-high--title">A pelican riding a bicycle</title>
+  <desc id="gpt-6.2-sol-high--desc">A white pelican with a long golden bill pedals a teal bicycle under a peach-colored sun.</desc>
+
+  <defs>
+    <linearGradient id="gpt-6.2-sol-high--sky" x2="0%" y2="100%">
+      <stop stop-color="#e0f5f6"/>
+      <stop offset="1" stop-color="#fff4dc"/>
+    </linearGradient>
+    <g id="gpt-6.2-sol-high--wheel">
+      <circle r="87" fill="#f7fcf7" fill-opacity=".5" stroke="#203744" stroke-width="11"/>
+      <circle r="80" fill="none" stroke="#8ba9ae" stroke-width="2"/>
+      <path d="M0-79V79 M-79 0H79 M-56-56L56 56 M-56 56L56-56
+               M-30-73L30 73 M-73-30L73 30 M-73 30L73-30 M-30 73L30-73"
+            fill="none" stroke="#8ba9ae" stroke-width="1.5"/>
+      <circle r="7" fill="#fff9ec" stroke="#203744" stroke-width="3"/>
+    </g>
+  </defs>
+
+  <!-- Sky and road -->
+  <rect width="800" height="560" rx="28" fill="url(#gpt-6.2-sol-high--sky)"/>
+  <circle cx="649" cy="117" r="60" fill="#ffd29c"/>
+  <g fill="#fff" opacity=".72">
+    <path d="M94 139a16 16 0 0 1 15-16 25 25 0 0 1 47-4 20 20 0 0 1 30 20Z"/>
+    <path d="M644 276a13 13 0 0 1 13-13 20 20 0 0 1 37-3 15 15 0 0 1 23 16Z"/>
+  </g>
+  <path d="M28 473H772V532Q772 560 744 560H56Q28 560 28 532Z" fill="#f0e4cb"/>
+  <path d="M28 473H772" stroke="#fffaf0" stroke-width="3"/>
+  <ellipse cx="400" cy="510" rx="295" ry="13" fill="#d8c5a7" opacity=".64"/>
+  <path d="M91 296h75m-96 20h51m-57 204h34m604-15h35"
+        fill="none" stroke="#88adb0" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+
+  <!-- Wheels and bicycle -->
+  <use href="#gpt-6.2-sol-high--wheel" x="211" y="419"/>
+  <use href="#gpt-6.2-sol-high--wheel" x="589" y="419"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M211 419L336 337L372 420Z M336 337L530 325L372 420
+             M530 325L550 371Q564 402 589 419"
+          stroke="#203744" stroke-width="13"/>
+    <path d="M211 419L336 337L372 420Z M336 337L530 325L372 420
+             M530 325L550 371Q564 402 589 419"
+          stroke="#23a99c" stroke-width="7"/>
+    <path d="M336 337L330 319 M530 325L515 284Q511 272 526 268L552 262"
+          stroke="#203744" stroke-width="7"/>
+    <path d="M309 322Q328 319 350 323 M546 263L565 259"
+          stroke="#203744" stroke-width="10"/>
+    <path d="M211 414L372 401 M211 424L372 439" stroke="#344c58" stroke-width="3"/>
+    <circle cx="372" cy="420" r="19" fill="#f9edcf" stroke="#203744" stroke-width="4"/>
+    <circle cx="372" cy="420" r="5" fill="#203744"/>
+    <path d="M358 395L372 420L386 445 M347 395H369 M375 445H397"
+          stroke="#203744" stroke-width="5"/>
+  </g>
+
+  <!-- Pelican -->
+  <g stroke="#203744" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M348 310L335 351L357 388M351 391L365 391"
+          fill="none" stroke="#b96b35" stroke-width="8"/>
+    <path d="M374 314L403 360L384 434"
+          fill="none" stroke="#203744" stroke-width="12"/>
+    <path d="M374 314L403 360L384 434"
+          fill="none" stroke="#e99a47" stroke-width="7"/>
+    <path d="M384 430Q396 429 405 438Q391 447 377 441Z"
+          fill="#ffc16a" stroke-width="3"/>
+
+    <path d="M233 278Q267 290 306 267
+             C342 245 366 257 387 225
+             C402 202 399 179 417 156
+             C435 132 469 131 487 149
+             C504 167 495 190 479 203
+             C461 217 455 229 455 248
+             C455 281 438 308 407 323
+             C366 342 316 333 280 312
+             Q250 311 232 297L252 295Z"
+          fill="#fffdf5" stroke-width="4"/>
+
+    <path d="M479 174Q513 167 549 182L659 205
+             Q613 226 570 233Q522 241 493 207Q482 194 479 174Z"
+          fill="#f5ac5a" stroke-width="3.5"/>
+    <path d="M479 160Q503 156 534 166L657 198
+             Q670 202 659 207Q588 209 533 189L480 183Z"
+          fill="#ffd37b" stroke-width="3.5"/>
+    <path d="M501 190Q524 218 558 221" fill="none" stroke="#bd733f" stroke-width="2.5"/>
+
+    <path d="M319 280C342 260 367 262 395 275
+             C439 296 487 283 534 259Q547 252 552 261
+             Q556 269 543 278C492 314 446 324 405 316
+             C369 319 337 305 319 280Z"
+          fill="#e7efed" stroke-width="3.5"/>
+    <path d="M348 281Q383 302 416 298M375 301Q411 315 448 306"
+          fill="none" stroke="#91a9ad" stroke-width="2.5"/>
+    <path d="M423 156Q427 143 419 134M433 150Q439 139 434 130"
+          fill="none" stroke-width="3"/>
+    <circle cx="467" cy="164" r="5.5" fill="#203744" stroke="none"/>
+    <circle cx="468.5" cy="162.5" r="1.7" fill="#fff" stroke="none"/>
+  </g>
+</svg>

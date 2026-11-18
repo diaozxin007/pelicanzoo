@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-astra-xhigh--title">The pelican’s morning ride</title>
+  <desc id="gpt-6.2-astra-xhigh--desc">A white pelican with a golden bill and a fluttering red scarf pedals a teal bicycle along the seaside.</desc>
+
+  <defs>
+    <linearGradient id="gpt-6.2-astra-xhigh--sky" x2="0" y2="1">
+      <stop stop-color="#e6f3ed"/>
+      <stop offset="1" stop-color="#fff4db"/>
+    </linearGradient>
+    <linearGradient id="gpt-6.2-astra-xhigh--pouch" x2=".2" y2="1">
+      <stop stop-color="#ffd478"/>
+      <stop offset="1" stop-color="#f09a49"/>
+    </linearGradient>
+    <g id="gpt-6.2-astra-xhigh--wheel">
+      <circle r="87" fill="none" stroke="#243d40" stroke-width="12"/>
+      <circle r="82" fill="none" stroke="#f5e8c8" stroke-width="4"/>
+      <g fill="none" stroke="#819b96" stroke-width="1.7">
+        <path d="M-80 0H80 M0-80V80 M-56.6-56.6 56.6 56.6 M-56.6 56.6 56.6-56.6"/>
+        <path d="M-80 0H80 M0-80V80 M-56.6-56.6 56.6 56.6 M-56.6 56.6 56.6-56.6" transform="rotate(22.5)"/>
+      </g>
+      <circle r="8" fill="#e5d4ac" stroke="#243d40" stroke-width="3"/>
+    </g>
+  </defs>
+
+  <!-- Seaside promenade -->
+  <rect width="800" height="600" fill="url(#gpt-6.2-astra-xhigh--sky)"/>
+  <circle cx="584" cy="149" r="73" fill="#ffdf9e"/>
+  <g fill="none" stroke="#fffdf2" stroke-width="5" stroke-linecap="round">
+    <path d="M65 129h67m10 0h19M82 140h29M661 216h69m11 0h14"/>
+  </g>
+  <path d="M0 357q89-33 164-12t155 12q97-40 182-16t161 8q82-23 138-11v70H0" fill="#bbd3c5"/>
+  <path d="M0 365q135-7 264 0t275-1q144-5 261 0v124H0" fill="#a9d4ca"/>
+  <g fill="none" stroke="#e4f0de" stroke-width="3" stroke-linecap="round">
+    <path d="M29 390h65m15 0h17m552-9h66M51 419h25m556-17h46m34 35h59M105 451h40"/>
+  </g>
+  <path d="M0 477q180-9 361-2t439-6v131H0" fill="#eddbb7"/>
+  <path d="M0 484q175-9 352-2t448-7" fill="none" stroke="#fff0d4" stroke-width="5"/>
+  <ellipse cx="394" cy="532" rx="277" ry="13" fill="#c8b895" opacity=".56"/>
+
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bicycle -->
+    <use href="#gpt-6.2-astra-xhigh--wheel" x="229" y="439"/>
+    <use href="#gpt-6.2-astra-xhigh--wheel" x="565" y="439"/>
+
+    <path d="M229 432 361 419q25-2 26 19t-26 21l-132-14q-11-5 0-13Z"
+          fill="none" stroke="#455953" stroke-width="3"/>
+    <g fill="none">
+      <path d="m229 439 100-110 37 109-137 1m100-110 149-12 16 35-128 86m128-86 71 87"
+            stroke="#263e40" stroke-width="13"/>
+      <path d="m229 439 100-110 37 109-137 1m100-110 149-12 16 35-128 86m128-86 71 87"
+            stroke="#269990" stroke-width="7.5"/>
+      <path d="m329 329-10-31m159 19-9-26q-2-6 6-8l27-8 17 4"
+            stroke="#293f40" stroke-width="9"/>
+      <path d="m478 315-8-24q-2-5 5-7l27-8" stroke="#a9bbb0" stroke-width="4"/>
+      <path d="m501 276 18 3" stroke="#85553e" stroke-width="10"/>
+      <path d="M516 283q19 31-5 53" stroke="#405856" stroke-width="2"/>
+    </g>
+    <path d="M282 297q9-7 28-2 12 4 32 2 9-1 8 5-2 7-22 7h-36q-13-2-10-12Z"
+          fill="#965d43" stroke="#293f40" stroke-width="4"/>
+    <circle cx="366" cy="438" r="18" fill="#6ab1a1" stroke="#293f40" stroke-width="4"/>
+    <circle cx="366" cy="438" r="9" fill="#e4ddbe" stroke="#293f40" stroke-width="3"/>
+    <path d="m366 438-30-24" stroke="#425655" stroke-width="7"/>
+    <path d="M320 416h33" stroke="#293f40" stroke-width="8"/>
+
+    <!-- Far leg and webbed foot -->
+    <path d="m301 283-18 48q-3 7 2 14l41 58-5 8 32 1q6-1 2-5l-18-7-38-63 20-46"
+          fill="#dfa253" stroke="#394849" stroke-width="4"/>
+
+    <!-- Far wing reaching the handlebars -->
+    <path d="M367 208q23-2 40 17 27 31 66 39l30 4q8 2 10 9-8 3-20-1
+             7 6 2 7-8 0-21-6-32 0-70-18-35-17-37-51Z"
+          fill="#e3e5d8" stroke="#304447" stroke-width="4"/>
+    <path d="M442 259q17 11 40 14" fill="none" stroke="#adbbb2" stroke-width="3"/>
+
+    <!-- Near leg -->
+    <path d="M332 285q8-7 16 1l40 48q5 6 3 15l-9 88q0 6 8 8l20 4
+             q8 2 9 8l-14-1 2 3-14-3-14 1q-9 0-9-8l5-102-43-45Z"
+          fill="#f3b960" stroke="#304447" stroke-width="4"/>
+    <path d="m366 438 29 23" stroke="#354c4c" stroke-width="7"/>
+    <path d="M378 461h35" stroke="#293f40" stroke-width="9"/>
+    <path d="M382 460h25" stroke="#bb9566" stroke-width="3"/>
+
+    <!-- Tail, body, and long curved neck -->
+    <path d="M158 200q44 17 94 7 43-9 78-4 25 1 21-22l-8-26
+             q-10-37 18-56 25-18 53-6 23 9 29 34
+             -8 22-39 22-15 0-10 22l11 28q20 52-5 81
+             -22 28-68 23-61-3-108-52l-43-29 17 1Z"
+          fill="#fffdf0" stroke="#304447" stroke-width="4.5"/>
+    <path d="M214 229q49 43 98 48 52 7 88-17-15 38-54 40-61 6-119-48Z"
+          fill="#e3e5d6"/>
+    <path d="M384 151q-13 12-2 41l11 30" fill="none" stroke="#cbd5c8" stroke-width="4"/>
+
+    <!-- Folded near wing, with layered flight feathers -->
+    <path d="M351 230q-15-25-50-22-33 3-62 9-24 5-51 0
+             16 16 44 23l-16-1q24 19 53 22l-12 2q36 18 67 8 27-9 27-28"
+          fill="#f3f1e1" stroke="#304447" stroke-width="3.5"/>
+    <g fill="none" stroke="#a5b5ac" stroke-width="2.8">
+      <path d="M234 228q33 13 65 10m-55 4q36 13 64 9m-36 7q23 7 44 1"/>
+    </g>
+
+    <!-- Windblown neckerchief -->
+    <path d="M351 183q-28 1-50-13-18-10-36-5l14 9-12 4q27-2 47 12 20 12 43 4Z"
+          fill="#da5c49" stroke="#304447" stroke-width="3.5"/>
+    <path d="M354 181q16 6 39-2l5 12q-23 10-44 1Z"
+          fill="#ed7055" stroke="#304447" stroke-width="3.5"/>
+    <path d="M354 181q-11-5-12 4-2 9 10 12l7-7Z" fill="#c84e40" stroke="#304447" stroke-width="3"/>
+
+    <!-- Golden throat pouch and hooked upper bill -->
+    <path d="M401 137q29 1 51-1l161 3q-30 29-67 44-44 17-81-2
+             -17-8-29-20-11-10-28-12-8-1-7-12Z"
+          fill="url(#gpt-6.2-astra-xhigh--pouch)" stroke="#304447" stroke-width="4"/>
+    <path d="M439 149q27 30 59 33m-37-31q20 20 41 25" fill="none" stroke="#dd9048" stroke-width="2.5"/>
+    <path d="M422 122q79 2 183 11 17 1 14 11l-5 9q-2 2-4-2l-3-8
+             q-93 4-180-2-12 1-18-5Z"
+          fill="#ffc466" stroke="#304447" stroke-width="4"/>
+    <path d="M439 128q80 3 144 9" fill="none" stroke="#ffe2a0" stroke-width="3"/>
+
+    <!-- Eye and a jaunty little cycling cap -->
+    <circle cx="405" cy="119" r="8" fill="#304447"/>
+    <circle cx="408" cy="116" r="2.5" fill="#fffdf0"/>
+    <path d="M392 107q7-5 14-3" fill="none" stroke="#304447" stroke-width="3"/>
+    <path d="M345 111q-2-29 24-40 28-11 47 15l-4 7q-39-2-67 18Z"
+          fill="#32978d" stroke="#304447" stroke-width="4"/>
+    <path d="M369 74q15 1 25 17" fill="none" stroke="#87c3ae" stroke-width="3"/>
+    <path d="M345 106q31-19 67-19l24-1q6 0 4 4-6 6-26 8-35-1-68 14Z"
+          fill="#24766f" stroke="#304447" stroke-width="3.5"/>
+  </g>
+</svg>

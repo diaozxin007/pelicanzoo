@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-astra-low--title">A pelican riding a bicycle</title>
+  <desc id="gpt-6.2-astra-low--desc">A white pelican with a golden bill pedals a coral-red bicycle along a sunny seaside path, its blue scarf fluttering behind it.</desc>
+
+  <rect width="640" height="480" rx="24" fill="#dff5f2"/>
+  <circle cx="527" cy="88" r="42" fill="#ffda86"/>
+  <path d="M0 299 Q80 290 160 299 T320 299 T480 299 T640 299 V397 H0Z" fill="#a7dcd5"/>
+  <path d="M0 343 Q101 330 208 344 T423 343 T640 341 V407 H0Z" fill="#80c6c2"/>
+  <path d="M0 380 Q163 366 320 380 T640 379 V456 Q640 480 616 480 H24 Q0 480 0 456Z" fill="#f5dfb9"/>
+  <ellipse cx="320" cy="411" rx="208" ry="10" fill="#d6bb94"/>
+
+  <defs>
+    <g id="gpt-6.2-astra-low--wheel">
+      <circle r="63" fill="none" stroke="#263f48" stroke-width="10"/>
+      <circle r="57" fill="none" stroke="#fff4d9" stroke-width="3"/>
+      <path d="M-56 0H56 M0-56V56 M-40-40L40 40 M-40 40L40-40 M-52-21L52 21 M-21 52L21-52 M-52 21L52-21 M-21-52L21 52"
+            fill="none" stroke="#698486" stroke-width="1.7"/>
+      <circle r="6" fill="#263f48"/>
+    </g>
+  </defs>
+  <use href="#gpt-6.2-astra-low--wheel" x="166" y="346"/>
+  <use href="#gpt-6.2-astra-low--wheel" x="470" y="346"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Far pedal and foot -->
+    <path d="M311 349l-19-23" stroke="#38525b" stroke-width="7"/>
+    <path d="M245 228 Q252 255 279 268 L281 313 L299 322 L278 325 Q271 324 272 317 L267 279 Q242 269 231 247Z"
+          fill="#e89a45" stroke="#754d38" stroke-width="3"/>
+    <path d="M278 327h29" stroke="#263f48" stroke-width="6"/>
+
+    <!-- Bicycle frame -->
+    <path d="M166 346l91-95 54 98-145-3 M257 251l157-17-103 115 M410 217l60 129"
+          stroke="#b84a40" stroke-width="10"/>
+    <path d="M258 249l153-17 M169 342l85-89" stroke="#ff9572" stroke-width="3"/>
+    <path d="M257 251l-10-22 M410 217l-8-26q-1-6 6-6h24" stroke="#38525b" stroke-width="7"/>
+    <path d="M425 185h17 M226 228q17 4 36 0" stroke="#263f48" stroke-width="10"/>
+    <circle cx="311" cy="349" r="13" fill="#ffd49a" stroke="#38525b" stroke-width="4"/>
+    <path d="M311 349l23 22 M321 373h29" stroke="#38525b" stroke-width="7"/>
+
+    <!-- Near leg, bent at the knee -->
+    <path d="M264 222q15 19 43 34 10 5 10 17l-5 68 16 12 14 13-24 2q-12-1-15-11l-3-13 3-69q-30-11-52-35Z"
+          fill="#ffba59" stroke="#754d38" stroke-width="3"/>
+
+    <!-- Tail, body, and rising neck -->
+    <path d="M212 194q-31-5-61-29 7 21 31 38l-31-7q19 23 57 25"
+          fill="#d8e6df" stroke="#354e56" stroke-width="3.5"/>
+    <path d="M192 192q22-19 63-22 37-3 49-25 6-13 3-40-3-32 19-46 22-14 46-2 19 10 19 29 0 20-20 31-15 9-18 32-4 44-34 72-24 25-67 24-44-1-63-28-10-16 3-25Z"
+          fill="#fffaf0" stroke="#354e56" stroke-width="4"/>
+    <!-- Long bill and pendulous pouch -->
+    <path d="M375 84q54 1 136 19 8 2 1 7-40 28-79 26-39-1-59-33Z"
+          fill="#ffc56c" stroke="#704f3e" stroke-width="3.5"/>
+    <path d="M375 84q63 2 139 20l-3 4q-82-2-139-13Z"
+          fill="#ffab57" stroke="#704f3e" stroke-width="3"/>
+    <circle cx="359" cy="78" r="5.5" fill="#263f48"/>
+    <circle cx="360.5" cy="76.5" r="1.5" fill="white"/>
+    <path d="M318 66q-12-4-18 0 8-11 21-12" fill="#fffaf0" stroke="#354e56" stroke-width="3"/>
+
+    <!-- Windswept scarf -->
+    <path d="M323 140q-24 1-47-17-22-18-55-10l12 7-13 8q25-5 44 10 27 21 58 17Z"
+          fill="#358e9f" stroke="#285766" stroke-width="3"/>
+    <path d="M306 135q17 9 49 3l-3 13q-25 7-49-3Z" fill="#58b7bc" stroke="#285766" stroke-width="3"/>
+
+    <!-- Wing stretched forward to steer -->
+    <path d="M234 191q23-22 52-13 37 15 76 11l63-8q8-1 9 4 1 4-8 7-54 21-113 26-54 8-79-9"
+          fill="#ebf1e7" stroke="#354e56" stroke-width="3.5"/>
+    <path d="M259 198q26 10 57 7 M275 190q23 8 46 7" stroke="#b5cbc7" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title">
+  <title id="gpt-6.2-sol-low--title">A pelican riding a red bicycle</title>
+  <defs>
+    <g id="gpt-6.2-sol-low--wheel">
+      <circle r="74" fill="#fffaf0" stroke="#20343d" stroke-width="9"/>
+      <path d="M-69 0H69M0-69V69M-49-49l98 98m0-98-98 98"
+            stroke="#a5b9bd" stroke-width="2"/>
+      <circle r="7" fill="#20343d"/>
+    </g>
+  </defs>
+
+  <rect width="640" height="440" rx="28" fill="#dff4f3"/>
+  <circle cx="521" cy="91" r="44" fill="#ffdb80"/>
+  <path d="M42 386H598" stroke="#afd0cd" stroke-width="5" stroke-linecap="round"/>
+
+  <use href="#gpt-6.2-sol-low--wheel" x="167" y="309"/>
+  <use href="#gpt-6.2-sol-low--wheel" x="475" y="309"/>
+
+  <!-- Bicycle frame, fork, saddle, and handlebars -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M167 309l87-102 67 102H167m87-102h174l-107 102m154 0-47-102-13-40"
+          stroke="#e45c51" stroke-width="10"/>
+    <path d="M254 207l-10-20m-24-1h47m148-19 16-14h30q17 0 17 13"
+          stroke="#20343d" stroke-width="8"/>
+    <circle cx="321" cy="309" r="15" stroke="#20343d" stroke-width="5"/>
+    <path d="M321 309l23 12m-10 0h29" stroke="#20343d" stroke-width="6"/>
+  </g>
+
+  <!-- Pelican's webbed foot on the pedal -->
+  <path d="M282 176l42 54-12 60" fill="none" stroke="#e49546"
+        stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M312 286q15 11 42 18l-8 7 12 6q-31 7-57-14Z"
+        fill="#ffb252" stroke="#20343d" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Plump body, long neck, and head -->
+  <path d="M335 110c-18-27-2-55 27-60 27-5 49 9 53 31
+           5 23-13 36-34 37-11 19-8 42-30 61-35 31-112 29-151-9
+           l-33-28 52 8c27-28 66-37 96-26 12 4 17-3 20-14Z"
+        fill="#fffdf4" stroke="#20343d" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Throat pouch and long bill -->
+  <path d="M391 93l151 8c-37 14-72 40-112 34-26-4-40-20-39-42Z"
+        fill="#f5a458" stroke="#20343d" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M390 91q18-15 44-12l113 15-5 8-151 1Z"
+        fill="#ffca66" stroke="#20343d" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="383" cy="77" r="5.5" fill="#20343d"/>
+  <circle cx="385" cy="75" r="1.6" fill="#fff"/>
+
+  <!-- Wingtip resting on the handlebar -->
+  <path d="M242 151c29-25 66-23 94-8 29 16 57 18 96 9
+           9-2 14 8 6 13-31 21-73 24-113 11-29 15-65 10-83-25Z"
+        fill="#e9eef0" stroke="#20343d" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M251 157q27 14 57 7m-46 10q22 7 43 1"
+        fill="none" stroke="#91a6af" stroke-width="3" stroke-linecap="round"/>
+</svg>

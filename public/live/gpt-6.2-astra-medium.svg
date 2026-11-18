@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-astra-medium--title">Pelican on a bicycle</title>
+  <desc id="gpt-6.2-astra-medium--desc">A white pelican in a red scarf pedals a coral bicycle along the seaside.</desc>
+
+  <!-- A breezy afternoon on the promenade -->
+  <rect width="640" height="440" rx="24" fill="#dff5f2"/>
+  <circle cx="535" cy="79" r="36" fill="#ffdc86"/>
+  <path d="M0 292 Q85 281 165 291 T330 291 T495 291 T660 291 V370 H0Z" fill="#aadbd7"/>
+  <path d="M0 344 Q145 330 308 343 T640 339 V416 Q640 440 616 440 H24 Q0 440 0 416Z" fill="#f7e4bb"/>
+  <ellipse cx="321" cy="391" rx="215" ry="9" fill="#d7c6a1"/>
+
+  <!-- Wheels and spokes -->
+  <defs>
+    <g id="gpt-6.2-astra-medium--wheel">
+      <circle r="57" fill="#fff8e9" fill-opacity=".38" stroke="#263e48" stroke-width="9"/>
+      <circle r="51" fill="none" stroke="#fffcf0" stroke-width="3"/>
+      <g stroke="#829c9b" stroke-width="2">
+        <path d="M-50 0H50 M0-50V50 M-35-35L35 35 M-35 35L35-35"/>
+        <path d="M-50 0H50 M0-50V50 M-35-35L35 35 M-35 35L35-35" transform="rotate(22.5)"/>
+      </g>
+      <circle r="6" fill="#263e48"/>
+    </g>
+  </defs>
+  <use href="#gpt-6.2-astra-medium--wheel" x="187" y="331"/>
+  <use href="#gpt-6.2-astra-medium--wheel" x="452" y="331"/>
+
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Far leg, bent back to the raised pedal -->
+    <path d="M258 211 Q252 236 233 247 L280 305" fill="none" stroke="#c9813a" stroke-width="9"/>
+    <path d="M279 301 Q290 301 301 310 L278 311Z" fill="#de9347" stroke="#a76734" stroke-width="2"/>
+
+    <!-- Step-through frame, fork and fittings -->
+    <g fill="none" stroke="#df6755" stroke-width="9">
+      <path d="M187 331 L265 249 L305 331Z"/>
+      <path d="M265 249 Q321 297 356 285 Q385 273 413 238 L420 257 L305 331"/>
+      <path d="M413 238 L452 331"/>
+    </g>
+    <g fill="none" stroke="#344c53" stroke-width="6">
+      <path d="M265 249 L255 228 M413 238 L400 204 Q397 195 385 195 H373"/>
+      <path d="M304 331 L289 311 M305 331 L326 347"/>
+    </g>
+    <path d="M234 225 Q241 221 251 224 Q261 227 275 226 Q278 234 254 235 Q235 234 234 225Z" fill="#344c53"/>
+    <circle cx="305" cy="331" r="12" fill="#f69979" stroke="#344c53" stroke-width="4"/>
+    <path d="M315 348 H339 M279 312 H298" stroke="#344c53" stroke-width="5"/>
+
+    <!-- Near leg and webbed foot -->
+    <path d="M276 210 Q290 227 319 246 Q326 251 323 262 L320 333" fill="none" stroke="#b9773b" stroke-width="12"/>
+    <path d="M276 210 Q290 227 319 246 Q326 251 323 262 L320 333" fill="none" stroke="#f7b357" stroke-width="8"/>
+    <path d="M317 330 Q323 331 327 335 L344 342 L334 342 L338 346 L316 343 Q312 339 317 330Z" fill="#f8ad50" stroke="#ad7138" stroke-width="2"/>
+
+    <!-- Scarf ends streaming behind the bird -->
+    <path d="M305 144 Q270 126 241 138 Q222 145 202 135 L210 148 L201 153 Q226 163 249 151 Q269 142 298 157Z" fill="#df6755"/>
+    <path d="M301 148 Q270 145 250 162 L231 173 Q254 177 271 164 L305 157Z" fill="#bc5148"/>
+
+    <!-- Tail, body, long neck and head in one silhouette -->
+    <path d="M200 182 L161 163 Q165 179 184 192 L157 185 Q171 207 203 212
+             Q231 232 264 224 Q305 220 320 189 Q329 171 325 151
+             Q320 128 328 113 Q338 115 349 109 Q361 102 359 88
+             Q357 72 342 68 Q328 64 316 72 L307 66 L310 77 L299 75
+             Q285 88 290 109 Q294 129 282 148 Q274 158 253 159
+             Q219 158 200 182Z" fill="#fffdf1" stroke="#344c53" stroke-width="3.5"/>
+    <path d="M186 192 Q214 201 238 193 Q262 184 279 168 Q269 201 237 212 Q210 215 186 192Z" fill="#d5e1dc"/>
+    <path d="M301 117 Q306 135 296 148" fill="none" stroke="#d5e1dc" stroke-width="5"/>
+
+    <!-- The pelican's generous bill and pouch -->
+    <path d="M350 94 Q379 100 405 108 L477 125 Q457 136 429 141
+             Q390 149 366 128 Q351 115 345 103Z" fill="#ffc473" stroke="#344c53" stroke-width="3"/>
+    <path d="M350 91 Q389 94 434 107 Q466 114 482 123 Q484 128 477 132
+             L476 126 Q417 117 348 101Z" fill="#f4a34c" stroke="#344c53" stroke-width="3"/>
+    <path d="M367 113 Q385 134 412 135" fill="none" stroke="#e6a05b" stroke-width="3"/>
+    <circle cx="340" cy="86" r="5" fill="#263e48"/>
+    <circle cx="341.5" cy="84.5" r="1.5" fill="white"/>
+
+    <!-- Knotted scarf and a wing resting on the handlebar -->
+    <path d="M288 141 Q304 149 324 141 L326 151 Q306 162 283 151Z" fill="#e46956" stroke="#a84e44" stroke-width="2"/>
+    <path d="M248 171 Q263 161 281 170 Q310 187 338 188
+             L373 187 Q381 187 384 193 Q381 199 369 199
+             Q326 205 293 198 Q265 194 248 183" fill="#f7f8ed" stroke="#344c53" stroke-width="3"/>
+    <path d="M265 179 Q289 193 316 193" fill="none" stroke="#c8d8d4" stroke-width="3"/>
+  </g>
+</svg>

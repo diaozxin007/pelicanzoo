@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="gpt-6.2-astra-high--title">The seaside cyclist</title>
+  <desc id="gpt-6.2-astra-high--desc">A white pelican with a great orange bill and a fluttering red scarf pedals a turquoise bicycle along the coast.</desc>
+
+  <defs>
+    <g id="gpt-6.2-astra-high--wheel">
+      <circle r="82" fill="none" stroke="#233e43" stroke-width="12"/>
+      <circle r="76" fill="none" stroke="#f9e5bb" stroke-width="4"/>
+      <g fill="none" stroke="#79958e" stroke-width="2">
+        <path id="gpt-6.2-astra-high--spokes" d="M0-74V74 M-74 0H74"/>
+        <use href="#gpt-6.2-astra-high--spokes" transform="rotate(22.5)"/>
+        <use href="#gpt-6.2-astra-high--spokes" transform="rotate(45)"/>
+        <use href="#gpt-6.2-astra-high--spokes" transform="rotate(67.5)"/>
+      </g>
+      <circle r="8" fill="#f3bd62" stroke="#233e43" stroke-width="4"/>
+    </g>
+  </defs>
+
+  <!-- Salt air and a low afternoon sun -->
+  <rect width="800" height="560" fill="#fcf1d9"/>
+  <circle cx="557" cy="151" r="106" fill="#f8cf88"/>
+  <g fill="none" stroke="#fffaf0" stroke-width="8" stroke-linecap="round">
+    <path d="M75 135h43q10-23 33-13q10-23 35-12q12 5 14 18h32"/>
+    <path d="M603 84h27q9-18 24-9q13-12 27 2h21"/>
+  </g>
+  <path d="M0 349q95-9 174 0t170 0t179 0t159 0t118 0v116H0Z" fill="#c3ddd0"/>
+  <g fill="none" stroke="#92bcb1" stroke-width="3" stroke-linecap="round">
+    <path d="M25 378h67m16 0h28m485-10h77m15 0h19M49 414h53m558-10h65"/>
+  </g>
+  <path d="M0 450q182-12 377 0t423-7v117H0Z" fill="#eedbb6"/>
+  <ellipse cx="405" cy="512" rx="249" ry="10" fill="#d9c7a5"/>
+
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bicycle wheels and the far pedal -->
+    <use href="#gpt-6.2-astra-high--wheel" transform="translate(241 423)"/>
+    <use href="#gpt-6.2-astra-high--wheel" transform="translate(561 423)"/>
+    <path d="M383 424l-35 23" fill="none" stroke="#375154" stroke-width="7"/>
+    <path d="M334 448h28" stroke="#233e43" stroke-width="8"/>
+
+    <!-- Far leg, bent on the downstroke -->
+    <path d="M310 276q-6 38-30 65l54 96-9 5q-4 4 3 5l28-1q7-1 2-6l-15-9-44-88q28-28 37-58Z"
+          fill="#d98c41" stroke="#34494a" stroke-width="4"/>
+
+    <!-- Enameled diamond frame -->
+    <g fill="none">
+      <path id="gpt-6.2-astra-high--frame" d="M241 423l80-111 62 112-142-1m80-111 175-16 9 31-122 97m113-128 9 31 56 96"/>
+      <use href="#gpt-6.2-astra-high--frame" stroke="#23464a" stroke-width="14"/>
+      <use href="#gpt-6.2-astra-high--frame" stroke="#319e98" stroke-width="8"/>
+      <path d="M330 314l157-14" stroke="#8ed1ba" stroke-width="2.5"/>
+      <path d="M319 310l-9-23m187 9-11-38 27-10" stroke="#314b4d" stroke-width="8"/>
+      <path d="M505 251l16-5" stroke="#a45c3c" stroke-width="11"/>
+      <path d="M507 255q37 24 24 65" stroke="#425c59" stroke-width="2.5"/>
+    </g>
+    <path d="M281 285q9-6 29-2l29 1q8 1 5 7-8 6-48 7-16-1-15-13Z"
+          fill="#a45c3c" stroke="#263f43" stroke-width="4"/>
+
+    <!-- Chain, chainring, and near pedal -->
+    <path d="M242 413l140-8a19 19 0 1 1 1 38l-141-10a10 10 0 0 1 0-20Z"
+          fill="none" stroke="#425653" stroke-width="3.5"/>
+    <circle cx="383" cy="424" r="18" fill="#e9c481" stroke="#2a474a" stroke-width="4"/>
+    <circle cx="383" cy="424" r="9" fill="#f8e7bf" stroke="#65827b" stroke-width="3"/>
+    <path d="M383 424l35-24" stroke="#2a474a" stroke-width="7"/>
+    <path d="M402 401h33" stroke="#233e43" stroke-width="8"/>
+
+    <!-- Near leg and webbed foot -->
+    <path d="M346 275q10 25 41 51 6 4 7 11l10 46 22 8q11 6 2 8l-34-1q-8-1-4-7l4-7-15-47q-34-20-53-48Z"
+          fill="#efaa4f" stroke="#34494a" stroke-width="4"/>
+    <path d="M398 390l18 5" fill="none" stroke="#c87b38" stroke-width="2.5"/>
+
+    <!-- Pelican: tail, round body, long folded neck, and crown -->
+    <path d="M217 236q35 5 67-9 33-15 66-12 23 1 37-20
+             13-20 9-47-3-23 9-39l-11 1 15-12-9-3q17-10 37-7
+             27 3 34 25 6 19-9 33l-14 12q-9 10-10 32-1 53-36 86
+             -27 26-70 27-44 1-73-26l-43-10 19-6-31-13 30 1Z"
+          fill="#fffbec" stroke="#293f43" stroke-width="5"/>
+    <path d="M226 244q45 3 77-13-14 21-38 32l-28-6 13-4Z" fill="#374c50"/>
+    <path d="M260 269q40 23 86 15 46-7 69-44-17 50-74 58-50 6-81-29Z" fill="#d7ded0"/>
+    <path d="M419 158q-9 18-6 40" fill="none" stroke="#bccbc0" stroke-width="3.5"/>
+
+    <!-- The pelican's unmistakable hanging bill pouch -->
+    <path d="M454 129q40 8 86 14l91 10q-39 22-74 37-36 15-65-4-24-16-38-42Z"
+          fill="#f2a04f" stroke="#293f43" stroke-width="4.5"/>
+    <path d="M474 147q22 35 50 40m-33-38q18 27 40 34"
+          fill="none" stroke="#d88140" stroke-width="3"/>
+    <path d="M453 125q37 1 83 10l92 15q12 2 8 9l-6 6-1-9q-91-3-166-17-10-2-10-14Z"
+          fill="#f6c465" stroke="#293f43" stroke-width="4"/>
+    <path d="M467 129l12 2" stroke="#a77643" stroke-width="2.5"/>
+    <ellipse cx="446" cy="120" rx="10" ry="11" fill="#f6cf85"/>
+    <circle cx="447" cy="120" r="5" fill="#263e42"/>
+    <circle cx="448.5" cy="118.5" r="1.5" fill="white"/>
+
+    <!-- Scarf caught in the breeze -->
+    <path d="M396 186q-21 0-43-16-20-15-49-8l13 7-15 6q22-2 44 12 24 14 50 10Z"
+          fill="#d75c48" stroke="#563f3d" stroke-width="3.5"/>
+    <path d="M393 184q19 13 44 10l-2 12q-27 4-48-11Z"
+          fill="#e36a50" stroke="#563f3d" stroke-width="3.5"/>
+
+    <!-- Outstretched wing rests on the handlebar grip -->
+    <path d="M302 230q25-17 51-3l44 22q29 12 63 6l42-11q7-1 4 5l-19 10
+             13-4q7-1 3 5l-26 12q-54 18-104 3-31-9-52-27"
+          fill="#faf6e7" stroke="#293f43" stroke-width="4.5"/>
+    <path d="M357 250q45 26 102 13m-82-7q36 14 67 9"
+          fill="none" stroke="#b9c8bd" stroke-width="3"/>
+  </g>
+</svg>
